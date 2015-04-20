@@ -1,0 +1,5 @@
+#!/usr/bin/env Rscript
+
+Sweave("Credit.rnw")
+system("pdflatex Credit.tex")
+system("firefox Credit.pdf &")

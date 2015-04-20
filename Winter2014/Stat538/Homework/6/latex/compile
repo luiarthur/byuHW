@@ -1,0 +1,6 @@
+#!/usr/bin/env Rscript
+
+Sweave("hw6.rnw")
+system("pdflatex hw6.tex")
+system("rm -f hw6-*.pdf *.log *.aux *.tex")
+system("firefox hw6.pdf &")

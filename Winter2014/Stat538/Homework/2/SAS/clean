@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rm -f hw2.log
+rm -f hw2.lst

@@ -1,0 +1,27 @@
+Model Assessment:
+  - Residuals
+  - Graphical (qq plot, residual plots)
+
+Model Validation:
+  - Predicted vs. Actual value
+  - test and train sets (cross validation)
+  - cant use MSE, so use what?
+  
+  For MLR:
+    - MSE is easy to compute For Cox Models:
+    - exp(X'b) = hazard ratio = risk score
+    - high values of b => increased risk 
+      1) Obtain a model using training data 
+      2) Obtain risk scores using model coef and 
+         test data 
+      3) Dichotomize risk score:
+         - obtain high/low risk groups
+         - i.e., obtain a prediction
+         - look at KM curves and logrank test to
+           compare two risk groups
+      4) Assess whether predicted high/low risk 
+         groups correspond with reality.
+         (Check whether there is a significant 
+         different b/w predicted high/low risk
+         groups).
+

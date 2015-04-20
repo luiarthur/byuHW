@@ -1,0 +1,7 @@
+#!/usr/bin/env Rscript
+
+#system("cd ../; R CMD BATCH cars.R; cd latex")
+Sweave("cars.rnw")
+system("pdflatex cars.tex")
+system("rm *.tex *.log *.aux")
+#system("firefox cars.pdf &")

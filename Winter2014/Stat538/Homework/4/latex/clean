@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rm -f *-*.pdf
+rm -f *.log
+rm -f *.aux
+rm -f *.tex

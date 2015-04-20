@@ -1,0 +1,8 @@
+Call:
+survdiff(formula = Surv(train.set$time, train.set$cens) ~ c(clust.2group))
+
+                   N Observed Expected (O-E)^2/E (O-E)^2/V
+c(clust.2group)=0 55       21     25.4     0.756      1.65
+c(clust.2group)=1 75       28     23.6     0.812      1.65
+
+ Chisq= 1.6  on 1 degrees of freedom, p= 0.199 

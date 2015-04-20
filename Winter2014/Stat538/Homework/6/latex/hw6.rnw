@@ -1,0 +1,238 @@
+\documentclass{article}                                                   %
+\usepackage{fullpage}                                                     %
+\usepackage{pgffor}                                                       %
+\usepackage{amssymb}                                                      %
+\usepackage{Sweave}                                                       %
+\usepackage{bm}                                                           %
+\usepackage{mathtools}                                                    %
+\usepackage{verbatim}                                                     %
+\usepackage{appendix}                                                     %
+\usepackage[UKenglish]{isodate} % for: \today                             %
+\cleanlookdateon                % for: \today                             %
+                                                                          %
+\def\wl{\par \vspace{\baselineskip}}                                      %
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}                       %
+\def\endmyfig{\end{center}\end{figure}}                                   %
+                                                                          %
+\begin{document}                                                          %
+% my title:                                                               %
+\begin{center}                                                            %
+  \section*{\textbf{Stat538 HW6 - Accerleration Failure Time Models}}     %
+  \subsection*{\textbf{Arthur Lui}}                                       %
+  \subsection*{\noindent\today}                                           %
+\end{center}                                                              %
+\setkeys{Gin}{width=0.5\textwidth}                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Severity of heart attack effects can often be mitigated through early
+%intervention. It is therefore important to assess time from first symptoms to
+%MI (myocardial infarction). The data (mi.csv) of interest consist of the
+%following variables:
+%time: time in minutes to MI from onset of symptoms
+%status: censoring indicator
+%gender
+%perf4: score on a lung capacity test administered at the hospital
+%(often used as a surrogate for smoking status)
+%You've been told that such data has historically been modeled using an AFT
+%approach. Provide a complete analysis of this data, including assessment of
+%model assumptions.
+
+<<design,echo=F>>=
+  source("../R/mi.R",chdir=T)
+@
+
+\section*{Introduction:}
+Knowing the relationship between time from onset of first symptoms to 
+Myocardial Infarction (MI) can help doctors and patients intervene 
+early to mitigate the severity of the effects of heart attacks. We will
+analyse data provided by Dr. Engler, which includes data of the variables:
+\begin{itemize}
+  \item{time: time from onset of symptoms to MI (in minutes)}
+  \item{status: censoring indicator}
+  \item{gender}
+  \item{perf4: score on a lung capacity test administered at the hospital}
+\end{itemize}
+After analyzing this data (using both parametric and non-parametric models),
+we will assess model assumptions.
+
+
+\section*{Results:}
+
+
+\subsubsection*{Choosing a Distribution for the AFT Model}
+
+We first plotted the Kaplan Meier (K.M.) Survival Curve without any covarites. 
+We then fit AFT models using the weibull, loglogistic, and lognormal 
+distributions. The lognormal curve resembled the K.M. curve the closest
+(see Figure 1). So, lognormal model was chosen to model survival times.
+
+% Plot 1
+\beginmyfig
+<<fig=T,echo=F,caption="This">>=
+  plot.1()
+@  
+    \caption{Plot of Parametric and Non-parametric Survival Curves.
+             The lognormal curve looks closest to the K.M. curve. So,
+             the lognormal distribution was chosen to model survival
+             times.}
+\endmyfig
+
+\wl\noindent
+A more rigorous way of determining which distribution best models the data
+is to plot the probability plots for each of the distributions. The plots
+reveal that the lognormal probability plot most resembles a straight line.
+This suggests that the lognormal distribution is a better choice for 
+modelling survival times (see Figures 2-4). The lognormal probability 
+plot provides other valuable information. For example, the slope (3)
+and the intercept (-3.5) provide estimates for $\sigma^{-1}$ and 
+$-\mu/\sigma$, respectively.
+
+
+% Plot 2
+\beginmyfig
+<<fig=T,echo=F>>=
+  plot.weib.prob()
+@  
+    \caption{The line is not very straight. This means that the weibull model
+             for survival times is not suitable.}
+\endmyfig
+
+% Plot 3
+\beginmyfig
+<<fig=T,echo=F>>=
+  plot.lnorm.prob()
+@  
+    \caption{The line is reasonably straight. This means that the lognormal
+             model for survival times is suitable and the slope (3) and 
+             intercept (-3.5) provide estimates for $\sigma^{-1}$ and 
+             $-\mu/\sigma$, respectively.}
+\endmyfig
+
+% Plot 4
+\beginmyfig
+<<fig=T,echo=F>>=
+  plot.llog.prob()
+@  
+    \caption{The line is not very straight. This means that the loglogistic
+             model for survival times is not suitable.}
+\endmyfig
+
+
+\subsubsection*{Fitting the Model with Covariates: PRINT XTABLE}
+
+After fitting the AFT model, we find that the median survival time for 
+a male is 1.29 times that of females, for a particular perf4. That is,
+males have a higher survival rate that females at any particular perf4.
+Also, within each  gender, the median (or, in general, any percentile) 
+survival time is increased by 10\% as perf4 increases by 1 unit. That
+is, fixing the gender, people with higher perf4 have higher survival rates
+(see Figure 5 and Table 1).
+
+<<label=tab1,echo=F,results=tex>>=
+  library(xtable)
+  x=xtable(summary(mi.lnorm.cov)$table,caption="Summary Table For Cox Model",
+           label="tab:one")
+  print(x,floating=T,caption.placement="top")
+@  
+
+% Plot 5
+\beginmyfig
+<<fig=T,echo=F>>=
+  plot.2(.8)
+@  
+    \caption{KM Curve for male and female at 1st and 3rd quartiles of perf4.}
+\endmyfig
+
+\wl\noindent
+We can do a similar analysis by dichotomizing perf4. I chose the cut-off 
+point for the dichotomization of perf4 to be 6.05 ($75^{th}$ percentile). 
+After fitting the AFT model, we find that the median survival time for 
+a male is 1.29 times that of females, for a particular perf4. That is,
+males have a higher survival rate that females at any particular perf4.
+Also, within each  gender, the median (or, in general, any percentile) 
+survival time for the higher perf4 is 1.32 times that of the lower group.
+That is, fixing the gender, people with higher perf4 have higher survival 
+rates (see Figure 6 and Table 2).
+
+<<label=tab2,echo=F,results=tex>>=
+  library(xtable)
+  x=xtable(summary(mi.lnorm.cov.d)$table,caption="Summary Table For Cox Model",
+           label="tab:one")
+  print(x,floating=T,caption.placement="top")
+@  
+
+% Plot 6
+\beginmyfig
+<<fig=T,echo=F>>=
+  plot.3(.8)
+@  
+    \caption{KM Curve for male and female and Dichotomized perf4.}
+\endmyfig
+
+
+\subsubsection*{Assessing Model Fit}
+
+To assess model fit, we plot the percentile-percentile plots for each gender.
+For males, the Q-Q plot line passes through the origin but is not straight.
+This suggests that the AFT model may not be a valid model for the two groups
+of data - males with perf4 < \Sexpr{p4.cut}, and males with perf4 
+> \Sexpr{p4.cut} ($75^{th}$ percentile survival time) (see Figure 7).
+
+% Plot 7
+\beginmyfig
+<<fig=T,echo=F>>=
+  plot.male.qq()
+@  
+    \caption{Percentile-percentile plot for males. The line passes through 
+             the origin but is not straight. This suggests that the
+             AFT model may not be a valid model for the two groups of data, 
+             males with perf4 < \Sexpr{p4.cut}, and males with perf4 
+             > \Sexpr{p4.cut} ($75^{th}$ percentile survival time).}
+\endmyfig
+
+\wl\noindent
+For females, the Q-Q plot line passes through the origin and is Figure
+straight. This suggests that the AFT model may be a valid model for the two
+groups of data, females with perf4 < \Sexpr{p4.cut}, and females with perf4 
+> \Sexpr{p4.cut} ($75^{th}$ percentile survival time). 
+The slope for this line appears to be approximately 1.1, which is
+an estimate for the acceleration factor, $\phi^{-1}$ (see Figure 8).
+
+% Plot 8
+\beginmyfig
+<<fig=T,echo=F>>=
+  plot.female.qq()
+@ 
+    \caption{Percentile-percentile plot for females. The line passes through 
+             the origin and is reasonably straight. This suggests that the
+             AFT model may be a valid model for the two groups of data, 
+             females with perf4 < \Sexpr{p4.cut}, and females with perf4 
+             > \Sexpr{p4.cut} ($75^{th}$ percentile survival time). 
+             The slope for this line appears to be approximately 1.1, 
+             which is an estimate for the acceleration factor, $\phi^{-1}$.}
+\endmyfig
+
+\wl\noindent
+Last of all, we inspect the deviance residuals plot. The plot exhibits no
+patterns and the deviance residuals are symmetric about 0. This implies that
+the fitted model is appropriate (see Figure 9).
+
+% Plot 9
+\beginmyfig
+<<fig=T,echo=F>>=
+  plot.resid()
+@  
+    \caption{Deviance Residual plot. No patterns, and symmetric aboue 0. 
+             This implies that the fitted model is appropriate.}
+\endmyfig
+
+
+
+
+\newpage
+\section*{Appendix:}
+  \subsection*{R Code:}
+    \verbatiminput{../R/mi.R}
+    \newpage
+
+\end{document}
+

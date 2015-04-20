@@ -1,0 +1,64 @@
+\documentclass{article}                                                   %
+\usepackage{fullpage}                                                     %
+\usepackage{pgffor}                                                       %
+\usepackage{amssymb}                                                      %
+\usepackage{Sweave}                                                       %
+\usepackage{bm}                                                           %
+\usepackage{mathtools}                                                    %
+\usepackage{verbatim}                                                     %
+\usepackage{appendix}                                                     %
+\usepackage[UKenglish]{isodate} % for: \today                             %
+\cleanlookdateon                % for: \today                             %
+                                                                          %
+\def\wl{\par \vspace{\baselineskip}}                                      %
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}                       %
+\def\endmyfig{\end{center}\end{figure}}                                   %
+                                                                          %
+\begin{document}                                                          %
+% my title:                                                               %
+\begin{center}                                                            %
+  \section*{Notes}                                                        %
+  \subsection*{Arthur Lui}                                                %
+  \subsection*{\noindent\today}                                           %
+\end{center}                                                              %
+\setkeys{Gin}{width=0.5\textwidth}                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Reading Missing Data in R}
+  \begin{verbatim} 
+    read.table(na.string="") # => NA if ""
+  \end{verbatim}  
+
+\section{Cross Validation}
+  \begin{itemize}
+    \item Fit the data using training set
+    \item Evaluate the resultant model using test data
+  \end{itemize}
+  
+  \subsection{Steps}  
+    Goal: \begin{itemize}
+            \item Predict whether an individual will be high / low risk
+            \item To validate our model
+          \end{itemize}  
+    
+
+    \begin{enumerate}
+      \item obtain a model using training data
+      \item obtain cox model coefficients from that model
+      \item obtain risk scores ($e^{X\beta}$) for the subjects in our test data
+      \item Dichotomize risk scores (high/low risk groups, by median) = predictions
+      \item Compare predictions with reality
+            (by plotting the KM curves for the two groups)
+    \end{enumerate}
+
+    Further the 2 curves => better the model. Better distinguishing of two groups.\\ \indent
+    Risk scores are hazard ratio.\\ \indent
+
+  \subsection{R Code}
+    \begin{verbatim}
+       
+    \end{verbatim}
+
+
+\end{document}
+

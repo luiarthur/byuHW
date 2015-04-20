@@ -1,0 +1,50 @@
+\documentclass{article}                                                   %
+\usepackage{fullpage}                                                     %
+\usepackage{pgffor}                                                       %
+\usepackage{amssymb}                                                      %
+\usepackage{Sweave}                                                       %
+\usepackage{bm}                                                           %
+\usepackage{mathtools}                                                    %
+\usepackage{verbatim}                                                     %
+\usepackage{appendix}                                                     %
+\usepackage[UKenglish]{isodate} % for: \today                             %
+\cleanlookdateon                % for: \today                             %
+                                                                          %
+\def\wl{\par \vspace{\baselineskip}}                                      %
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}                       %
+\def\endmyfig{\end{center}\end{figure}}                                   %
+                                                                          %
+\begin{document}                                                          %
+% my title:                                                               %
+\begin{center}                                                            %
+  \section*{\textbf{Stat642 HW6 - Plots}}                                 %
+  \subsection*{\textbf{Arthur Lui}}                                       %
+  \subsection*{\noindent\today}                                           %
+\end{center}                                                              %
+\setkeys{Gin}{width=1\textwidth}                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<design,echo=F>>=
+  source("../12.R",chdir=T)
+  source("../13.R",chdir=T)
+  source("../22.R",chdir=T)
+@
+
+\begin{center}
+<<fig=T,echo=F>>=
+  plot.12a()
+@
+<<fig=T,echo=F>>=
+  plot.12b()
+@
+<<fig=T,echo=F>>=
+  plot.13()
+@
+<<fig=T,echo=F>>=
+  plot.22()
+@
+\end{center}
+
+
+
+\end{document}

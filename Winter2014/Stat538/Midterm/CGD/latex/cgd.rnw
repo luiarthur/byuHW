@@ -1,0 +1,126 @@
+\documentclass{article}                                                   %
+\usepackage{float}
+\usepackage{fullpage}                                                     %
+\usepackage{pgffor}                                                       %
+\usepackage{amssymb}                                                      %
+\usepackage{Sweave}                                                       %
+\usepackage{bm}                                                           %
+\usepackage{mathtools}                                                    %
+\usepackage{verbatim}                                                     %
+\usepackage{appendix}                                                     %
+\usepackage[UKenglish]{isodate} % for: \today                             %
+\cleanlookdateon                % for: \today                             %
+                                                                          %
+\def\wl{\par \vspace{\baselineskip}}                                      %
+%\def\beginmyfig{\begin{figure}[htbp]\begin{center}}                      %
+\def\beginmyfig{\begin{figure}[H]\begin{center}}                          %
+\def\endmyfig{\end{center}\end{figure}}                                   %
+                                                                          %
+\begin{document}                                                          %
+% my title:                                                               %
+\begin{center}                                                            %
+  \section*{\textbf{Stat538 Midterm - Chronic Granulomatous Disease}}     %
+  \subsection*{\textbf{Arthur Lui}}                                       %
+  \subsection*{\noindent\today}                                           %
+  \hrulefill                                                              %
+\end{center}                                                              %
+\setkeys{Gin}{width=0.5\textwidth}                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<design,echo=F,results=hide>>=
+  source("../R/cgd.R",chdir=T)
+@
+
+\section{Introduction:}
+  Chronic Granulomatous Disease (CGD), an inherited immunodeficiency disease
+  that increases the body's susceptibility to infections caused by certain
+  bacteria and fungi. CGD weakens an individual's immune system such that they
+  are more susceptible to mild pathogens. CGD affects 1 in 200,000 people in the
+  United States, with about 20 new cases diagnosed each year. The evaluation of
+  the efficacy of a certain treatment (rIFN-g) in comparison to a placebo is of
+  primary interest. A dataset (cgd.csv) provided by Dr. Engler consisting the
+  variables including treatment, time to infection or end of study, and
+  infection status is used for analysis to determine whether the treatment
+  (rIFN-g) is effective in improving survival.
+
+\section{Analysis:}
+
+  \subsection{Logrank Test}
+  An appropriate test to determine whether the treatment (rIFN-g) is effective 
+  in improving survival is the logrank test. The logrank test can be used to
+  determine if one survival curve is significantly different from the other. 
+  To perform the test, the assumption that the two survival curves don't cross
+  must be met. Therefore, prior to performing the logrank test, we plot the
+  Kaplan-Meier (KM) curves for both treatment groups. That is, we plot the KM
+  curves for both the placebo group and the rIFN-g group (see \textbf{Figure
+  1}). 
+
+  \beginmyfig
+<<fig=T,echo=F>>=
+  plot.km()
+@  
+    \caption{Kaplan-Meier Survival Curve for the Time until Infection with CGD
+             with 95\% confidence interval bands shaded in grey.}
+  \endmyfig
+
+  \wl\noindent
+  The two curves do not cross. Though, their 95\% confidence interval 
+  (shaded in grey) regions do. Since the curves do not cross, we can perform the
+  logrank test. Before proceeding with the logrank test, note that the median
+  survival time for the rIFN-g treatment was computed to be 
+  \textbf{\Sexpr{km.trmt.median[1]}} (95\% confidence interval = 
+  (\textbf{\Sexpr{round(km.trmt.median[2])},\Sexpr{round(km.trmt.median[3])}})). 
+  The median survival time for the placebo could not be computed as the survival 
+  curve did not extend to 0.5.
+  \wl\noindent
+  The logrank test was performed and the results indicate that the survival of
+  the treatment rIFN-g group was significantly (p-value = 
+  \Sexpr{round(p.logrank.treat,5)}) higher than that of the placebo group. That 
+  is, an individual from the treatment rIFN-g group is likely to catch an
+  infection at a later time than an individual from the placebo group. The 
+  rIFN-g is significantly better than the placebo in prolonging the time to 
+  infection.
+
+  \subsection{Cox Regression Model}
+  The Cox regression model for proportional hazards provides a way to quantify
+  how strongly the effects of the rIFN-g treatment correlate with the hazard
+  function. A cox model was fit to the data. The log hazard ratio was regressed
+  against treatment. \textbf{Table 1} summarizes the results of the regression.
+  The estimate of $\hat{e^\beta}$ = \Sexpr{cox.mod.coef[1]}, where $\beta$ is
+  the partial slope in the regression model. Therefore, we can say that the
+  hazard rate for the rIFN-g treatment group is $\hat{e^\beta}$
+  (\Sexpr{cox.mod.coef[1]}) that of the placebo group. That is, the rIFN-g
+  treatment group has a lower hazard function than the placebo group.
+
+<<label=tab1,echo=F,results=tex>>=
+  library(xtable)
+  x=xtable(cox.mod.coef,caption="Summary Table For Cox Model",label="tab:one")
+  print(x,floating=T,caption.placement="top")
+@  
+  \wl\noindent
+  The log cumulative hazard function against log survival times
+  for the two treatment groups should be parallel under the proportional hazards
+  assumption. \textbf{Figure 2} shows that the two curves are reasonably
+  parallel.
+
+  \beginmyfig
+<<fig=T,echo=F>>=
+  plot.model.ass()
+@  
+  \endmyfig
+
+  \section{Conclusions}
+  The analysis shows that the rIFN-g treatment is effective in decreasing the
+  hazard of individuals getting infection. While in this analysis, the log
+  hazard ratio was regressed only on treatment, future analysis can be conducted
+  to explore different cox models to model the effect of different variables on
+  log hazard ratio.
+  
+\newpage
+\section{Appendix:}
+  \subsection{R Code:}
+    \verbatiminput{../R/cgd.R}
+    \newpage
+
+\end{document}
+

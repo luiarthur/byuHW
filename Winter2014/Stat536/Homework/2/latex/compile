@@ -1,0 +1,6 @@
+#!/bin/bash
+
+pdflatex main.tex
+./clean
+firefox main.pdf &
+

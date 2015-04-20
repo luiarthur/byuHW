@@ -1,0 +1,67 @@
+34	Absolute Latitude	ABSLATIT
+32	Air Distance to Big Cities	AIRDIST
+17	Ethnolinguistic Fractionalization	AVELF
+42	British Colony Dummy	BRIT
+16	Fraction Buddhist	BUDDHA
+35	Fraction Catholic	CATH00
+40	Civil Liberties	CIV72
+39	Colony Dummy	COLONY
+9	Fraction Confucian	CONFUC
+19	Population Density 1960	DENS60
+6	Population Density Coastal in 1960s	DENS65C
+67	Interior Density	DENS65I
+56	Population Growth Rate 1960-90	DPOP6090
+1	East Asian Dummy	EAST
+64	Capitalism	ECORG
+53	English Speaking Population	ENGFRAC
+37	European Dummy	EUROPE
+36	Fertility in 1960s 	FERTLDC1
+45	Defense Spending Share	GDE1
+4	GDP in 1960 (log)	GDPCH60L
+48	Public Education Spending Share in GDP in 1960s	GEEREC1
+28	Public Investment Share	GGCFD3
+33	Nominal Govertnment GDP Share 1960s	GOVNOM1
+24	Government Share of GDP in 1960s	GOVSH61
+18	Gov. Consumption Share 1960s	GVR61
+25	Higher Education 1960	H60
+50	Religion Measure	HERF00
+30	Fraction Hindus	HINDU00
+3	Investment Price	IPRICE1
+11	Latin American Dummy	LAAM
+61	Land Area	LANDAREA
+49	Landlocked Country Dummy	LANDLOCK
+43	Hydrocarbon Deposits in 1993	LHCPC
+8	Life Expectancy in 1960	LIFE060
+58	Fraction of Land Area Near Navigable Water	LT100CR
+7	Malaria Prevalence in 1960s	MALFAL66
+12	Fraction GDP in Mining	MINING
+15	Fraction Muslim	MUSLIM00
+57	Timing of Independence	NEWSTATE
+55	Oil Producing Country Dummy	OIL
+22	Openess measure 1965-74	OPENDEC1
+65	Fraction Othodox	ORTH00
+21	Fraction Speaking Foreign Language	OTHFRAC
+2	Primary Schooling in 1960	P60
+54	Average Inflation 1960-90	PI6090
+59	Square of Inflation 1960-90	SQPI6090
+23	Political Rights	PRIGHTS
+31	Fraction Population Less than 15	POP1560
+46	Population in 1960	POP60
+44	Fraction Population Over 65	POP6560
+27	Primary Exports 1970	PRIEXP70
+29	Fraction Protestants	PROT00
+20	Real Exchange Rate Distortions	RERD
+41	Revolutions and Coups	REVCOUP
+10	African Dummy	SAFRICA
+38	Outward Orientation	SCOUT
+51	Size of Economy	SIZE60
+52	Socialist Dummy	SOCIALIST
+13	Spanish Colony	SPAIN
+47	Terms of Trade Growth in 1960s	TOT1DEC1
+63	Terms of Trade Ranking	TOTIND
+5	Fraction of Tropical Area	TROPICAR
+26	Fraction Population In Tropics	TROPPOP
+60	Fraction Spent in War 1960-90	WARTIME
+66	War Particpation 1960-90	WARTORN
+14	Years Open 1950-94	YRSOPEN
+62	Tropical Climate Zone	ZTROPICS

@@ -1,0 +1,6 @@
+#!/usr/bin/env Rscript
+
+Sweave("pcnsl.rnw")
+system("pdflatex pcnsl.tex")
+system("rm -f pcnsl-*.pdf *.log *.aux *.tex")
+system("evince pcnsl.pdf &")

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#pdflatex HWList.tex
+pdflatex Formulas.tex
+rm -f *.aux *.log
+
+#/usr/bin/firefox HWList.pdf &
+/usr/bin/firefox Formulas.pdf &

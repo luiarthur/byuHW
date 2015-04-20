@@ -1,0 +1,17 @@
+618518
+Car Crash Analysis Concept Sheet
+
+
+Goals:
+  Understand the relationship between X (several independent variables)
+  and the log odds of having at least one fatality in a vehicle.
+
+Key Features of Statistical Analysis:
+  Many of the X's are factors.
+
+Potential Model:
+  Logistic Regression (because Y, the response, is binary)
+
+One Feature of Analysis I don't know how to do:
+  Just seems like logistic regression. Don't really know 
+  what the challenge will be...

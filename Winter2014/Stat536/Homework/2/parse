@@ -1,0 +1,13 @@
+#!/bin/bash
+
+./clean
+wget http://mheaton.byu.edu/Courses/Stat536/Case%20Studies/GDP/Data/GDPnames.txt
+wget http://mheaton.byu.edu/Courses/Stat536/Case%20Studies/GDP/Data/GDP_data.csv
+# :%s//\r/g
+#To type ^M, type Ctrl-V Ctrl-M.
+
+ex GDPnames.txt <<EOEX
+  :set ff=mac
+  :x
+EOEX
+

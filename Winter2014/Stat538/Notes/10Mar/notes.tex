@@ -1,0 +1,85 @@
+\documentclass{article}                                                   %
+\usepackage{fullpage}                                                     %
+\usepackage{pgffor}                                                       %
+\usepackage{amssymb}                                                      %
+\usepackage{Sweave}                                                       %
+\usepackage{bm}                                                           %
+\usepackage{mathtools}                                                    %
+\usepackage{verbatim}                                                     %
+\usepackage{appendix}                                                     %
+\usepackage[UKenglish]{isodate} % for: \today                             %
+\cleanlookdateon                % for: \today                             %
+                                                                          %
+\def\wl{\par \vspace{\baselineskip}}                                      %
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}                       %
+\def\endmyfig{\end{center}\end{figure}}                                   %
+                                                                          %
+\begin{document}                                                          %
+% my title:                                                               %
+\begin{center}                                                            %
+  \section*{Notes}                                                        %
+  \subsection*{Arthur Lui}                                                %
+  \subsection*{\noindent\today}                                           %
+\end{center}                                                              %
+\setkeys{Gin}{width=0.5\textwidth}                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \section{Sensitivity}
+  \[
+    \frac{\text{Number of true positives}}
+         {\text{Number of true positives+Number of false positives}}
+  \]
+
+  \section{Specificity}
+  \[
+    \frac{\text{\# of true -ve}}
+         {\text{\# of true -ve + \# of false +ve}}
+  \]
+
+  \section{1 - Specificity}
+  \[
+    \frac{\text{\# of false +ve}}
+         {\text{\# of true -ve + \# of false +ve}}
+  \]
+
+ 
+    %\begin{tabular}{c}
+    %  \hline
+    %  Truth \\
+    %  \hline
+    %  + & - \\ \vline{2-2}
+    %  \hline
+    %  - & + \\
+    %  \hline
+    %\end{tabular} 
+  
+  \section{ROC Curve}
+  Plot Sensitivity vs. 1-Specificity \\
+  Higher Area Under the Curve (AUC) greater is better \\
+  Curve should be above x=y. Otherwise, better to flip a coin. \\
+  \wl\noindent
+  AUC = Probability that a classifier will rand a randomly chosen
+  positive instance higher than a randomly chosen negative one. \\
+
+  \noindent
+  low  cutoff $\Rightarrow$ lots of false +ve and few false -ve \\
+  high cutoff $\Rightarrow$ lots of false -ve and few false +ve \\
+
+  \section{Time-dependent ROC Curves}
+  Classify subjects\\
+  Classify based on the risk score\\
+  Vary threshold C\\
+  Base Sensitivity/Specificity on whether subject
+  jas actually experienced event by time T\\
+  \wl\noindent
+  D(t) = 1 if subject has experienced event\\
+  D(t) = 0 otherwise.\\
+  \wl\noindent
+  Specificity = $P[X>c|D(t)=1]$\\
+  Sensitivity = $P[X\le c|D(t)=0]$\\
+  X = risk score = $e^{x^\prime\beta}$\\
+  Time-varying component: calculate AUC at all t\\
+  Look for:\\
+  One AUC curve higher than another to select models.\\
+
+\end{document}

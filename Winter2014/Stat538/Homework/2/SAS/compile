@@ -1,0 +1,6 @@
+#!/bin/bash
+
+./clean
+rm -f *.png
+
+sas hw2.sas

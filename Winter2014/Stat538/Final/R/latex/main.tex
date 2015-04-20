@@ -1,0 +1,433 @@
+%http://www.informatik.uni-freiburg.de/~frank/ENG/latex-course/latex-course-3/latex-course-3_en.html
+\documentclass{beamer}
+
+\usepackage{graphicx}
+\usepackage{textpos}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{color} % For my tc command
+\usepackage[labelformat=empty]{caption}
+%\usepackage{algorithmic} % Need to install texlive
+\def\wl{\par \vspace{\baselineskip}}
+\def\imp{\Rightarrow}
+\newcommand\tc[1]{\textcolor{red}{\textbf{#1}}}
+
+% Sorah Used This:
+\usepackage{xcolor}
+
+% See this for more themes and colors: http://www.hartwork.org/beamer-theme-matrix/
+\usepackage{beamerthemeHannover} % Determines the Theme
+\usecolortheme{seahorse}         % Determines the Color
+
+\title{Bladder Cancer - Survival Analysis}
+%\logo{\includegraphics[width=1cm,height=1cm,keepspectration]{logo.png}}
+\author{Arthur Lui \\ Christine Ma}
+\institute{ Department of Statistics\\ Brigham Young University }
+
+
+\begin{document}
+
+  \frame{\titlepage}
+
+  \section{Introduction}
+      \frame{
+        \frametitle{Bladder Cancer}
+        \begin{itemize}
+          \item USA 2014: 74690 new cases, 15580 deaths
+          \item Interested in relationship between gene expression and bladder cancer
+          \item Want to compare different statistical methods
+        \end{itemize}
+      }
+      
+  \section{Data}
+      \frame {
+        \frametitle{Description of Data}
+        \begin{itemize}
+          \item Biomarkers (43149)
+          \item Survival Times
+          \item Censoring Indicators
+          \item Censoring Rate = 58\%
+          \item Number of Observations (Patients) = 165 \\
+          \item No dichotomization was done \\
+          \item Removed the column of NA's in data set \\
+
+        \end{itemize}
+      }
+      
+      \frame{
+        \frametitle{Summary Statistics}
+        \small
+        \begin{figure}
+          \caption{Summary Table of Survival Times}
+          \input{raw/timeSummary.tex}
+        \end{figure}
+      }
+
+      \frame{
+        \frametitle{Histogram of Survival Times}
+        \small
+        \begin{figure}
+          \includegraphics[scale=.4]{raw/times.pdf}
+          \caption{\tiny Note: We have more data on lower survival times. And
+                               more deaths occurred at lower survival times.}
+        \end{figure}
+      }
+
+      \frame {
+        \frametitle{KM Curve}
+        \begin{figure}
+          \includegraphics[scale=.3]{raw/KM.pdf}
+        \end{figure}
+        \tiny Median = 87.07 (33.97, 140.16) 
+      }
+
+  \section{False-Positive Discovery Rate}
+    %\frame{
+    %  \frametitle{FDR}
+    %    \begin{enumerate}
+    %      \item
+    %    \end{enumerate}
+    %}
+    
+    \frame{
+      \frametitle{FDR}
+         \begin{itemize}
+            \item[+] Appropriate for large size of independent and dependent 
+                     coefficients
+            \item[-] Average fraction of false rejections has to be made
+                     or obtained using cross validation
+         \end{itemize}
+         \wl\wl\wl\wl
+         \tiny Interaction terms were not included
+    }
+
+    \frame {
+      \frametitle{Cox Model Using Variables with FDR $<$ .025}
+      \tiny
+      \input{raw/marCox.tex}
+    }
+
+    \frame {
+      \frametitle{FDR KM Plots}
+      \begin{figure}
+        \includegraphics[scale=.3]{raw/fdrKM.pdf}
+      \end{figure}
+      \tiny Low Median = 18.2. High Median = 46.2 \\
+      \tiny Likelihood ratio test=63  on 13 df, p=1.49e-08  n= 130.
+    }
+
+    \frame {
+      \frametitle{Residuals Plot}
+      \begin{figure}
+        \includegraphics[scale=.4]{raw/fdrResid.pdf}
+      \end{figure}  
+    }
+    
+    \frame {
+      \frametitle{FDR AUC}
+      \begin{figure}
+        \includegraphics[scale=.4]{raw/fdrAUC.pdf}
+      \end{figure}
+    }
+  
+
+  \section{Lasso}
+    %\frame{
+    %  \frametitle{Lasso}
+    %    \begin{enumerate}
+    %      \item
+    %    \end{enumerate}
+    %}
+    
+    \frame{
+      \frametitle{Lasso}
+         \begin{itemize}
+            \item[+] Performs model selection 
+            \item[-] Tuning parameter needs to be estimated
+         \end{itemize}
+         \wl\wl\wl\wl
+         \tiny Interaction terms were not included
+    }
+
+   \frame {
+     \frametitle{Selecting Tuning Parameter $\lambda$}
+     \begin{figure}
+       \includegraphics[scale=.4]{raw/logliklamb.pdf}
+     \end{figure}
+     \tiny $\lambda = 29.95$
+   }
+
+  \frame {
+    \frametitle{Selected Variables}
+    \begin{figure}
+      \includegraphics[scale=.3]{raw/selectedVar.pdf}
+    \end{figure}
+    \tiny
+    \input{raw/lassBeta.tex}
+  }
+  
+  \frame {
+    \frametitle{Residuals Plot}
+    \begin{figure}
+      \includegraphics[scale=.4]{raw/lassoResid.pdf}
+    \end{figure}
+  }
+
+
+    \frame {
+      \frametitle{Lasso KM Plots}
+      \begin{figure}
+        \includegraphics[scale=.3]{raw/lassoKM.pdf}
+      \end{figure}
+      \tiny Low Median = 36.3 \\
+      \tiny High Median = 18.2 \\
+      \tiny Likelihood ratio test=41.9  on 2 df, p=7.83e-10
+    }
+
+    \frame {
+      \frametitle{Lasso AUC}
+      \begin{figure}
+        \includegraphics[scale=.4]{raw/lassoAUC.pdf}
+      \end{figure}
+    }
+
+   
+  \section{Random Forests}
+    \frame{
+      \frametitle{Random Forests Model}
+        \begin{enumerate}
+          \item A regression tree is a model that predicts the response of an input
+                based on a sequence of decisions
+          \item A Random Forest is created from many trees
+          \item The predicted response of the random forest is the mean of 
+                the predictions of the individual trees
+        \end{enumerate}
+    }
+    
+    \frame{
+      \frametitle{Random Forest}
+         \begin{itemize}
+            \item[+] Good for modelling non-linear data \\
+                     (data assumed to be nonlinear)
+            \item[-] Lower prediction accuracy
+         \end{itemize}
+         \wl\wl\wl\wl
+         \tiny Interaction terms were not included
+    }
+
+    \frame{
+      \frametitle{Variable Importance}
+      \begin{figure}
+        \includegraphics[scale=.275]{raw/varImp.pdf}
+      \end{figure}
+    } 
+
+    \frame {
+      \frametitle{Cox Model Using Important Variables from Random Forest}
+      \small
+      \input{raw/treeCox.tex}
+    }
+
+    \frame{
+      \frametitle{Random Forest KM Plots}
+      \tiny Important Markers: 
+            ILMN\_1689037, ILMN\_1702933, ILMN\_1704154, ILMN\_1749989 
+      \begin{figure}
+        \includegraphics[scale=.3]{raw/treeKM.pdf}
+      \end{figure}
+      \tiny \input{raw/treeKM.tex}
+      \tiny Likelihood Ratio Test = 0.02  on 1 df,   p=0.8958 (Curves similar)
+    }
+
+    \frame {
+      \frametitle{Residuals Plot}
+      \begin{figure}
+        \includegraphics[scale=.4]{raw/rfResid.pdf}
+      \end{figure}
+    }
+
+    \frame {
+      \frametitle{Random Forest AUC}
+      \begin{figure}
+        \includegraphics[scale=.4]{raw/rfAUC.pdf}
+      \end{figure}
+    }
+
+
+  \section{Hierarchical Clustering}
+    \frame{
+      \frametitle{Hierarchical Clustering Model}
+        \begin{enumerate}
+          \item Identify hyperplane that provides maximum separation between clusters
+        \end{enumerate}
+    }
+    
+    \frame{
+      \frametitle{Hierarchical Clustering}
+         \begin{itemize}
+            \item[+] Good result visualization
+            \item[+] Will obtain a hierarchy of clusters
+            \item[+] Fast computation
+            \item[+] Helpful for identifying gene expression data patterns in time
+                     and space
+            \item[-] Doesn't identify best clusters
+            \item[-] Sensitive to noise and outliers
+            \item[-] Might break for large clusters
+
+         \end{itemize}
+         \wl\wl\wl\wl
+         \tiny Interaction terms were not included
+    }
+    
+    \frame {
+      \frametitle{H-Clust model}
+      \begin{figure}
+        \includegraphics[scale=.4]{raw/ward.pdf}
+      \end{figure}
+    }
+
+    \frame {
+      \frametitle{Cox Model Using Important Variables from H-Clust}
+      \small
+      \input{raw/clustCoef.tex}
+      \tiny (p-value $< 10^{-5}$)
+    }
+    
+    \frame {
+      \frametitle{Plot of Deviance Residuals}
+      \begin{figure}
+        \includegraphics[scale=.4]{raw/devResTree.pdf}
+      \end{figure}
+    }
+
+    \frame{
+      \frametitle{H-Clust KM Plots}
+      \begin{figure}
+        \includegraphics[scale=.3]{raw/clustKM.pdf}
+      \end{figure}
+      \tiny Low Risk Median = 36.3 (23.1, 49.5)\\
+      \tiny High Risk Median = 25.8\\
+      \tiny Likelihood ratio test= 22.25 on 11 df.  p-value=0.0225 \\
+    }
+    
+    \frame {
+      \frametitle{H-Clust AUC}
+      \begin{figure}
+        \includegraphics[scale=.4]{raw/clustAUC.pdf}
+      \end{figure}
+    }
+
+  \section{Principal Component Analysis}
+    \frame{
+      \frametitle{Principal Component Analysis (PCA)}
+        \begin{enumerate}
+          \item Orthogonal Transformation
+          \item Convert a set of observations of possibly correlated variables 
+                into a set of values of linearly uncorrelated variables
+        \end{enumerate}
+    }
+    
+    \frame{
+      \frametitle{PCA}
+         \begin{itemize}
+            \item[+] Lack of redundancy of data
+            \item[+] Reduced complexity 
+            \item[+] Smaller database representation
+            \item[+] Reduced noise b/c the maximum variation basis is chosen (small variations are ignored)
+            \item[-] The covariance matrix is hard to evaluate
+            \item[-] Ability to capture variance depends on the training data 
+         \end{itemize}
+         \wl\wl\wl\wl
+         \tiny Interaction terms were not included
+    }
+
+    \frame{
+      \frametitle{PCA LRT Threshold}
+      \begin{figure}
+        \includegraphics[scale=.4]{raw/superpcLR.pdf}
+      \end{figure}
+      \tiny threshold $\approx$ 1.34
+    }  
+
+    \frame {
+      \frametitle{Cox Model Using Principal Components}
+      \tiny
+      \input{raw/pcaCoef.tex}
+      \tiny Likelihood ratio test=3.76  on 3 df, p=0.288  n= 35
+
+    }
+    
+    \frame{
+      \frametitle{PCA KM Plots}
+      \begin{figure}
+        \includegraphics[scale=.3]{raw/pcaKM.pdf}
+      \end{figure}
+      \tiny Low Risk Group Median = 35.7. High Risk Group Median = 25.8.\\
+      \tiny Likelihood ratio test=59.8  on 18 df, p=2.21e-06
+    }
+
+    \frame {
+      \frametitle{Plot of Deviance Residuals}
+      \begin{figure}
+        \includegraphics[scale=.4]{raw/devResPCA.pdf}
+      \end{figure}
+    }
+    
+    \frame {
+      \frametitle{PCA AUC}
+      \begin{figure}
+        \includegraphics[scale=.4]{raw/pcaAUC.pdf}
+      \end{figure}
+
+    }
+
+
+
+%  \section{Models}
+%    \frame{
+%      \frametitle{Model}
+%      Model framework assessment \\
+%      KM plots as exploration tool \\
+%      median survival (w/ CI's) \\
+%      Advantages, Disadvantages, and overall idea \\
+%      Model selection explanation (Model Assumptions met?)\\
+%      interaction terms? \\
+%      model fit assessment: deviance residuals, interpretation \\
+%
+%    }
+%
+%
+%  \section{Results}
+%     \frame{
+%      \frametitle{Results}
+%       Clear presentation of results \\
+%       Clear INTERPRETATION of results \\
+%       Summary Figures \\
+%       Is there any agreement in the model? \\
+%       Did some variables show up more than the others? \\
+%       show table, graph, list etc\\
+%       What variables did not show up? \\
+%       Risk scores, curves, KM curves etc \\
+%    }
+
+  \section{Comparison of Methods}
+    \frame{
+      \frametitle{Comparison of Methods}
+      \begin{figure}
+        \includegraphics[scale=.4]{raw/finalPlot.pdf}
+      \end{figure}
+      %Did one model outperform others for all class\\
+    }
+    
+    \frame{
+      \frametitle{Covariates that appeared most frequently}
+      \input{raw/compare.tex}
+    }
+
+  \section{Future}
+    \frame{
+      \frametitle{Future}
+      Include other covariates
+    }
+
+\end{document}

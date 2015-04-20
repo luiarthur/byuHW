@@ -1,0 +1,49 @@
+Statistics 538
+Homework 4
+Due February 7
+
+Part I
+
+Data contained in the file “nursing .csv” were obtained from 927
+first born children whose mothers chose to breastfeed. Of interest is 
+whether any characteristic (or combination of characteristics) of the mother 
+was predictive of how long the mother chose to nurse (i.e., how long before 
+weaning). For this data set, duration is measured in WEEKS. The variable 
+“completion” indicates whether the baby was weaned (1=yes, 0=no) at the 
+reported duration.
+
+Covariates include:
+
+  race:       1=white, 2=black, 3=other
+  poverty:    1=mother in poverty, 0=otherwise
+  smoking:    1=mother smoking around the time of birth, 0=otherwise
+  alcohol:    1=mother usin galcohol around the time of birth, 0=otherwise
+  age:        age of mother at time of child’s birth
+  education:  education of mother (in years)
+  prenatal:   0=mother sought prenatal care in first three months of pregnancy, 
+              1=otherwise
+
+
+Conduct an analysis of this data using the Cox proportional hazards model.
+Such an analysis will include identification of covariates significantly 
+associated with breastfeeding duration (hints: check effect of interactions, 
+grouping (e.g. dichotomize) covariates where appropriate), interpretation 
+of resultant model parameters, comparison of subgroups, and numerical and 
+graphical presentation of results.
+
+
+As with other assignments, a final write up should be provided and should be in
+either pdf or Word format. The write up should include both a brief introduction
+(describing the data and objectives of interest) and a summary. The summary
+should consist of a discussion of the results.
+
+
+Code utilized for the analyses should be included as a separate file.
+
+
+
+
+Part II
+Using the final model selected in Part I, conduct the same analysis in SAS. Ensure
+that results are equivalent. Provide the model output and SAS code used to generate
+the model. No write up is required.

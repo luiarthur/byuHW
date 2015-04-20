@@ -1,0 +1,147 @@
+\documentclass{article}                                                   %
+\usepackage{fullpage}                                                     %
+\usepackage{pgffor}                                                       %
+\usepackage{amssymb}                                                      %
+\usepackage{Sweave}                                                       %
+\usepackage{bm}                                                           %
+\usepackage{mathtools}                                                    %
+\usepackage{verbatim}                                                     %
+\usepackage{appendix}                                                     %
+\usepackage[UKenglish]{isodate} % for: \today                             %
+\cleanlookdateon                % for: \today                             %
+                                                                          %
+\def\wl{\par \vspace{\baselineskip}}                                      %
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}                       %
+\def\endmyfig{\end{center}\end{figure}}                                   %
+                                                                          %
+\begin{document}                                                          %
+% my title:                                                               %
+\begin{center}                                                            %
+  \section*{Notes}                                                        %
+  \subsection*{Arthur Lui}                                                %
+  \subsection*{\noindent\today}                                           %
+\end{center}                                                              %
+\setkeys{Gin}{width=0.5\textwidth}                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \section{Sensitivity}
+  \[
+    \frac{\text{Number of true positives}}
+         {\text{Number of true positives+Number of false positives}}
+  \]
+
+  \section{Specificity}
+  \[
+    \frac{\text{\# of true -ve}}
+         {\text{\# of true -ve + \# of false +ve}}
+  \]
+
+  \section{1 - Specificity}
+  \[
+    \frac{\text{\# of false +ve}}
+         {\text{\# of true -ve + \# of false +ve}}
+  \]
+
+ 
+    %\begin{tabular}{c}
+    %  \hline
+    %  Truth \\
+    %  \hline
+    %  + & - \\ \vline{2-2}
+    %  \hline
+    %  - & + \\
+    %  \hline
+    %\end{tabular} 
+  
+  \section{ROC Curve}
+  Plot Sensitivity vs. 1-Specificity \\
+  Higher Area Under the Curve (AUC) greater is better \\
+  Curve should be above x=y. Otherwise, better to flip a coin. \\
+  \wl\noindent
+  AUC = Probability that a classifier will rand a randomly chosen
+  positive instance higher than a randomly chosen negative one. \\
+
+  \noindent
+  low  cutoff $\Rightarrow$ lots of false +ve and few false -ve \\
+  high cutoff $\Rightarrow$ lots of false -ve and few false +ve \\
+
+  \section{Time-dependent ROC Curves}
+  Classify subjects\\
+  Classify based on the risk score\\
+  Vary threshold C\\
+  Base Sensitivity/Specificity on whether subject
+  jas actually experienced event by time T\\
+  \wl\noindent
+  D(t) = 1 if subject has experienced event\\
+  D(t) = 0 otherwise.\\
+  \wl\noindent
+  Sensitivity = $P[X>c|D(t)=1]$\\
+  Specificity = $P[X\le c|D(t)=0]$\\
+  X = risk score = $e^{x^\prime\beta}$\\
+  Time-varying component: calculate AUC at all t\\
+  Look for:\\
+  One AUC curve higher than another to select models.\\
+
+  \section{12 March 2014}
+  Sensitivity = $P[e^{x\beta}>c|D(t)=1]$\\
+  Specificity = $P[e^{x\beta}\le c|D(t)=0]$\\
+  
+  \section{Multiple Testing}
+  CI: one CI will likely retain parameter of interest\\
+  100 CI's, each with coverage .95: highly likely that
+  at least one will not contain the parameter.\\
+  Expected that 5 will not .\\
+  P(at least 1 doesnt)=99.4\%\\
+
+  \section{Hypothesis Testing}
+  One test: 5\% chance of incorrectly rejecting $H_0$\\
+  100 test: Expected number of false rejections = 5\\
+
+  \section{Familywise Error Rate}
+  $1-(1-\alpha)^p = P[At least 1 rejected H_0 | H_0 true]$
+
+  \section{18 March: Confusion Matrix}
+  Draw this table when I have time.
+  \begin{itemize}
+
+    \item V = false positive
+    \item T = false negative
+    \item U = true negative
+    \item S = true positive
+    \item $M_0$ = true null hypothesis
+    \item $M-M_0$ = false null hypothesis
+    \item R = declared significant
+    \item M-R = declared not significant
+    \item M = total counts
+    \item FWER: P[$V\ge 1$]
+    \item FDR: E[$\frac{V}{V+S}$] = E[$\frac{V}{R}$] = 
+               Expected \% of false positives.
+    \item False Positive Rate: $\frac{V}{M_0}$. 
+          \% of truly null features declared significant.
+    \item False Discovery Rate: $\frac{V}{R}$.
+          \% of those declared significant that are non-significant.
+
+  \end{itemize}
+
+
+  \section{Code}
+  p.adjust\\
+
+  \section{Ridge Regression: ($L_2$ Penalty)}
+  \begin{itemize}
+  \item Shrinkage method. Allows you to keep all 
+  variables while penalizing for many betas.
+  \item $\hat{\beta} = \underset{\beta}{argmin}[~\sum{(y_i-\beta_0-\sum{x_{ij}\beta_j)}+\gamma_2\sum{\beta_j^2}}~]$
+  \end{itemize}
+
+  \section{Lasso}
+  \begin{itemize}
+  \item $\hat{\beta} = \underset{\beta}{argmin}[~\sum{(y_i-\beta_0-\sum{x_{ij}\beta_j)}+\gamma_2\sum{|\beta_j|}}~]$
+  \item Have a plot that shows the value of the coefficients (one line per variable) vs. the tuning parameter
+  \item use the penalize function to pick $\lambda$
+
+  \end{itemize}
+
+  
+
+\end{document}

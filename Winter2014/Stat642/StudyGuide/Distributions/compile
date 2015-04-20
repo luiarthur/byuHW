@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pdflatex distributions.tex
+rm -f *.log *.aux
+evince distributions.pdf &

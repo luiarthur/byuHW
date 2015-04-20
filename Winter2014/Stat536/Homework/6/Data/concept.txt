@@ -1,0 +1,13 @@
+Tornado Analysis
+
+Goals:
+  Understand tornado frequency and intensity over space and time
+
+Key Features of Statistical Analysis:
+  Response is categorical,  multivariate (0,1,2,3,4,5)
+
+Potential Model:
+  Discriminant Analysis
+
+One Feature of Analysis I don't know how to do:
+  Using past data to devise an objective classification scheme

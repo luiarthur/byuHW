@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# :%s//\r/g
+# To type ^M, type Ctrl-V Ctrl-M.
+
+ex mi.csv <<EOEX
+  :set ff=mac
+  :x
+EOEX
+

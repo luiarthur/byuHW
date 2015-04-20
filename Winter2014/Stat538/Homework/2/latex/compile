@@ -1,0 +1,6 @@
+#!/usr/bin/env Rscript
+
+system("./clean")
+Sweave("hw2.rnw")
+system("pdflatex hw2.tex")
+system("firefox hw2.pdf &")

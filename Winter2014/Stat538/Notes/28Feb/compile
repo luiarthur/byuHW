@@ -1,0 +1,4 @@
+#!/bin/bash
+
+pdflatex notes.tex
+rm *.aux *.log

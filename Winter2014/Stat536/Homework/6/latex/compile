@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pdflatex tornado.tex
+rm *.log *.aux *.snm *.toc *.out
+firefox tornado.pdf &

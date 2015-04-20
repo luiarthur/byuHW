@@ -1,0 +1,129 @@
+id,center,treat,sex,age,height,weight,inherit,steroids,propylac,hos.cat,time,status
+1,Scripps Institute,rIFN-g,female,12,147,62,autosomal,0,0,US:other,219,1
+2,Scripps Institute,placebo,male,15,159,47.5,autosomal,0,1,US:other,8,1
+3,Scripps Institute,rIFN-g,male,19,171,72.7,X-linked,0,1,US:other,382,0
+4,Scripps Institute,rIFN-g,male,12,142,34,X-linked,0,1,US:other,388,0
+5,NIH,placebo,male,17,162.5,52.7,X-linked,0,1,US:NIH,246,1
+6,Univ. of Utah,rIFN-g,female,44,153.3,45,autosomal,0,0,US:other,364,0
+7,Univ. of Utah,placebo,male,22,175,59.7,X-linked,0,1,US:other,292,1
+8,Univ. of Utah,rIFN-g,male,7,111,17.4,X-linked,0,1,US:other,363,0
+9,NIH,placebo,male,27,176,82.8,autosomal,0,1,US:NIH,294,1
+10,NIH,rIFN-g,male,5,113,19.5,X-linked,0,1,US:NIH,371,0
+11,NIH,placebo,male,2,93,13.2,X-linked,0,1,US:NIH,19,1
+12,NIH,rIFN-g,male,8,124,25.4,X-linked,0,1,US:NIH,373,1
+13,NIH,rIFN-g,male,12,144,36.9,X-linked,0,1,US:NIH,388,0
+14,Scripps Institute,placebo,male,1,79,10.5,X-linked,0,1,US:other,211,1
+15,Scripps Institute,rIFN-g,male,9,134.5,32.7,autosomal,0,1,US:other,82,1
+16,NIH,placebo,male,27,174,67.8,X-linked,0,1,US:NIH,365,0
+17,NIH,placebo,male,14,143.5,33.4,X-linked,0,1,US:NIH,334,1
+18,Scripps Institute,placebo,male,1,79,11.5,X-linked,0,1,US:other,18,1
+19,NIH,rIFN-g,male,11,149,50.9,autosomal,0,1,US:NIH,373,0
+20,NIH,placebo,male,29,175,73.1,autosomal,0,1,US:NIH,280,1
+21,NIH,rIFN-g,female,31,167,51.8,autosomal,0,1,US:NIH,376,0
+22,NIH,rIFN-g,male,7,121,19.9,X-linked,0,1,US:NIH,360,0
+23,NIH,placebo,female,26,153,46.9,autosomal,0,1,US:NIH,306,0
+24,Mt. Sinai Medical Ctr,rIFN-g,male,12,136.5,30,X-linked,0,1,US:other,160,0
+25,Mt. Sinai Medical Ctr,placebo,male,7,120,23,X-linked,0,1,US:other,146,1
+26,Mt. Sinai Medical Ctr,placebo,male,1,79,10.6,X-linked,0,1,US:other,316,0
+27,Mt. Sinai Medical Ctr,rIFN-g,male,3,97.8,13,X-linked,0,1,US:other,315,0
+28,Univ. of Minnesota,placebo,male,7,109,14.7,X-linked,0,1,US:other,357,0
+29,Scripps Institute,rIFN-g,male,5,102,18,X-linked,0,1,US:other,267,1
+30,Mott Children's Hosp,placebo,male,1,79,12.2,X-linked,0,1,US:other,206,1
+31,Univ. of Minnesota,placebo,male,5,101,15.4,X-linked,0,1,US:other,175,1
+32,Amsterdam,placebo,male,18,179,67,autosomal,0,1,Europe:Amsterdam,308,0
+33,Amsterdam,rIFN-g,male,13,151,49,X-linked,0,1,Europe:Amsterdam,327,0
+34,Amsterdam,placebo,male,11,136.5,31.2,X-linked,0,0,Europe:Amsterdam,329,0
+35,Univ. of Minnesota,placebo,male,24,169.7,59,X-linked,0,1,US:other,343,0
+36,NIH,rIFN-g,male,13,145.2,36.2,X-linked,0,1,US:NIH,118,1
+37,Amsterdam,rIFN-g,male,2,86,13.5,X-linked,0,1,Europe:Amsterdam,318,0
+38,Amsterdam,rIFN-g,male,17,180,68,X-linked,0,1,Europe:Amsterdam,304,0
+39,Amsterdam,placebo,male,35,181.5,80,autosomal,0,0,Europe:Amsterdam,316,0
+40,Mott Children's Hosp,rIFN-g,male,7,116.6,23.3,X-linked,0,1,US:other,335,0
+41,Mott Children's Hosp,rIFN-g,male,17,170.2,47.9,X-linked,0,1,US:other,274,1
+42,Mott Children's Hosp,rIFN-g,male,8,125.4,27.7,X-linked,0,1,US:other,336,0
+43,Univ. of Utah,rIFN-g,male,19,173.6,61.4,X-linked,0,0,US:other,350,0
+44,NIH,rIFN-g,female,25,168,68.9,autosomal,0,1,US:NIH,187,1
+45,NIH,rIFN-g,female,9,140,36,autosomal,0,1,US:NIH,339,0
+46,NIH,placebo,male,28,174,63.7,X-linked,0,1,US:NIH,6,1
+47,Texas Children's Hosp,placebo,female,17,171,46.1,autosomal,0,1,US:other,330,0
+48,Amsterdam,placebo,male,25,172.5,50,X-linked,0,1,Europe:Amsterdam,300,0
+49,Amsterdam,rIFN-g,male,14,145,29,X-linked,0,0,Europe:Amsterdam,146,1
+50,Amsterdam,placebo,male,25,187.5,74,autosomal,0,1,Europe:Amsterdam,304,1
+51,NIH,rIFN-g,female,13,139,34.8,autosomal,0,1,US:NIH,334,0
+52,Mott Children's Hosp,placebo,male,20,173,68.4,X-linked,0,1,US:other,52,1
+53,Mott Children's Hosp,placebo,male,5,114.5,23,X-linked,0,0,US:other,67,1
+54,Harvard Medical Sch,rIFN-g,female,38,152.2,66.7,autosomal,0,1,US:other,293,0
+55,Univ. of Minnesota,rIFN-g,male,12,138,28.1,X-linked,0,1,US:other,265,1
+56,Scripps Institute,rIFN-g,male,22,169,52.2,autosomal,0,1,US:other,337,0
+57,Amsterdam,placebo,female,27,169.5,65,X-linked,1,0,Europe:Amsterdam,91,1
+58,Amsterdam,placebo,male,32,185,95,autosomal,0,1,Europe:Amsterdam,293,0
+59,Amsterdam,rIFN-g,male,6,120,23,X-linked,0,1,Europe:Amsterdam,293,0
+60,Mott Children's Hosp,rIFN-g,male,6,105.5,19.5,X-linked,1,1,US:other,318,0
+61,Mott Children's Hosp,placebo,male,9,129.6,29.3,X-linked,0,0,US:other,318,1
+62,Texas Children's Hosp,placebo,female,8,115,19,autosomal,0,1,US:other,57,1
+63,Univ. of Minnesota,placebo,male,5,97.1,15.3,X-linked,0,1,US:other,226,1
+64,Univ. of Zurich,rIFN-g,male,26,176.8,66,X-linked,0,1,Europe:other,65,1
+65,NIH,rIFN-g,male,24,177,78.4,autosomal,0,1,US:NIH,269,0
+66,Amsterdam,placebo,male,8,138,31,autosomal,0,0,Europe:Amsterdam,264,1
+67,Amsterdam,rIFN-g,male,9,144,34.4,autosomal,0,1,Europe:Amsterdam,286,0
+68,Amsterdam,rIFN-g,female,23,170,49,autosomal,0,0,Europe:Amsterdam,273,0
+69,Texas Children's Hosp,rIFN-g,male,6,111.9,17.9,X-linked,0,1,US:other,297,0
+70,Amsterdam,placebo,female,23,122,31.2,autosomal,1,1,Europe:Amsterdam,236,1
+71,Amsterdam,rIFN-g,female,17,127,27,autosomal,0,1,Europe:Amsterdam,273,0
+72,Amsterdam,rIFN-g,male,21,158,49,autosomal,0,1,Europe:Amsterdam,207,1
+73,Univ. of Zurich,placebo,male,6,104.4,13.8,X-linked,0,1,Europe:other,294,0
+74,Univ. of Zurich,rIFN-g,female,9,122.8,20.1,autosomal,0,1,Europe:other,303,0
+75,Texas Children's Hosp,placebo,male,7,116.2,22.2,autosomal,0,1,US:other,281,0
+76,NIH,placebo,male,11,123,24.3,X-linked,0,1,US:NIH,273,0
+77,Harvard Medical Sch,placebo,male,14,144,32.8,X-linked,0,1,US:other,255,0
+78,Univ. of Washington,rIFN-g,male,34,182.6,94.8,X-linked,0,0,US:other,269,0
+79,Univ. of Zurich,placebo,male,25,176.9,73.5,X-linked,0,0,Europe:other,23,1
+80,Univ. of Zurich,rIFN-g,male,2,93.5,14.2,X-linked,0,1,Europe:other,270,0
+81,Texas Children's Hosp,rIFN-g,male,7,119.7,21.5,X-linked,0,1,US:other,276,0
+82,Amsterdam,placebo,male,1,81,10.4,X-linked,0,1,Europe:Amsterdam,264,0
+83,Univ. of Zurich,placebo,male,8,121.6,22.4,X-linked,0,1,Europe:other,245,0
+84,Univ. of Zurich,placebo,male,10,125.9,29.7,X-linked,0,1,Europe:other,261,0
+85,Scripps Institute,placebo,female,19,159,46,autosomal,0,0,US:other,270,0
+86,NIH,rIFN-g,male,4,103.8,16.8,X-linked,0,1,US:NIH,113,1
+87,NIH,placebo,male,19,170,71.2,X-linked,0,1,US:NIH,99,1
+88,Scripps Institute,placebo,male,7,115.5,19.5,X-linked,0,1,US:other,274,0
+89,Texas Children's Hosp,rIFN-g,male,8,116.8,20,X-linked,0,1,US:other,279,0
+90,Texas Children's Hosp,placebo,male,11,141.5,36,X-linked,0,1,US:other,14,1
+91,L.A. Children's Hosp,placebo,male,9,129.4,28.7,X-linked,0,1,US:other,278,0
+92,Univ. of Zurich,rIFN-g,male,20,169.8,50.1,X-linked,0,1,Europe:other,284,0
+93,Univ. of Zurich,placebo,male,34,166.5,58.2,autosomal,0,1,Europe:other,276,0
+94,L.A. Children's Hosp,rIFN-g,male,5,112.3,20.7,X-linked,0,1,US:other,265,0
+95,Univ. of Zurich,rIFN-g,male,6,119.9,26.2,X-linked,0,1,Europe:other,294,0
+96,Univ. of Zurich,rIFN-g,male,11,139.2,34.9,X-linked,0,1,Europe:other,277,0
+97,Mott Children's Hosp,rIFN-g,male,5,110.4,19.1,X-linked,0,1,US:other,259,0
+98,Univ. of Zurich,placebo,male,3,91.7,14.4,autosomal,0,1,Europe:other,4,1
+99,NIH,rIFN-g,male,18,166,58.1,X-linked,0,1,US:NIH,263,0
+100,NIH,rIFN-g,male,7,135,42.9,autosomal,0,1,US:NIH,167,1
+101,L.A. Children's Hosp,rIFN-g,male,1,76.3,11.3,X-linked,0,1,US:other,217,0
+102,Scripps Institute,rIFN-g,male,25,185,58.4,X-linked,0,1,US:other,271,0
+103,Scripps Institute,placebo,male,31,170,80.5,X-linked,0,1,US:other,252,0
+104,Univ. of Zurich,rIFN-g,male,9,131.3,24,X-linked,0,1,Europe:other,331,0
+105,Univ. of Minnesota,rIFN-g,male,24,171,55.1,X-linked,0,1,US:other,255,0
+106,NIH,placebo,female,12,166,51.9,autosomal,0,1,US:NIH,271,0
+107,NIH,rIFN-g,male,10,129,27.4,X-linked,0,1,US:NIH,254,0
+108,Univ. of Washington,rIFN-g,male,32,177.9,63.4,X-linked,0,0,US:other,185,0
+109,Harvard Medical Sch,placebo,male,26,81.3,55,X-linked,0,1,US:other,213,0
+110,L.A. Children's Hosp,rIFN-g,male,7,119,20.6,X-linked,0,1,US:other,165,1
+111,Harvard Medical Sch,placebo,male,26,178.5,69.3,X-linked,0,1,US:other,203,0
+112,Univ. of Zurich,placebo,female,11,138.6,36.1,autosomal,0,1,Europe:other,288,0
+113,Univ. of Zurich,placebo,male,17,156.7,36.8,X-linked,0,1,Europe:other,269,0
+114,Univ. of Zurich,placebo,male,10,143,31.3,X-linked,0,1,Europe:other,269,0
+115,Univ. of Washington,placebo,male,25,185,74.6,X-linked,0,0,US:other,91,0
+116,Univ. of Washington,placebo,male,21,189,101.5,X-linked,0,0,US:other,91,0
+117,L.A. Children's Hosp,placebo,male,11,137.5,40.3,autosomal,0,1,US:other,192,0
+118,Texas Children's Hosp,rIFN-g,male,4,108.1,17.3,X-linked,0,1,US:other,199,0
+119,L.A. Children's Hosp,placebo,male,4,98.3,14.4,autosomal,0,1,US:other,11,1
+121,Copenhagen,placebo,female,22,163,49.1,autosomal,0,1,Europe:other,198,0
+122,Copenhagen,placebo,male,17,169,63.5,X-linked,0,1,Europe:other,207,0
+123,Copenhagen,placebo,male,19,182,63.9,X-linked,0,1,Europe:other,168,1
+125,Copenhagen,rIFN-g,female,36,167,60.8,autosomal,0,1,Europe:other,197,0
+131,Scripps Institute,rIFN-g,female,37,155,67.5,X-linked,0,1,US:other,243,0
+132,L.A. Children's Hosp,placebo,female,7,113,20.4,autosomal,0,1,US:other,120,1
+133,L.A. Children's Hosp,rIFN-g,male,15,178.7,60.5,X-linked,0,1,US:other,197,0
+134,Scripps Institute,placebo,female,6,130,21.6,autosomal,0,1,US:other,104,1
+135,Scripps Institute,placebo,female,3,96,13.1,autosomal,0,1,US:other,227,0

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+pdflatex main.tex
+rm *.log *.aux *.out *.snm *.toc
+firefox main.pdf &
+

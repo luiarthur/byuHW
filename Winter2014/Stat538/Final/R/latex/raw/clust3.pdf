@@ -1,0 +1,14 @@
+% latex table generated in R 3.0.3 by xtable 1.7-1 package
+% Mon Apr 21 17:56:38 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & coef & exp(coef) & se(coef) & z & p \\ 
+  \hline
+as.factor(c(clust.3group))1 & 0.47 & 1.60 & 0.30 & 1.57 & 0.12 \\ 
+  as.factor(c(clust.3group))2 & -0.81 & 0.44 & 1.02 & -0.79 & 0.43 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\tiny Likelihood ratio test=4.05  on 2 df, p=0.132  n= 130, number of events= 49 

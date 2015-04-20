@@ -1,0 +1,241 @@
+\documentclass{article}                                                   %
+\usepackage{fullpage}                                                     %
+\usepackage{pgffor}                                                       %
+\usepackage{amssymb}                                                      %
+\usepackage{Sweave}                                                       %
+\usepackage{bm}                                                           %
+\usepackage{mathtools}                                                    %
+\usepackage{verbatim}                                                     %
+\usepackage{appendix}                                                     %
+\usepackage[UKenglish]{isodate} % for: \today                             %
+\cleanlookdateon                % for: \today                             %
+                                                                          %
+\def\wl{\par \vspace{\baselineskip}}                                      %
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}                       %
+\def\endmyfig{\end{center}\end{figure}}                                   %
+                                                                          %
+\begin{document}                                                          %
+% my title:                                                               %
+\begin{center}                                                            %
+  \section*{\textbf{Stat536 Midterm - Ozone Data}}                        %
+  \subsection*{\textbf{Arthur Lui}}                                       %
+  \subsection*{\noindent\today}                                           %
+\end{center}                                                              %
+\setkeys{Gin}{width=1\textwidth}                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+  Ozone (O$_3$), a gas in the atmosphere, protects humans from the sun's UV
+  radiation. However, ozone that is close to the ground can be dangerous to
+  humans. Ozone is formed when pollutants react with each other in the presence
+  of heat. It is the main component of smog. Inhaling high concentrations of
+  O$_3$ triggers chest pain, bronchitis, emphysema, asthma, etc. Scientists have
+  monitored O$_3$ levels by 1) direct measurement at measurement stations and 2)
+  mathematically simulating the measurements using Community Multi-scale Air
+  Quality Model (CMAQ). CMAQ O$_3$ measurements are simulated (on a fine spatial
+  scale) based on ground characteristics, temperature, urban density, etc.  So,
+  CMAQ data is vast (see \textbf{Figure 1}), but not as accurate as direct
+  measurements. On the other hand, direct measurements are sparse (see
+  \textbf{Figure 2}). The Environmental Protection Agency (EPA), which monitors
+  O$_3$, is, therefore, interested in understanding the relationship between
+  CMAQ (which is inaccurate) and station measurements. They eventually hope to
+  predict ground-level O$_3$ at many locations given CMAQ measurements and
+  station measurements. Using a data set provided by Dr.  Heaton, I will
+  construct such a model using a Gaussian Process.
+
+  %Exploratory Plots
+  \beginmyfig
+    \includegraphics{raw/cmaq.pdf}
+    \caption{CMAQ measurements of O$_3$. CMAQ simulates O$_3$ measurements
+             easily at many locations. But measurements are inaccurate.}
+  \endmyfig
+
+  \beginmyfig
+    \includegraphics{raw/ozone.pdf}
+    \caption{Station measurements of O$_3$. Direct measurements are sparse.}
+  \endmyfig
+
+
+\section{Methods \& Model Used}
+  The data received consists of longitude, latitudes, and O$_3$ measurements.
+  We are interested in creating a model to predict O$_3$ given CMAQ and grid 
+  locations. This is a spatial problem. O$_3$ levels should be highly correlated 
+  to other O$_3$ levels close by, but less correlated to O$_3$ levels far away. 
+  But we would like to incorporate CMAQ as a covariate also so that we can
+  understand the relationship between station-measured O$_3$ and CMAQ O$_3$.
+  The model we create should also not assume linearity as we are not certain if
+  CMAQ and station-measured O$_3$ are linear. The Gaussian Process Model can
+  help us to created such a model. 
+
+  \subsection{Description of The Gaussian Process:}
+  A Gaussian Process is a stochastic process where any finite collection
+  observed random variables follow a multivariate normal distribution.
+  In other words, for any set of $t_1,\dots,t_N \in T,~\bm{Y} =
+  (Y(t_1),\dots,Y(t_N))^T \sim \mathcal{N}(\bm\mu,\bm\Sigma_Y)$.
+
+  % Write out model:
+  \subsubsection{Full Gaussian Process Model:}  
+    Let N = number of observations and, 
+    \[ \bm{Y|W} = \begin{pmatrix} y(x_1) \\ \vdots \\ y(x_N) \end{pmatrix} 
+                  \sim \mathcal{N}(\bm W,\tau^2\bm I_N) \]
+    \wl
+    \[ \bm W =  \begin{pmatrix} w(x_1) \\ \vdots \\ w(x_N) \end{pmatrix}
+                \sim \mathcal{N}(\mu\bm 1_N,\sigma^2\bm R) \]
+    which marginalizes to:
+    \[ \bm Y \sim \mathcal{N}(\mu\bm 1_N,\sigma^2\bm R + \tau^2\bm I_N) \] 
+    where,\\
+          $\tau^2$ can be interpreted as the error variance; \\
+          $\sigma^2$ can be interpreted as the spatial variance; \\
+          $ \begin{matrix*}[l]
+            \bm R_{ij} & = & \frac{1}{2^{\nu-1}\gamma(\nu)} 
+                             (2\phi \sqrt{\nu} |t_i-t_j|)^\nu 
+                             K_\nu(2\phi\sqrt{\nu}|t_i-t_j|) \\
+                       & = & Matern(|x_i-x_j|,nu=\nu,alpha=\phi) \\
+                       & = & Corr(Y(x_i),Y(x_j))
+          \end{matrix*} $ \\
+          $\phi$: decay parameter. As $\phi$ increases, correlation (at a fixed
+          distance) decreases.\\
+          $\nu$: smoothness parameter. As $\nu$ increases, smoothness increases.\\
+          $K$: effective range. distance where correlation decays to 0.05. \\
+          We can estimate the unknown parameters $\mu, \sigma^2, \nu, \phi,
+          \tau^2$ (using maximum likelihood or Bayes).
+    \wl\noindent
+    This is a fascinating result that reduces computation significantly. Making
+    use of the properties of the conditional distribution of multivariate normals
+    distributions, one can easily can predictions and prediction intervals (see
+    Rencher \& Schaalje, Theorem 4.4d, 2008). 
+  
+
+  \subsection{Assumptions}
+\section{Model Justification}
+  \subsection{Why choose a Gaussian Process?}
+  The Gaussian Process model incorporates the spatial distance of the points 
+  at which a prediction is made to model nonlinear relationships between a
+  response $\bm Y$ and covariates $\bm X$. Since it is the case that we want
+  to base our predictions of ozone in this way, where our covariates are some
+  linear combination of the nearest CMAQ levels, the Gaussian Process is very
+  suitable for this analysis.
+  \wl\noindent
+  In spatial statistics,y(s), the (functional) response at a grid location,
+  is highly nonlinear. We observe $y(s_1),\ldots,y(s_N)$ and the covariates
+  $x(s_1),\ldots,x(s_N)$ at N distinct spatial locations $s_1,\ldots,s_N$
+  in some spatial region $\mathcal{D}$.
+  We can set up the Spatial Statistics Model in this way:
+  \[ \bm Y = \begin{pmatrix} y(s_1) \\ \vdots \\ y(s_N) \end{pmatrix} 
+             \sim \mathcal{N}(\bm{X\beta},\sigma^2\bm R + \tau^2\bm I_N) \] 
+  where,  \begin{itemize}
+            \item $\bm Y$ = Station Measured Ozone
+            \item $\bm X$ = a column of 1's followed by the 10 CMAQ values 
+                            nearest to our prediction location
+            \item $\bm\beta$ = a vector of constants to be estimated
+            \item $\bm R_{ij}$ = $\prod_{p=1}^P$ 
+                                 Matern(||$\bm{s_{ip}-s_{jp}}$||,$\nu$,$\phi$), 
+            \item $\phi,\nu,\sigma^2, and \tau^2$ can be estimated using 
+                                                  maximum likelihood.
+          \end{itemize}
+         
+
+  \subsection{Are Assumptions Justified?}
+    %\includegraphics{raw/resids.pdf}
+    %\includegraphics{raw/qqnorm.pdf}
+    A plot of the histogram of the residuals shows that the residuals are normally
+    distributed with mean 0 and covariance matrix $V = \sigma^2\bm R + \tau^2\bm I$
+    (see Figure 3).
+    \beginmyfig
+      \includegraphics{raw/hist.pdf}
+      \caption{Plot of histogram of residuals.}
+    \endmyfig
+
+\section{Results}
+  \subsection{Estimates of Parameters and CI}
+    Estimates of the parameters are listed as follows: 
+    $ \hat{\tau^2} = 19.61, \hat{\sigma^2} = 1.04, \hat{\phi} = 40.88 $, and 
+    $\nu$ was chosen to be 2 because the data doesn't inform us about its value
+    and because it gives a smooth curve. \textbf{Table 1} shows the 
+    parameter estimates with their 95\% confidence intervals.
+
+    \input{raw/beta.tex}
+
+  \subsection{Interpretation of Parameters} 
+    $\beta_0$ is the expected O$_3$ level if the 10 nearest CMAQ measurements
+    are 0. So $\beta_0$ can be thought of as the bias of CMAQ for O$_3$. Since
+    the 95\% confidence interval for $\beta_0$ does not include 0, CMAQ is
+    significantly biased (by 7.94) for O$_3$.  Also when $X_i$, the $i^{th}$
+    nearest CMAQ location (with respect to the prediction location), increases
+    by 1 unit, $\bm Y$ = O$_3$ is expected to increase by $\beta_i$, for i
+    $\in$ \{$1,\dots,10$\}.
+
+  \subsection{Coverage \& MSE }
+    \textbf{Table 2} summarizes the estimate and estimates of the coverage and MSE.
+    \input{raw/cov.mse.tex}
+
+  \subsection{Predictions \& Uncertainties}
+    After obtaining parameter estimates for $\beta$ and the scalar parameters,
+    predictions can be made very easily using the conditional distribution
+    of the normal distribution, as mentioned previously.
+    \wl\noindent
+    Predicted O$_3$ values and their 95\% confidence intervals were plotted
+    (see \textbf{Figures 4-6}). That is, for each colored grid location, the color
+    represents the predicted O$_3$ (in \textbf{Figure 4}). Also for each colored
+    grid location, the 95\% lower limit of the confidence interval was represented
+    in \textbf{Figure 4}, and the 95\% upper limit of the confidence interval
+    was represented in \textbf{Figure 5}.
+
+    \beginmyfig
+      \includegraphics{raw/center.pdf}
+      \caption{Predicted O$_3$.}
+    \endmyfig
+
+    \beginmyfig
+      \includegraphics{raw/lower.pdf}
+      \caption{Lower Predicted O$_3$.}
+    \endmyfig
+
+    \beginmyfig
+      \includegraphics{raw/upper.pdf}
+      \caption{Upper Predicted O$_3$.}
+    \endmyfig
+
+    
+  \subsection{Main Points}
+    \textbf{Figure 7} is just a combination of all the figures included so far. 
+    We can easily see that corresponding regions have higher O$_3$ values 
+    in the the top left plot than the bottom left plot. We can also see that
+    where there is even a little bit of data in the bottom right graph, the middle
+    right graph borrows more information from the bottom right graph. Where there
+    is only very little data in the bottom right graph, the middle right graph
+    borrows more information from the top right graph.
+
+    \beginmyfig  
+      \includegraphics{raw/all.pdf}
+      \caption{A comparison of the different plots.}
+    \endmyfig
+
+\section{Conclusion}
+  \subsection{Potential Alternative Approaches to Investigate}
+    Alternate approaches can be taken to compute the $\bm X(s)$ matrix defined
+    in the Statistical Spatial Model. I chose the 10 nearest locations because
+    I thought it was computationally easy and sensible. That is, O$_3$ values
+    at a certain location is more affected by O$_3$ levels near by, but hardly
+    affected by O$_3$ levels far away. The 20 nearest points could have been 
+    chosen. Cross validation could have been used to determine how many of 
+    the nearest points to include in the model. Likewise, all the 66,960 
+    points would have been included in the model, but that would be computationally
+    difficult. Forward selection, lasso, ridge, or principal components
+    could also be used in model selection to determine which covariates to include.
+    It could be the case that due to collinearity, every other closest
+    point should be included in the model, but not every closest point, to 
+    increase prediction accuracy while reducing collinearity.
+
+  \subsection{Shortcomings of Gaussian Process}
+    The Gaussian Process is good at fitting models to nonlinear, and spatial
+    data.  The Gaussian Process is also convenient in the sense that it is
+    unlike b-splines, where the number of knots needs to be predetermined.  One
+    draw-back of the Gaussian Process is that inverting large matrices is
+    computationally expensive. Another draw back of the Gaussian Process is
+    that the rules of determining how to create the covariate matrix $\bm X$
+    can be quite clumsy. And searching for the model that produces the best
+    (most accurate) predictions will be difficult and time intensive as the
+    algorithms will take a long time to implement.
+
+\end{document}

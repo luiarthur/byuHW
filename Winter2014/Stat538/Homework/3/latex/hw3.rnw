@@ -1,0 +1,114 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{pgffor}
+\usepackage{amssymb}
+\usepackage{Sweave}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{appendix}
+\def\wl{\par \vspace{\baselineskip}}
+
+\begin{document}
+\title{Stat538 HW3 - Kaplan Meier Curves}
+\author{Arthur Lui}
+\maketitle
+
+<<design,echo=F>>=
+  source("../../2/R/hw2.R",chdir=T)
+  system("cd ../../2/SAS; ./compile")
+@
+
+\section*{Introduction:}
+Thirty melanoma patients were studied to compare the immunotherapies 
+\textit{Bacillus} Calmette-Guerin (BCG) and \textit{Corynebacterium parvum} 
+(\textit{C. parvum}) for their abilities to prolong remission duration
+and survival time. The data file, "melanoma.csv", included the age, gender, 
+disease stage, treatment received, remission duration (months), survival time, 
+and binary indicators for whether the data were censored. Only remission 
+duration, survival time, treatment received, and the censoring indicators 
+were used for this analysis. 
+\wl\noindent
+Kaplan Meier (KM) curves were plotted using both R and SAS. 
+
+\section*{Results:}
+The median remission durations for the patients that received the
+BCG and C. parvum treatments are 6.4 and 15.9 respectively.
+\wl\noindent
+The median survival time for the patients that received the
+BCG treatment is 19.5.
+\wl\noindent
+The median survival time for the patients that received the
+C. parvum treatment is greater than 24.4.
+\wl\noindent
+The 95\% confidence interval on the survival time of only the patients 
+that received the BCG treatment could be computed. The 95\% confidence 
+interval is (5.55414, 26.24586).
+\wl\noindent
+Fishers exact test indicates that there is no association between 
+``Treatment Received" and `Age`", ``Initial Stage", or ``Gender".  
+So, the data was not stratified.
+Using the logrank test, we found that the difference between the
+two treatments were \textit{not} significantly different at the 95\% 
+significant level. The p-value for the remission duration was 
+$\bm{\Sexpr{round(p.remission.logrank,4)}}$. The p-value for the survival
+time was $\bm{\Sexpr{round(p.survival.logrank,4)}}$. 
+
+
+\begin{figure}  
+\subsection*{R Plots:}
+\wl\noindent
+  Figure 1 shows the KM survival curves of the two treatment groups'
+  remission duration. The Group that got the C. parvum treatment had
+  higher survival functions than the the group that got the BCG
+  treatment at any given time.
+  \wl\noindent
+  \centering
+  \includegraphics{../../2/R/remission.pdf}
+  \caption{KM curve for remission duration (months). Solid lines are 
+           the KM estimates of the suvival function. Dotted lines
+           are the confidence intervals. Generated with R.}
+\end{figure} 
+
+\wl\noindent
+\begin{figure}  
+  Figure 2 shows the KM survival curves of the two treatment groups'
+  survival time. The Group that got the C. parvum treatment had
+  higher survival functions than the the group that got the BCG
+  treatment at any given time.
+  \wl\noindent
+  \centering
+  \includegraphics{../../2/R/survival.pdf}
+  \caption{KM curve for survival time (months). Solid lines are 
+           the KM estimates of the suvival function. Dotted lines
+           are the confidence intervals. Generated with R.}
+\end{figure} 
+
+\begin{figure}  
+\subsection*{SAS Plots:}
+\wl\noindent  
+  \centering
+  \includegraphics{../../2/SAS/remission.png}
+  \caption{KM curve for remission duration (months). Solid lines are 
+           the KM estimates of the suvival function. Dotted lines
+           are the confidence intervals. Generated with SAS.}
+\end{figure} 
+
+\begin{figure}  
+  \centering
+  \includegraphics{../../2/SAS/survival.png}
+  \caption{KM curve for survival time (months). Solid lines are 
+           the KM estimates of the suvival function. Dotted lines
+           are the confidence intervals. Generated with SAS.}
+\end{figure} 
+
+\newpage
+\section*{Appendix:}
+  \subsection*{R Code:}
+    \verbatiminput{../../2/R/hw2.R}
+    \newpage
+  \subsection*{SAS Code:}
+    \verbatiminput{../../2/SAS/hw2.sas}
+
+\end{document}
+

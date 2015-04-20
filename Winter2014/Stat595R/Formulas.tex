@@ -1,0 +1,178 @@
+\documentclass[11pt,twocolumn]{article}
+\usepackage{fullpage}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
+\def\wl{\par \vspace{\baselineskip}}
+\def\imply{\Rightarrow}
+
+\begin{document}
+
+\section*{Exam C Formulas:}
+(Note: These are equations that I think are
+       useful. You may want to add other equations
+       to this list. If you would like the tex code
+       for this, just email me at luiarthur@gmail.com)
+\subsection*{Lesson 1:}
+  \[ h(x) = f(x) / S(x)         \]
+  \[ S(x) = e^{-H(x)}           \]
+  \[C.V.  = \sigma / \mu        \]
+  \[Skewness = \mu_3 / \sigma^3 \]
+  \[Kurtosis = \mu_4 / \sigma^4 \]
+  \[n^{th} Central Moment: E[(X-\mu)^n] \]
+  \[n^{th} Raw Moment:     E[X^n]       \]
+
+\subsection*{Lessons 2-3:}
+  For Scaled Distributions: \\
+  \[ X \sim Scaled(\theta) \imply Y = cX \sim Scaled(c\theta) \]
+  (Note that for this exam, the \textit{continuous} distributions
+  in your table use $\theta$ as the scale parameter.)
+  \wl\noindent
+  Transformations (Only Univariate):
+  \[ f_Y(y) = f_X(g^{-1}(y))~|g^{-1~\prime}(y)|\]
+  What is e?
+  \[ \lim_{n \to \infty} \left( 1+\frac{x}{n}\right)^n = e^x\]
+  Bernoulli Shortcut: 
+  \[\text{If } X\sim \text{Bern(p) then, for} \]
+  \[\text{Y = }\begin{cases} a, \text{with~probability~p} \\
+                             b, \text{with~probability~(1-p)}
+               \end{cases}\]
+  \wl
+  \[ Y = (a-b)X + b \]
+  \[ Var(Y) = (a-b)^2 p(1-p) \]
+
+\subsection*{Lesson 4:}
+  Discrete Mixture Distributions:
+  \wl\noindent
+  If X is a Mixture Distribution then,
+  \[
+    f_X(x) = \sum{w_i f_{X_i}(x)}, 
+  \]
+  where $w_i \ge 0$ and $\sum{w_i} = 1$.
+  \wl\noindent
+  Review Continuous Mixture Distributions, Frailty Models,
+  and Splices on your own.
+  \wl\noindent
+  Conditional Variance:
+  \[
+    Var(X) = Var(E[X|Y]) + E(Var[X|Y])
+  \]
+
+\subsection*{Lesson 5:}
+  \[ E[X] = \int_0^\infty{S(x)}dx \]
+  \[ E[X \wedge u] = \int_0^u{S(x)}dx \]
+  \[ Y = (1+r)X \imply E[Y \wedge u] = (1+r)E[X \wedge \frac{u}{1+r}] \]
+
+\subsection*{Lesson 6:}
+  \[ Ordinary:~~Y=(X-d)_+ = max(0,x-d) \]
+  \[ Franchise:~~Y=\begin{cases} x,~\text{if}~x>d \\
+                                 0,~\text{otherwise.}
+                   \end{cases} \]
+  \[ \text{Pmt. per Loss: } E[Y^L] = E[(X-d)_+] = \int_d^\infty{S(x)dx} \]
+  \[ \text{Pmt. per Pmt. (mean excess loss): } e_x(d) = \frac{E[(X-d)_+]}{S_X(d)} \]
+  \[ E[X] = E[X \wedge d] + E[(X-d)_+] \]
+  The expected pmt per pmt for a FRANCHISE deductible is $e_X(d) + d$.
+
+\subsection*{Lesson 7:}
+  \[ Loss Elimination Ratio = LER(d) = \frac{E[X \wedge d]}{E[X]} \]
+
+\newpage
+\subsection*{Lesson 8:}
+  Let $c$ be a constant, and X,Y be R.V's. \\
+  Translational Invariance: $\rho(X+c) = \rho(X)+c$ \\
+  Positive Homogeneity: $\rho(cX) = c\rho(X)$ \\
+  Subadditivity: $\rho(X+Y) \le \rho(X)+\rho(Y)$ \\
+  Monotonicity: $\rho(X \le Y) \imply \rho(X) \le \rho(Y)$
+  \wl\noindent
+  \textbf{Value at Risk:} \\
+  $VaR_p(X) = F^{-1}_X(p)$ \\
+  \textbf{Tail Value at Risk:} \\
+  $TVaR_p(X)=E[X|X>VaR_p(X)] \\
+  = VaR_p(X) + e_X(VaR_p(X))$ \\
+  (See Tables)
+
+\subsection*{Lesson 11:}
+  ab0,ab1: See Tables
+
+\subsection*{Lesson 12:}
+  \textbf{Poisson-Gamma}\\
+  Given:
+  \begin{enumerate}
+    \item $X \sim NB(r,\beta)$
+    \item $X|\lambda \sim POI(\lambda)$
+  \end{enumerate}  
+  Then:\\ \indent
+    $\lambda \sim GAM(r,\beta)$
+  \wl\noindent
+  \textbf{Sum of NB's in NB:}\\
+  $ X_i \sim NB(r_i,\beta) $ \\
+  $\imply  Y = \sum{X_i} = NB(\sum{r_i},\beta) $
+
+\subsection*{Lesson 13:}
+  Exposures can refer to \# of members in insured group
+  OR \# of time units they're insured for.
+  \wl\noindent
+  Let $N_i$ be a frequency distribution. \wl\noindent
+  1) $ N_1 \sim POI(\lambda) \text{, with } n_1 \text{ exposures}$ \\
+  $ \imply N_2 \sim POI(\lambda\frac{n_2}{n_1}) $
+  \wl\noindent
+  2) $ N_1 \sim NB(r,\beta) \text{, with } n_1 \text{ exposures}$ \\
+  $ \imply N_2 \sim NB(r\frac{n_2}{n_1},\beta) $
+  \wl\noindent
+  3) $ N_1 \sim BIN(m,p) \text{, with } n_1 \text{ exposures}$ \\
+  $ \imply N_2 \sim BIN(m\frac{n_2}{n_1},p) $\\ where the new m must be an integer.
+  \wl\noindent
+  For (ab0,ab1) classes, suppose the probability of paying a claim = $P[X>d] = \nu$.
+  Then if the model for loss frequency = 
+  \wl\noindent
+  1) $ N_1 \sim POI(\lambda) $ \\
+  $ \imply N_2 \sim POI(\nu\lambda) $
+  \wl\noindent
+  2) $ N_1 \sim NB(r,\beta)$ \\
+  $ \imply N_2 \sim NB(r,\nu\beta) $
+  \wl\noindent
+  3) $ N_1 \sim BIN(m,p)$ \\
+  $ \imply N_2 \sim BIN(m,\nu p) $
+
+\subsection*{Lesson 14:}
+  \textbf{Collective Risk Model (N is R.V.)}\\
+  \[ E(S) = E[\sum{X_i}] = E[N]E[X] \]
+  \[ Var(X) = E[N]Var(X) + E[X]^2 Var(N) \]
+
+\subsection*{Lesson 16 (Agg. Loss - Severity Modf.):}
+  \textbf{Exp. Annual Pmts:}
+  \begin{enumerate}
+    \item $E[Y^L] E[N^L]$ (easier for discrete losses) \\
+    \item $E[Y^P] E[N^P]$ (easier for continuous losses) \\
+  \end{enumerate}
+
+\subsection*{Lesson 18 (Agg. Loss - Agg. Ded.):}
+  \[ E[(S-d)_+] = E[S] - E[S\wedge d] \]
+
+\subsection*{Lesson 21}
+  \[ Bias_{\hat{\theta}} = E[\hat{\theta} - \theta~|~\theta] \]
+  \[ Consistent: \lim_{n \to \infty} P(|\hat{\theta}-\theta < \epsilon) = 1, 
+                 ~\forall \theta > 0 \]
+  Sufficient (but not necessary conditions for consistency: \\
+  1) $\hat{\theta_n}$ asymptotically unbiased for $\theta$ \\
+  2) $Var(\hat{\theta_n}) \to 0$.
+
+  \newpage\noindent
+  \textbf{UMVUE:} Uniformly Minimum Variance Unbiased Estimator\\
+  $\imply$ An unbiased estimator with smallest possible variance.
+  \wl\noindent
+  \textbf{MSE:} Mean Squared Error. \\
+  $bias_{\hat{\theta}}(\theta)^2 + Var(\hat{\theta})$
+  \wl\noindent
+  95\% C.I. Computed Using:\\
+  1) Approximate Variance: $\hat{\beta} \pm 1.96*s.e.(\hat{\beta}) $\\
+  2) True Variance: $-1.96 < \frac{x-\mu}{\sqrt{\frac{Var(X)}{n}}}< 1.96$\\
+  
+\subsection*{Lesson 22}
+  For complete, individual data:
+  \[ f_n(x) = \frac{n_j}{n}\]
+  For complete, grouped data:
+  \[ f_n(x) = \frac{n_j}{n(c_j-c_{j-1})}\]
+  (Refer to the book to understand the notation.)
+\end{document}
+

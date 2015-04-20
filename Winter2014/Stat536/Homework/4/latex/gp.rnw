@@ -1,0 +1,194 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{pgffor}
+\usepackage{amssymb}
+\usepackage{Sweave}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage[UKenglish]{isodate} % for: \today
+\cleanlookdateon                % for: \today
+
+\def\wl{\par \vspace{\baselineskip}}
+
+\begin{document}
+% my title:
+\begin{center}
+  \section*{\textbf{Stat536 HW4 - Gaussian Process on Agriculture Data}} 
+  \subsection*{\textbf{Arthur Lui}} 
+  \subsection*{\noindent\today} 
+\end{center}
+\setkeys{Gin}{width=0.5\textwidth}
+
+<<design,echo=F,results=hide>>=
+  source("../hw4.R",chdir=T)
+@
+
+\subsection*{Introduction:} % Problem Statement and Understanding (Done)
+We are interested in predicting Soil Water Content (SWC) using Crop Water Stress
+Index (CWSI). SWC is a measure of water presence in soil, and CWSI is a measure
+of how severely water needs to be added (1 for severe, 0 for not severe -
+meaning crops are well hydrated). The motivation behind measuring CWSI and SWC
+is that they are good indicators of when and how much water should be supplied
+to crops. This is valuable information to farmers especially during a drought
+when water is even more scarce and the price of water increases drastically.
+While measuring CWSI is easy and relatively inexpensive with the aid of remote
+sensing devices, measuring SWC is neither easy nor cheap. Consequently, we are
+interested in exploring and modelling the relationship between SWC and CWSI so
+that we can accurately predict SWC given CWSI. Doing so will help farmers avoid
+the costs of measuring SWC and aid them in cutting irrigation costs. Using data
+consisting of 44 observations of SWC and their corresponding CWSI's from Dr.
+Heaton, we will model the relationship between SWC and CWSI. An important
+consideration in this study is that the relationship between SWC and CWSI is
+highly nonlinear. This suggests that the modelling methods chosen should
+be robust to nonlinearity.
+
+
+% Methods / Models / Justification-talk about strengths:
+\subsection*{Methods / Models Used:}%{\huge Question: What about 2 covariates???} }
+A scatter plot of our data reveals the apparent nonlinearity (\textbf{Figure
+1}).  An alternative to the linear model should be used. A suitable model for
+modelling nonlinear data is the Gaussian Process. 
+\begin{figure}
+\begin{center}
+<<fig=T,echo=F>>=
+  plot(soil,main="SWC vs. CWSI",pch=20,col="brown")
+@  
+\end{center}
+\caption{Scatter Plot of SWC vs. CWSI}
+\end{figure}
+
+% Describe the Gaussian Process and assumptions
+\subsubsection*{Description of The Gaussian Process:}
+A Gaussian Process (GP) is a stochastic process where any finite collection
+observed random variables follow a multivariate normal distribution.
+In other words, for any set of $t_1,\dots,t_N \in T,~\bm{Y} =
+(Y(t_1),\dots,Y(t_N))^T \sim \mathcal{N}(\bm\mu,\bm\Sigma_Y)$.
+
+% Write out model:
+\subsubsection*{Full Gaussian Process Model:}  
+  Let N = number of observations and, 
+  \[ \bm{Y|W} = \begin{pmatrix} y(x_1) \\ \vdots \\ y(x_N) \end{pmatrix} 
+                \sim \mathcal{N}(\bm W,\tau^2\bm I_N) \]
+  \wl
+  \[ \bm W =  \begin{pmatrix} w(x_1) \\ \vdots \\ w(x_N) \end{pmatrix}
+              \sim \mathcal{N}(\mu\bm 1_N,\sigma^2\bm R) \]
+  which marginalizes to:
+  \[ \bm Y \sim \mathcal{N}(\mu\bm 1_N,\sigma^2\bm R + \tau^2\bm I_N) \] 
+  where,\\
+        $\tau^2$ can be interpreted as the error variance; \\
+        $\sigma^2$ can be interpreted as the spatial variance; \\
+        $ \begin{matrix*}[l]
+          \bm R_{ij} & = & \frac{1}{2^{\nu-1}\gamma(\nu)} 
+                           (2\phi \sqrt{\nu} |t_i-t_j|)^\nu 
+                           K_\nu(2\phi\sqrt{\nu}|t_i-t_j|) \\
+                     & = & Matern(|x_i-x_j|,nu=\nu,alpha=\phi) \\
+                     & = & Corr(Y(x_i),Y(x_j))
+        \end{matrix*} $ \\
+        $\phi$: decay parameter. As $\phi$ increases, correlation (at a fixed
+        distance) decreases.\\
+        $\nu$: smoothness parameter. As $\nu$ increases, smoothness increases.\\
+        $K$: effective range. distance where correlation decays to 0.05. \\
+        We can estimate the unknown parameters $\mu, \sigma^2, \nu, \phi,
+        \tau^2$ (using maximum likelihood or Bayes).
+  \wl\noindent
+  This is a fascinating result that reduces computation significantly. Making
+  use of the properties of the conditional distribution of multivariate normals
+  distributions, one can easily can predictions and prediction intervals (see
+  Rencher \& Schaalje, Theorem 4.4d, 2008). 
+  
+  %Using the results the conditional expectation and conditional variance (see
+  %Rencher \& Schaalje, Theorem. 4.4d, 2008) we get,
+
+  %\[ \bm Y^* | \bm Y \sim \mathcal{N}(\bm\mu_{Y^*|Y},\bm\Sigma_{Y^*|Y}) \]
+  %where K = number of predictions and N = number of observations,
+  %\[ \bm\mu_{Y^*|Y} = \mu\bm 1_K + \sigma^2\bm R_{Y^*,Y}(\sigma^2 \bm R_Y + \tau^2
+  %\bm I_N)^{-1} (\bm Y-\mu \bm1_N) \]
+  %\[ \bm\Sigma_{Y^*|Y} = (\sigma^2\bm R_{Y^*}+\tau^2\bm I_K)-(\sigma^2\bm
+  %R_{Y^*,Y})(\sigma^2\bm R_Y+\tau^2\bm I_K)^{-1}(\sigma^2\bm R^T_{Y^*,Y}) \]
+
+% Explain Why the GP is used, how it is appropriate, how it solves the problem
+  The GP is used because it models nonlinear relationships between random
+  variables well and gives accurate predictions. Since we are interested in
+  predicting SWC given CWSI and we know that the two variables are linear, the
+  GP is a good model to consider.
+
+\subsection*{Results:}
+
+\subsubsection*{Parameter Estimates:}
+% tau2, s2, phi
+The point estimates obtained using maximum likelihood for the covariance
+function are:
+\[ \tau^2   = \Sexpr{round(est$gp.fit$tausq,2)} \]
+\[ \sigma^2 = \Sexpr{round(est$gp.fit$sigmasq,2)} \]
+\[ \phi     = \Sexpr{round(est$gp.fit$phi,2)} \]
+$\nu$ was chosen to be 2 because the data doesn't inform us about $\nu$ and
+because it gave us a smooth curve.
+% beta, CI
+The estimate and the 95\% confidence interval for the mean are:
+\[ \hat{\beta} = \Sexpr{round(beta,2)},~\text{95\% C.I.:}~
+                (\Sexpr{round(beta.CI[1],2)}, \Sexpr{round(beta.CI[2],2)}) \]
+
+\subsubsection*{Predictions and Predictive Accuracy:}
+The support for CWSI is (0,1) by definition. So, the plot of the prediction
+curve for CWSI $\in$ (0,1) reveals the relationship between CWSI and SWC for
+every possible value of CWSI (\textbf{Figure 2}). For instance, when predicted
+value for SWC at CWSI = \Sexpr{soil[1,1]} is: \Sexpr{round(est$pred,2)}.
+\wl\noindent
+To assess the prediction accuracy of the GP model, leave-one-out cross
+validation was performed to obtain the coverage of the predicted values. The
+coverage was determined to be \Sexpr{round(coverage[1],3)} 
+                 (with 95\% C.I.: (\Sexpr{round(coverage[2],3)},
+                                   \Sexpr{round(coverage[3],3)})).
+\begin{figure}  
+\begin{center}
+  \includegraphics{../predict.pdf}
+  \caption{Plot of Data and Fitted Curve}
+\end{center}
+\end{figure}
+
+\subsubsection*{Assessment of Model Assumptions:}
+% Are assumptions justified? (residuals)
+An assumption of the GP model is that the errors are Normally distributed. The
+percentile-percentile plot (Q-Q plot) appears to be linear. This indicates that
+the residuals are normal. A histogram of the residuals also shows that the
+residuals are normal (\textbf{Figure 3}).
+\begin{figure}
+\begin{center}
+<<fig=T,echo=F>>=
+  plot.resid()
+@
+\caption{Residuals Diagnostics Plots}
+\end{center}
+\end{figure}
+
+\subsubsection*{Main Points}
+Overall, the GP model performed well. A coverage of 93\% suggests that the 95\%
+prediction interval generated using the model contains the true response value
+93\% of the time. Prediction interval widths vary at different locations of the
+curve because the number of observations vary along the curve. The minimum
+prediction interval width is \Sexpr{round(min.widths,2)}, which occurs at CWSI =
+\Sexpr{which.min.widths} and $\hat{SWC}=\Sexpr{round(min.ev,2)}$. The maximum
+prediction interval width is \Sexpr{round(max.widths,2)}, which occurs at CWSI =
+\Sexpr{which.max.widths} and $\hat{SWC}=\Sexpr{round(max.ev,2)}$. The average
+prediction interval width is \Sexpr{round(mean(widths),2)}. Below is a table
+showing \Sexpr{nrow(pred.table)} predicted values (spread across the support of
+CWSI) and their prediction intervals (Table 1).
+<<label=tab1,echo=F,results=tex>>=
+  library(xtable)
+  x=xtable(pred.table,caption="Prediction Values",label="tab:one")
+  print(x,floating=T,caption.placement="top",size="large")
+@  
+
+
+\subsection*{Conclusion:}
+% Possible Alternative Approaches, shortcomings, future analysis:
+Other approaches in fitting a nonlinear model include splines and local
+regression. A comparison of the performances of resulting models using a spline,
+local regression, and the GP can be done in a future analysis. Such an analysis
+comparing the performance of different methods may be beneficial as different
+methods have different strengths. For instance, one draw back to the GP is that
+for large datasets, computation time becomes large as the algorithm involves the
+inverting of covariance matrices which increases exponentially with the number
+of observations. 
+
+\end{document}

@@ -1,0 +1,281 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{pgffor}
+\usepackage{amssymb}
+\usepackage{Sweave}
+\usepackage{bm}
+\usepackage{mathtools}
+\def\wl{\par \vspace{\baselineskip}}
+
+\begin{document}
+\title{Stat536 HW1 - Credit Data}
+\author{Arthur Lui}
+\maketitle
+
+<<design,echo=F>>=
+
+rm(list=ls())
+options("width"=120)
+library(leaps)  #regsubsets
+
+credit <- read.table("Credit.csv",header=T,sep=",")
+credit <- credit[,-1]
+credit <- as.data.frame(credit)
+#pairs(credit)
+
+# A function to swap words separated by a colon
+# the 'bigger' word goes before the colon
+swap <- function(s){
+  #p <- pos(":",s)
+  p <- regexpr(":",s)
+  if (p > 0 ){
+    a   <- substr(s,1,p-1)
+    b   <- substr(s,p+1,nchar(s))
+    ifelse(a<b, paste(a,b,sep=":"), paste(b,a,sep=":")) 
+  } else {
+    s
+  }
+}
+
+my.predict <- function(cof, dat){
+  x <- model.matrix(Balance ~ .^2, data=dat)
+  b <- cof
+  colnames(x) <- sapply(colnames(x),swap); colnames(x) <- unname(colnames(x))
+  names(b) <- sapply(names(b),swap)
+
+  x <- x[, names(b)]
+
+  pred <- x %*% b
+  pred[pred < 0] <- 0
+  
+  pred
+}
+
+engine <- function(k){
+
+  #print(k)
+  trainI <- sample(1:400,300)
+  testI  <- setdiff(1:400,trainI)
+
+  train <- credit[trainI,]
+  test  <- credit[testI,]
+
+  #Validate:
+  # Using regsubsets():
+  nvMax <- 25
+  #crazy <- regsubsets(Balance ~ .^2, data=train, nvmax=nvMax, method="seqrep")    #3135,22 
+  #crazy <- regsubsets(Balance ~ .^2, data=train, nvmax=nvMax, method="forward")   #3170,10 
+  crazy <- regsubsets(Balance ~ .^2, data=train, nvmax=nvMax, method="backward")  #3244,15
+
+  MSE <- NULL
+  for (i in 1:nvMax){
+    # my.predict function:
+    cof <- coef(crazy,i)
+    pred <- my.predict(cof,test)
+    MSE[i] <- mean((test[,"Balance"]-pred)^2)
+  }
+
+  #par(mfrow=c(2,1))
+  #plot(MSE,type='o',pch=20,xlab='Paramaters',main='MSE vs. Parameters')
+  #plot((summary(crazy))$adjr2,type='o',pch=20,ylab=expression(paste(R^2)),xlab='Parameters',main=expression(paste('Adjusted ',R^2,' vs. Parameters')))
+  min.MSE <- which.min(MSE)
+  #min(which(abs(MSE-min(MSE)) < sd(MSE))) # the smallest number of parameters within 
+  #                                        # one sd of the min MSE
+  coefs <- coef(crazy,min.MSE)
+  vars  <- names(coefs)
+  vars
+}
+
+library(foreach)
+library(doMC)
+registerDoMC(16)
+
+N <- 1000
+vars <- foreach(n=1:N) %dopar% engine(n)
+
+tab <- table(unlist(vars))
+h <- N/2
+
+my.plot <- function(){
+  plot(tab,ylab="Count",las=2,cex.axis=.32,main="Parameter Counts Vs. Parameters")
+  abline(h=h)
+}
+
+numParam <- sum(tab > h)
+params <- names(which(tab > h))
+
+terms <- paste(params[params!="(Intercept)"],collapse="+")
+terms <- paste("Balance ~",terms)
+
+X <- model.matrix(Balance ~ .^2, data=credit)
+X <- as.data.frame(cbind(credit$Balance,X))
+names(X)[1] <- "Balance"
+# This is my model
+mod <- lm(as.formula(terms),data=X)
+b <- matrix(unname(mod$coef),ncol=1)
+
+
+# Let's test my model by looking at the coverage:
+N <- 1000
+
+get.coverage <- function(i){  
+  trainI <- sample(1:400,300)
+  testI  <- setdiff(1:400,trainI)
+  train <- credit[trainI,]
+  test  <- credit[testI,]
+
+  X <- model.matrix(Balance ~ .^2, data=train)
+  X <- as.data.frame(cbind(train$Balance,X))
+  names(X)[1] <- "Balance"
+
+  Y <- model.matrix(Balance ~ .^2, data=test)
+  Y <- as.data.frame(cbind(test$Balance,Y))
+  names(Y)[1] <- "Balance"
+
+  mod <- lm(as.formula(terms),data=X)
+
+  pred <- predict(mod,Y,interval='prediction',level=.95)
+  coverage <-  mean((pred[,2] < Y$Balance) & (Y$Balance < pred[,3]))
+  coverage
+}  
+
+coverage <- foreach(k=1:N,.combine=rbind) %dopar% get.coverage(k)
+mean.cov <- mean(coverage)
+me.cov <- sd(coverage) * 1.956
+coverage <- matrix(c(mean.cov, mean.cov + c(-1,1) * me.cov),nrow=1)
+coverage[3] <- min(coverage[3],1)
+colnames(coverage) <- c("Estimated Coverage","95% C.I. Lower","95% C.I. Upper")
+#coverage
+@
+
+\subsection*{Introduction:}
+\wl\noindent
+Card holders with a low monthly balance are neither protable 
+nor a risk to companies. Card holders with moderate monthly 
+balances pose the ideal loan scenario for credit card companies.
+Card holders with a large monthly balance, however, pose a high 
+risk of default and will likely cost the company money. 
+Because of the potential to make or lose a great deal of money, 
+credit card companies are interested in predicting the credit 
+card balance of cardholders before issuing them a card and 
+determining characteristics of a cardholder that lead to high balances.
+\wl\noindent
+I will use regression to obtain a model to predict the balance for
+potential card holders based on the given cardholder information.
+
+\subsection*{Methods / Models Used:}
+I used Multiple Linear Regression to model my data. Specifically, I used the model: 
+\[
+  y_i = \bm{x_i} \beta + \epsilon_i, 
+\]
+where $\epsilon_i \sim N(0,1)$, $y_i$ is the Balance (current credit card debt), and $x_i$ is a vector that may contain:
+
+\begin{itemize}
+  \item Income     (Card holders monthly income in thousands)
+  \item Limit      (Card holders credit limit)
+  \item Rating     (Credit rating - similar to a FICO credit score 
+                    but used internally by the company)
+  \item Cards      (Number of open credit cards, including the current card,
+                    of the card holder)
+  \item Age        (Age of the card holder)
+  \item Education  (Years of education)
+  \item Gender     (Gender of the card holder)
+  \item Student    (Card holder is a full-time student)
+  \item Married    (Card holder is married)
+  \item Ethnicity  (Card holders ethnicity)
+\end{itemize} 
+and all their two way interactions.
+\wl\noindent
+I used backward selection (using cross validated prediction error), to select 
+the the parameters to include in the model.
+
+\subsection*{Model Justification:}
+%pairs(credit)
+Using the \textit{pairs} function, we can see that a few variables have a linear
+relationship. Specifically, the variables, \textit{Income}, \textit{Limit}, 
+and \textit{Rating} are positively correlated (multicollinearity). 
+The correlation between Limit and Rating is nearly 1 (.9969). 
+Multicollinearity infaltes the variance of estimated coefficients in the model. 
+One way to address multicollinearity is to orthogonalize the explanatory variables.
+However, to preserve the interpretability of my model, I did not orthogonalize. 
+While the variance inflaction factor was high for some of the variables in my 
+model, the parameters were still significant. 
+\wl\noindent
+%plot(resid(mod))
+I assumed normal errors in the model. Plotting the residuals of my model reveals 
+that the errors are indeed approximately normal (See Figrue 1). 
+So the normal assumption was met. 
+\begin{figure}
+\begin{center}
+<<fig=T,echo=F>>=
+  qqnorm(resid(mod))
+@
+\caption{Normal Q-Q Plot for model. The plot looks linear, indicating that 
+         the residuals are approximately normal.}
+\end{center}
+\end{figure}
+
+\subsection*{Results:}
+I performed backward selection 1000 times, each time using a different subset of 
+the data as a training set. The coefficients that appeared the most number of
+times in the 1000 iterations were selected into the final model. (See Figure 2)
+\begin{figure}
+\begin{center}
+<<fig=T,echo=FALSE>>=
+  my.plot()
+@
+\caption{Counts of each parameter in 1000 backward selections. The variables
+         that had a count over the horizontal line (500) were included
+         in the model.}
+\end{center}
+\end{figure}
+\wl\noindent
+%and 
+%\[ \beta = 
+%<<label=tab1,echo=F,results=tex>>=
+%  library(xtable)
+%  x=xtable(b,align=rep("",ncol(b)+1),digits=5)
+%  print(x,floating=FALSE,tabular.environment="pmatrix",hline.after=NULL,
+%        include.rownames=FALSE,include.colnames=FALSE)
+%@
+%\]
+The values of $\bm{x}$ and $\hat{\beta}$ are summarized in Table 1. 
+Terms that are of the form "A:B" are the interaction term or A*B.
+<<label=tab1,echo=F,results=tex>>=
+  library(xtable)
+  x=xtable(mod,caption="Summary Table",label="tab:one")
+  print(x,floating=T,caption.placement="top")
+@  
+\wl\noindent
+To assess the uncertainty in the model, once again, the data was subsetted 1000 
+times into training and validation sets. The coverage was calculated each time 
+observing whether the 95\% prediction intervals calculated with the validation set
+contained the true balance. The average of coverage was \Sexpr{round(coverage[1],3)} 
+(Confidence Interval: (\Sexpr{round(coverage[2],3)}, \Sexpr{round(coverage[3],3)}),
+which contains .95). 
+
+% \[
+% <<label=tab1,echo=F,results=tex>>=
+%   library(xtable)
+%   x=xtable(coverage,digits=3)
+%   print(x,floating=FALSE,hline.after=NULL,include.rownames=FALSE,
+%         include.colnames=TRUE)
+% @        
+% \]
+\subsection*{Conclusion:}
+For this model, 95\% of the time, prediction interval 
+contains the true value being predicted given the explanatory variables. However,
+the response variable, \textit{Balance} is bounded below by zero, while our model 
+may return values below 0. The only thing I did to remedy this problem was to 
+have the model return 0 if the calculated predicted value was negative. To address
+this problem more completely, we could create a latent variable, z, that is normally
+distributed (not bounded below by zero) and replace it with the \textit{Balance} 
+in our model. This would require the use of Bayesian statistics.
+\wl\noindent
+To get a prediction of whether someone applying for a credit card would cause
+a loss to the company, the company simply needs to input the cardholder's 
+information into the model and see what the predicted Balance is. A high balance
+would correspond to a high credit card debt (which is undersireable).
+And a low balance would correspond to
+a low credit card debt.
+\end{document}

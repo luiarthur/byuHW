@@ -1,0 +1,6 @@
+#!/bin/bash
+
+R CMD BATCH ../34.R
+pdflatex HW11.tex
+rm *.log *.aux 
+firefox HW11.pdf &

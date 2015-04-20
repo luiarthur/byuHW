@@ -1,0 +1,227 @@
+\documentclass{article}                                                   %
+\usepackage{float}
+\usepackage{fullpage}                                                     %
+\usepackage{pgffor}                                                       %
+\usepackage{amssymb}                                                      %
+\usepackage{Sweave}                                                       %
+\usepackage{bm}                                                           %
+\usepackage{mathtools}                                                    %
+\usepackage{verbatim}                                                     %
+\usepackage{appendix}                                                     %
+\usepackage[UKenglish]{isodate} % for: \today                             %
+\cleanlookdateon                % for: \today                             %
+                                                                          %
+\def\wl{\par \vspace{\baselineskip}}                                      %
+%\def\beginmyfig{\begin{figure}[htbp]\begin{center}}                      %
+\def\beginmyfig{\begin{figure}[H]\begin{center}}                          %
+\def\endmyfig{\end{center}\end{figure}}                                   %
+                                                                          %
+\begin{document}                                                          %
+% my title:                                                               %
+\begin{center}                                                            %
+  \section*{\textbf{Stat538 Midterm - Primary Central Nervous System Lymphoma}}%
+  \subsection*{\textbf{Arthur Lui}}                                       %
+  \subsection*{\noindent\today}                                           %
+  \hrulefill                                                              %
+\end{center}                                                              %
+\setkeys{Gin}{width=0.5\textwidth}                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<design,echo=F,results=hide>>=
+  source("../R/pcnsl.R",chdir=T)
+@
+
+\section{Introduction}
+  In previous studies, methotrexate-based chemotherapy has improved median
+  survival time for patients with Primary Central Nervous System Lymphoma
+  (PCNSL). Using a newly collected data set provided by Dr. Engler, we would
+  like to verify these findings. The data contained many variables, including:
+  \begin{itemize}
+    \item DS:   treatment (1 = methotrexate, 0 = cytarabine)
+    \item OS:   overall survival (Days)
+    \item OSc:  censoring indicator for overall survival
+    \item PFS:  progression-free survival (Days)
+    \item PFSc: censoring indicator for progression-free survival
+  \end{itemize}
+  Overall survival refers to the time from treatment to death. Progression-free
+  survival refers to the time from treatment to reappearance of cancer.  We will
+  determine, for each outcome measure, whether methotrexate-based chemotherapy
+  improves median survival time for PCNSL patients. 
+
+\section{Overall Survival}
+  The overall survival Kaplan Meier (KM) Curves for each treatment
+  (Methotrexate and cytarabine) were first plotted (see \textbf{Figure 1}). The
+  KM curves do not intersect and are clearly separated. Their 95\% confidence
+  intervals do not overlap. The median survival time was computed to be
+  \textbf{\Sexpr{CI.os.meth[1]}} (95\% CI: \Sexpr{CI.os.meth[2]},
+  \Sexpr{CI.os.meth[3]}) for patients that received the methotrexate treatment.
+  The median survival time of the patients that received the cytarabine
+  treatment was \textbf{\Sexpr{CI.os.cyba[1]}} (95\% CI: \Sexpr{CI.os.cyba[2]},
+  \Sexpr{CI.os.cyba[3]}). Since the 95\% confidence intervals for the median do
+  not overlap, we conclude that the medians are not the same. In fact, from the
+  survival curve, it appears that cytarabine significantly improves upon the
+  methotrexate-patients survival at the median. The median survival time of the
+  cytarabine group is \textbf{3.28} times that of the methotrexate group's. The
+  results of a logrank test also indicates that the two treatments have a
+  significant difference (p-value = \Sexpr{round(logrank.os.p,7)}. 
+
+  \beginmyfig
+<<fig=T,echo=F>>=
+  plot.km.os()
+@  
+    \caption{Overall survival KM curves for each treatment. Since the 95\%
+    confidence intervals do not overlap, and the confidence interval for
+    cytarabine is greater than that of methotrexate, we conclude that cytarabine
+    treatment's improvement of survival time is significantly greater than
+    methotrexate treatment's improvement of survival time.} 
+  \endmyfig
+
+  \wl\noindent
+  A cox model was fit by regressing the log hazards ratio on the treatment variable.
+  That is,
+  \[
+     log\left(\frac{h_i(t)}{h_0(t)}\right) = x\beta
+  \]
+  where $x$ is an indicator for whether the treatment received by a patient was
+  methotrexate (1) or cytarabine (0). We obtain an estimate for the parameter
+  $\beta$ = $\hat\beta$, but interpret $e^{\hat\beta}$ =
+  \Sexpr{round(cox.os.coef[1],2)} (95\% CI:  \Sexpr{round(cox.os.coef[3],2)},
+  \Sexpr{round(cox.os.coef[4],2)}). This means that the hazard rate of the
+  methotrexate treatment group is \Sexpr{round(cox.os.coef[1],2)} times that of
+  the cytarabine treatment group. In other words, the methotrexate group has a
+  higher risk of dying at any given time. A plot of the log cumulative hazard
+  against the log time shows that the treatment groups' hazards are indeed
+  proportional (see \textbf{Figure 2}), which is an assumption made when
+  performing a cox regression.
+  
+  \beginmyfig
+<<fig=T,echo=F>>=
+  plot.os.log.H()
+@
+    \caption{A plot of the log cumulative hazard against the log time shows
+             that the treatment groups' hazards are indeed proportional.}
+  \endmyfig
+
+
+  \section{Progression Free Survival}
+  The progression-free Kaplan Meier survival curves for the two treatments
+  cross over (\textbf{Figure 3}). So we cannot assume that the two treatment
+  groups have proportional hazards.  Moreover, we cannot model the effect of
+  treatment with a cox model. We will, therefore, fit a parametric model to the
+  data. Before doing so, we computed the median of the survival times to be
+  \Sexpr{round(CI.pf.meth[1],2)} (95\% CI \Sexpr{round(CI.pf.meth[2],2)},
+  \Sexpr{round(CI.pf.meth[3],2)}) for the methotrexate group, and
+  \Sexpr{round(CI.pf.meth[1],2)} (95\% CI \Sexpr{round(CI.pf.meth[2],2)},
+  \Sexpr{round(CI.pf.meth[3],2)}) for the cytarabine group. The intervals
+  overlap, so the medians are not significantly different from each other.
+
+  \beginmyfig
+<<fig=T,echo=F>>=
+  plot.km.pf()
+@
+    \caption{Progression free KM survival curve. The crossing over suggests that
+             the hazards are not proportional. A cox model should not be used.}
+  \endmyfig  
+  
+  \wl\noindent
+  The KM curve and estimated parametric curves were plotted together (\textbf{
+  Figure 4}). The lognormal (green) curve seems to follow the KM curve the closest.
+  The probability plot for the lognormal distribution is not particularly straight.
+  But it is reasonably straight. So we will use it as our modelling distribution.
+  We will use the Accelerated Failure Time (AFT) model:
+  \[
+    log(T_i) = \mu + \bm{X\beta} + \sigma \epsilon_i
+  \]
+  where $T_i$ is the survival time with a lognormal distribution.
+
+  \beginmyfig
+<<fig=T,echo=F>>=
+  plot.distributions()
+@
+    \caption{The lognormal (green) curve seems to follow the KM curve closest.}
+  \endmyfig  
+ 
+  \beginmyfig
+<<fig=T,echo=F>>=
+  plot.pp()
+@
+    \caption{Probability plots seem reasonably straight. I will choose to use the
+             lognormal distribution.}
+  \endmyfig  
+
+   \noindent
+   We use stepwise forward selection to obtain a model for survival time. 
+   The model selected did not contain the treatment variable, which we are
+   most interested in. It has a p-value greater than .05. So treatment does not
+   contribute to the model significantly in affecting the survival. Nevertheless,
+   we can still fit a model to help us understand the relationship between
+   survival and other variables. The model selected includes the terms,
+   KFS and LDH. Karnofsky performance status (KFS) is a measurement of the general
+   well-being and activities of a cancer patient. It is used to determine further
+   treatment for the patient. A higher score corresponds to a healthier and happier
+   patient; a lower score corresponds to a sick and unhappy patient. CSF is
+   a categorical variable. I dichotomized KFS to plot the relationship between KFS,
+   CSF, and survival. \textbf{Figure 5} plots the survival for different
+   combinations of $\bm X$, a matrix expressing the covariates. The parameter
+   estimates are:
+   $(\hat\mu,\hat\sigma,\hat\beta_1,\hat\beta_2,\hat\beta_3)$ = 
+   (\Sexpr{round(m,2)},\Sexpr{round(s,2)}, \Sexpr{round(coef[1],2)},
+   \Sexpr{round(coef[2],2)},\Sexpr{round(coef[3],2)}). So the median of the
+   survival time for a person with high KFS is $e^{.99} \approx 2.7$ times that
+   of a person with low KFS (<70).
+
+   \beginmyfig
+<<fig=T,echo=F>>=
+  plot.pf.s()
+@
+     \caption{Parametric Survival Curves and Kaplan Meier Curves. Patients with
+              high KFS have higher survival. Patients with LDHN also have
+              higher survival.}
+   \endmyfig  
+
+
+   \wl\noindent
+   The percentile-percentile plots suggest that the curves fitted may not be valid.
+   The curve does not pass through 0, and does not appear linear. Further analysis
+   can be done with more data to determine the validity of the model.
+
+
+   \beginmyfig
+<<fig=T,echo=F>>=
+  par(mfrow=c(2,1)); plot.L.qq(); plot.H.qq(); par(mfrow=c(1,1))
+@
+     \caption{Percentile-percentile plots}
+   \endmyfig
+
+   \wl\noindent
+   The residuals are right skewed. But they are approximately normal. Once again,
+   with more data, we can see the distribution of the residuals more clearly.
+   \beginmyfig
+<<fig=T,echo=F>>=
+  hist(lnorm.dev,col='purple',main="Deviance Residuals Plot")
+@
+     \caption{Plot of deviance residuals.}
+   \endmyfig
+
+  \section{Conclusions}
+    The median survival times for methotrexate patients is lower than that of
+    the cytarabine patients' for both outcome measures. The median overall
+    survival time of the cytarabine group was 3.28 times that of the
+    methotrexate group's. The difference between overall survival times between the 
+    two treatment groups was significant.
+    \wl\noindent
+    The median progression-free survival times for the two treatment groups was
+    not significant. But the median progression-free survival times for a person
+    with high ($\ge70$) KFS was \textbf{2.7} that of a person with low KFS ($<70$).
+    The difference in progression-free survival times between high and low KFS
+    groups was significant.
+
+
+\newpage
+\section{Appendix:}
+  \subsection{R Code:}
+    \verbatiminput{../R/pcnsl.R}
+    \newpage
+
+\end{document}
+

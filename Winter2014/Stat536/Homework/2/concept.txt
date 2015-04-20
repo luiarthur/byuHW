@@ -1,0 +1,34 @@
+Arthur Lui
+Conceptualization Sheet 2 (GDP)
+
+Notes:
+Growth in GDP <=> Low Unemployment Rate, Increasing Wages (because more spending)
+Decline in GDP <=> High Unemployment Rate, lower profits (less spending)
+
+* Declining GDP is a worry to Economists because associated with recession.
+
+
+Goals:
+  Understand the driving forces behind GDP. 
+  That is understand what variables contribute to a rise (or decline) in GDP.
+
+Key Features of Statistical Analysis:
+  Collinearity
+  Many variables
+  More variables than observations (60 countries, 70 variables)
+
+Potential Model:
+  Maybe use some kind of clustering algorithm to cluster countries 
+  that have high GDP.
+  Have a feature matrix that indicates what "features" each countries have.
+  Then figure out what features contribute to high GDP?
+
+One Feature I don't know How to Do:
+  I really don't know where to start. 
+  I want to know how to get started when looking at this data set.
+  Should I use MLR?
+  Is this going to be a clustering problem?
+
+#############################################
+  
+

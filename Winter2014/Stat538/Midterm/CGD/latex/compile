@@ -1,0 +1,6 @@
+#!/usr/bin/env Rscript
+
+Sweave("cgd.rnw")
+system("pdflatex cgd.tex")
+system("rm -f cgd-*.pdf *.log *.aux *.tex")
+system("evince cgd.pdf &")

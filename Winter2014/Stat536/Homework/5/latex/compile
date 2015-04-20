@@ -1,0 +1,6 @@
+#!/usr/bin/env Rscript
+
+#system("cd ../; R CMD BATCH cars.R; cd latex")
+system("pdflatex crash.tex")
+system("rm *.log *.aux *.snm *.toc *out")
+system("evince crash.pdf &")

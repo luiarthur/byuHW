@@ -1,0 +1,23 @@
+
+Arthur Lui
+Cars Data Set Conceptualization Sheet
+
+Goals:
+  Car dealers want to make a profit by selling used cars but in order 
+  to ensure that they can sell the car for more than they paid for it, 
+  they need to predict the future selling price at the time of trade-in.
+  That is, when they receive the car from a trade-in, they need to know
+  what they can eventually sell the car traded in for, so that they 
+  can "puchase" it for less than the price they will sell the used car
+  for.
+
+  Many factors affect the value of the car - color, mileage, number of doors, etc.
+
+Key Features:
+  More Categorical data that quantitative data
+
+Potential Model:
+  Linear Model
+  Y = Price
+  X = Everything Else
+

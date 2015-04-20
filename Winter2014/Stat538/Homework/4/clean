@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rm -f hw4.log
+rm -f hw4.lst
