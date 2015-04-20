@@ -1,0 +1,131 @@
+\documentclass{article}                                                   %
+\usepackage{fullpage}                                                     %
+\usepackage{pgffor}                                                       %
+\usepackage{amssymb}                                                      %
+\usepackage{Sweave}                                                       %
+\usepackage{bm}                                                           %
+\usepackage{mathtools}                                                    %
+\usepackage{verbatim}                                                     %
+\usepackage{appendix}                                                     %
+\usepackage{graphicx}
+\usepackage[UKenglish]{isodate} % for: \today                             %
+\cleanlookdateon                % for: \today                             %
+                                                                          %
+\def\wl{\par \vspace{\baselineskip}\noindent}                             %
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}                       %
+\def\endmyfig{\end{center}\end{figure}}                                   %
+\def\prodl{\prod\limits_{i=1}^n}                                          %
+\def\suml{\sum\limits_{i=1}^n}                                            %
+\def\ds{\displaystyle}                                                    %
+                                                                          %
+\begin{document}                                                          %
+% my title:                                                               %
+\begin{center}                                                            %
+  \section*{\textbf{Stat651 Mini Project 2}}                              %
+  \subsection*{\textbf{Arthur Lui}}                                       %
+  \subsection*{\noindent\today}                                           %
+\end{center}                                                              %
+\setkeys{Gin}{width=0.5\textwidth}                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<design,echo=F>>=
+  source("../../2/mp2.R",chdir=T)
+@
+
+\section{Rejection Sampling}
+\subsection{Likelihood Function}
+I chose a centered and scaled Beta function for my likelihood function. 
+Let $ X|a,b \sim Beta(a,b) $, then we transforming the variable X by 
+$ Y = 6X + 1 $. Then, 
+\[
+  f_{Y|a,b}(y) = \frac{1}{6B(a,b)} \left( \frac{y-1}{6} \right) ^{a-1} 
+                 \left( \frac{7-y}{6} \right) ^{b-1},~y \in (1,7)
+\] 
+where B(a,b) is the beta function. \\
+\noindent
+I chose this as my likelihood function because our data is bounded by 
+1 and 7, and are continuous. 
+
+\subsection{Prior Distribution}
+I chose for my prior distribution, 
+\[
+  \pi(\theta) = p(\theta_1,13/4,10) p(\theta_2,3.5,1)
+\]
+where $ p(x,a,b) = \frac{1}{\Gamma(a)\Gamma(b)} x^{a-1} e^{-x/b}$.
+That is, my prior is the joint distribution of two gamma distributions. 
+I chose the values for each prior based on what I believe the expected
+value of the average scores of the professors should be. Note that I
+am multiplying the two gamma pdf's because I assume that the two
+parameters a and b in the likelihood are independent.
+
+\subsection{Envelop Function}
+My envelop function is my prior. It is easy to get draws from this
+distribution. Also, after scaling, the envelop covers the sampling
+distribution well. 
+
+\subsection{Posterior - Rejection Sampling}
+\[  
+  \begin{array}{rcl}
+    E[\Theta|\bm Y] &=&
+    (\Sexpr{round(rej.post.mean[1],4)},\Sexpr{round(rej.post.mean[2],4)}) \\
+    V[\Theta|\bm Y] &=&
+    (\Sexpr{round(rej.post.var[1],4)},\Sexpr{round(rej.post.var[2],4)}) \\
+    SD[\Theta|\bm Y] &=&
+    (\Sexpr{round(rej.post.sd[1],4)},\Sexpr{round(rej.post.sd[2],4)}) \\
+    P(\bm Y > 5| \Theta) &=& \Sexpr{round(prob.greater.than.5,4)} \\
+  \end{array}
+\]
+
+\beginmyfig    
+  \includegraphics{../rejPostContour.pdf}
+  \caption{Contour Plot of Posterior Distribution (Rejection Sampling)}
+\endmyfig
+
+\beginmyfig
+  \includegraphics{../postPred.pdf}
+  \caption{Posterior Predictive Distribution (Rejection Sampling)}
+\endmyfig
+
+
+
+\section{Importance Sampling}
+\subsection{Importance Function}
+The importance function $I(\Theta)$ I chose was the envelop function I 
+chose for my rejection sampler. That is,
+\[
+  I(\Theta) = p(\theta_1,13/4,10) p(\theta_2,3.5,1)
+\]
+where $ p(x,a,b) = \frac{1}{\Gamma(a)\Gamma(b)} x^{a-1} e^{-x/b}$.
+The importance function I chose is easy to sample from and mirrors the
+sampling distribution well. It preserves the parameter space
+because a and b are positive. Also, the gamma distribution has long tails. 
+
+\subsection{Posterior - Importance Sampling}
+\[  
+  \begin{array}{rcl}
+    E[\Theta|\bm Y] &=&
+    (\Sexpr{round(imp.post.mean[1,1],4)},\Sexpr{round(imp.post.mean[2,1],4)}) \\
+    V[\Theta|\bm Y] &=&
+    (\Sexpr{round(imp.post.var[1,1],4)},\Sexpr{round(imp.post.var[2,1],4)}) \\
+    SD[\Theta|\bm Y] &=&
+    (\Sexpr{round(imp.post.sd[1,1],4)},\Sexpr{round(imp.post.sd[2,1],4)}) \\
+    \hat{c} &=& \Sexpr{norm.const} \\
+  \end{array}
+\]
+
+\section{Compare \& Contrasts}
+A rejection sampler is more cumbersome to write when compared to an
+importance sampler. Deciding on an envelop function can be tedious and
+difficult especially when the parameter is multi-dimensional. An importance
+sampler is to write as it only requires an importance function which can be
+chosen relatively easily, as fewer constraints are imposed on it.\\
+
+\noindent
+Rejection sampling is slower than importance sampling, especially in the
+case where the envelop does not tightly envelop the sampling distribution.
+However, rejection sampling returns the posterior of the parameters, whereas importance sampling only returns estimates of the parameters. Also, in importance sampling, accuracy of the estimates increase with the number of iterations. They may not be as accurate for the same number of draws as rejection sampling.
+
+\section{Appendix -  Code}
+  \verbatiminput{../mp2.R}
+
+\end{document}

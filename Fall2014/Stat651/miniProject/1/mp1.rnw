@@ -1,0 +1,770 @@
+\documentclass{article}                                                   %
+\usepackage{fullpage}                                                     %
+\usepackage{pgffor}                                                       %
+\usepackage{amssymb}                                                      %
+\usepackage{Sweave}                                                       %
+\usepackage{bm}                                                           %
+\usepackage{mathtools}                                                    %
+\usepackage{verbatim}                                                     %
+\usepackage{appendix}                                                     %
+\usepackage[UKenglish]{isodate} % for: \today                             %
+\cleanlookdateon                % for: \today                             %
+                                                                          %
+\def\wl{\par \vspace{\baselineskip}\noindent}                             %
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}                       %
+\def\endmyfig{\end{center}\end{figure}}                                   %
+\def\prodl{\prod\limits_{i=1}^n}                                          %
+\def\suml{\sum\limits_{i=1}^n}                                            %
+\def\ds{\displaystyle}                                                    %
+\def\piano#1#2#3#4{\frac{\ds #1}{\ds\int_{#2}^{#3}#1 d#4}}                %
+\def\mleStart#1#2{\mathcal{L}(#2|\bm{#1}) &=& \prodl f(#1_i|#2)}          %
+\def\dig#1#2#3{\frac{1}{\Gamma(#2)#3 ^ #2} (#1)^{-( #2+1)} e^{\frac{-1}{#3 #1}}}
+                                                                          %
+\begin{document}                                                          %
+% my title:                                                               %
+\begin{center}                                                            %
+  \section*{\textbf{Stat651 Mini Project 1}}                              %
+  \subsection*{\textbf{Arthur Lui}}                                       %
+  \subsection*{\noindent\today}                                           %
+\end{center}                                                              %
+\setkeys{Gin}{width=0.5\textwidth}                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Binomial Data}
+\subsection{Conjugate Prior Distribution}
+The conjugate prior distribution is the \textbf{Beta} distribution.\\\\
+\textbf{Proof:}\\
+\[
+  \begin{array}{rcl}
+    y_i|\theta & \sim & Binomial(a,b) \\
+    \theta & \sim & Beta(a,b) \\
+    \pi(\theta) & = & \displaystyle \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} \theta^{a-1} (1-\theta)^{b-1}\\
+    & & \\
+
+    % I'll use this a lot
+    g(\lambda|\bm{y}) & = & \frac{
+    \displaystyle
+    \pi(\lambda)\prod\limits_{i=1}^{n}f(y_i|\lambda)}
+    {\displaystyle
+    \int_{0}^{\infty}\pi(\lambda)\prod\limits_{i=1}^{n}f(y_i|\lambda)d\lambda}\\
+
+    &&\\
+    
+    & = & 
+    \frac{\displaystyle
+    \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} \theta^{a-1} (1-\theta)^{b-1}
+    \prod\limits_{i=1}^n {n_i \choose y_i} \theta^{y_i} (1-\theta)^{n_i-y_i}}
+    {\displaystyle
+    \int_0^1
+    \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} \theta^{a-1} (1-\theta)^{b-1}
+    \prod\limits_{i=1}^n {n_i \choose y_i} \theta^{y_i} (1-\theta)^{n_i-y_i}d\theta} \\
+
+    &&\\
+    & = & \frac{\displaystyle \theta^{\sum y_i} (1-\theta)^{\sum{n_i-y_i}}}
+          {\displaystyle \int_0^\infty \theta^{\sum y_i} (1-\theta)^{\sum{n_i-y_i}}d\theta}
+    \\
+
+    &&\\
+    & = & 
+          \frac{
+           \displaystyle{
+           \frac{\Gamma(a+\sum n_i + b)}
+                {\Gamma(\sum y_i + a)\Gamma(\sum{n_i-y_i}+b)}
+           \theta^{a+\sum y_i -1} (1-\theta)^{b+\sum{n_i-y_i}-1} 
+          } }
+          {\displaystyle {
+           \int_0^\infty
+           \frac{\Gamma(a+\sum n_i + b)}
+                {\Gamma(\sum y_i + a)\Gamma(\sum{n_i-y_i}+b)}
+           \theta^{a+\sum y_i -1} (1-\theta)^{b+\sum{n_i-y_i}-1} 
+           d\theta
+          } }\\
+
+  \end{array}
+\]
+\wl
+\[ \implies \lambda | \bm{y} \sim Beta(a+\sum\limits_{i=1}^n y_i,b+\sum\limits_{i=1}^n{n_i-y_i}) \] \\
+
+\subsection{Chosen Values for Prior distribution}
+$ \theta \sim Beta(a=1,b=9) $ \\\\
+\noindent
+I have chosen $a=1$, and $b=9$ since I do not know enough about baseball to
+put a lot of confidence in my belief. $a+b=10$, which is relatively small compared
+to the sample size of 153. I do think that homeruns should be relatively uncommon. 
+I would expect no more than $10\%$ of all hits to be homeruns. So, I also chose
+$a$ and $b$ such that the expected value of $\theta$ is $10\%$.
+
+
+\subsection{Derivation of Maximum Likelihood Estimator}
+\[
+  \begin{array}{rcl}
+  
+  \mathcal{L}(\theta|\bm{y}) & = & \displaystyle
+      \prod\limits_{i=1}^n {n_i \choose y_i} \theta^{y_i}(1-\theta)^{\sum(n_i-y_i)}\\
+  
+  l(\theta|\bm{y}) & = & log\{ \prod\limits_{i=1}^n {n_i \choose y_i} \theta^{y_i}(1-\theta)^{\sum(n_i-y_i)} \}\\
+
+  & = & \displaystyle
+        \sum\limits_{i=1}^n log{n_i \choose y_i} + 
+        log(\theta) \sum\limits_{i=1}^n y_i +
+        log(1-\theta) \sum\limits_{i=1}^n (n_i-y_i) \\
+
+  l^\prime (\theta|\bm{y}) & = & \displaystyle
+        \frac{\sum y_i}{\theta} - \frac{\sum n_i - y_i}{1-\theta}\\
+
+  l^{\prime\prime} (\theta|\bm{y}) & = & \displaystyle
+        \frac{-\sum y_i}{\theta^2} - \frac{\sum n_i - y_i}{(1-\theta)^2}\\
+  & < & 0 \quad (\implies Local Max)\\      
+  
+  &&\\
+  l^\prime (\theta|\bm y) & := & 0\\
+  \displaystyle
+  \frac{\sum y_i}{\hat\theta} - \frac{\sum n_i - y_i}{1-\hat\theta} & = & 0 \\
+
+  \sum y_i - \hat\theta \sum y_i - \hat\theta(\sum n_i - \sum y_i) & = & 0\\
+
+  \hat\theta & = & \displaystyle \frac{\sum\limits_{i=1}^n y_i}{\sum\limits_{i=1}^n n_i}\\
+  
+        
+  \end{array}
+\]
+\subsection{Plot of MLE, and Prior and Posterior Distributions}
+
+<<design, echo=F>>=
+dat1 <- read.table("binomial2.dat",header=F)
+colnames(dat1) <- c("date","num.bats","num.homeruns")
+
+n <- dat1[,2]
+y <- dat1[,3]
+
+a <- 1
+b <- 9 
+@
+
+\begin{center}
+<<fig=T,echo=F>>=
+# Prior:
+curve(dbeta(x,a,b),0,1,col="red",lwd=3,ylim=c(0,23),ylab="Density",xlab=expression(theta))
+
+# Posterior:
+curve(dbeta(x,a+sum(y),b+sum(n-y)),col="blue",lwd=3,add=T)
+
+legend("topright",legend=c(paste0("Prior: Beta(",a,",",b,")"),
+                           paste0("Posterior: Beta(",a+sum(y),",",b+sum(n-y),")"),
+                           "MLE"),
+                           col=c("red","blue","orange"),lwd=3)
+
+abline(v=sum(y)/sum(n),col="orange",lwd=3)
+
+c <- a+sum(y)
+d <- b+sum(n-y)
+po.mean <- c/(c+d)
+po.mode <- (c-1) / (c+d-2)
+po.var <- c*d / ((c+d)^2*(c+d+1))
+ci <- round(qbeta(c(.25,.975),c,d),4)
+@
+\end{center}
+
+
+\subsection{Posterior Mean, Mode, Median, Variance, Standard Deviation, and 95\% 
+            Central Credible Interval}
+Since the posterior distribution is $Beta(\Sexpr{c},\Sexpr{d})$, \\
+the posterior mean is $\Sexpr{c} / (\Sexpr{c}+\Sexpr{d}) = \Sexpr{round(po.mean,4)}$.\\
+the posterior mode is $(\Sexpr{c} - 1) / (\Sexpr{c}+\Sexpr{d} -2)$ = \Sexpr{round(po.mode,4)}.\\
+the posterior median is $\Sexpr{round(qbeta(.5,c,d),4)}$.\\
+the posterior variance is $\Sexpr{round(po.var,4)}$.\\
+the posterior standard deviation is $\Sexpr{round(sqrt(po.var),4)}$.\\
+the 95\% credible interval is $(\Sexpr{ci[1]},\Sexpr{ci[2]})$.\\ 
+
+
+
+\subsection{Three Other Prior Distributions \& Plots of Posterior Distributions}
+I chose Beta(90,10) as one of my priors to illustrate how the posterior would change if I were very certain that the probability of home runs were high. I chose Beta (100,90) to illustrate how the posterior would change if I were very certain that the probability of home runs were low. I chose Beta(5,5) as my last prior to illustrate how the posterior would change if I were not certain what the probability of home runs should be.
+
+\begin{center}
+<<fig=T,echo=F>>=
+s <- sum(y)
+f <- sum(n-y)
+curve(dbeta(x,a+s,b+f),from=0,to=.5,col="red",lwd=3,add=F,ylim=c(0,45),main="Posteriors") # Original
+curve(dbeta(x,90+s,10+f),col="darkgreen",lwd=3,add=T)
+curve(dbeta(x,100+s,900+f),col="gold",lwd=3,add=T)
+curve(dbeta(x,5+s,5+f),col="purple",lwd=3,add=T)
+
+legend("topright",legend=c("Beta(2,11)",
+                           "Beta(100,900)",
+                           "Beta(900,100)",
+                           "Beta(5,5)"),col=c("red","darkgreen","gold","purple"),
+                           lwd=3,title="Priors")
+
+@
+\end{center}
+
+
+
+\section{Poisson Data}
+\subsection{Conjugate Prior Distribution}
+The conjugate prior distribution is the \textbf{Gamma} distribution.\\
+\textbf{Proof:}\\
+\[
+  \begin{array}{rcl}
+    y_i|\lambda & \sim & POI(\lambda)\\
+    \lambda & \sim & Gamma(a,b)\\
+    && \\
+    f(y_i|\lambda) &=& \displaystyle \frac{e^{-\lambda}\lambda^y)i}{y_i!} \\
+
+    g(\lambda|\bm{y}) & = & \frac{
+    \displaystyle
+    \pi(\lambda)\prodl f(y_i|\lambda)}
+    {\displaystyle
+    \int_{0}^{\infty}\pi(\lambda)\prodl f(y_i|\lambda)d\lambda}\\
+    
+    % Kernel for Poisson Gamma
+    \global\def\kernPG{\prodl\frac{e^{\lambda}\lambda^{y_i}}{y_i!}}
+    \global\def\dGam{\frac{1}{\Gamma(a)b^a}\lambda^{a-1}e^{-\lambda/b}}
+
+    &=& \frac{\ds\dGam\kernPG} 
+             {\ds\int_0^\infty \dGam\kernPG d\lambda}\\
+
+    \global\def\pgI{\ds \dGam \frac{e^{-n\lambda}\lambda^{\suml y_i}}{\prodl y_i!} }
+    && \\
+    &=& \piano{\pgI}{0}{\infty}{\lambda} \\
+
+    &=& \piano{e^{-(n+1/b)\lambda}\lambda^{\suml y_i+a-1}}{0}{\infty}{\lambda}\\
+    &&\\ 
+     
+    &=& \piano{e^{-(n+1/b)\lambda}\lambda^{\suml y_i+a-1}
+               \frac{1}{\Gamma(\suml y_i+a)(\frac{1}{n+1/b})^{\suml y_i+a}}
+              }
+              {0}{\infty}{\lambda}\\
+    &=& \frac{1}{\Gamma(\suml y_i+a)(\frac{1}{n+1/b})^{\suml y_i+a}}
+        e^{-(n+1/b)\lambda}\lambda^{\suml y_i+a-1}\\
+    
+  \end{array}
+\]
+\wl\wl
+\[
+\implies \lambda | \bm y \sim Gamma(\suml y_i+a, (n+\frac{1}{b})^{-1}) 
+\]
+
+\subsection{Chosen Values for Prior Distribution}
+I chose a Gamma(2,1) prior because it was unlikely (probability < .0005) for 
+random draws from prior to exceed 10. And the variance is not large (4).
+
+\subsection{Derivation of Maximum Likelihood Estimator}
+\[
+  \begin{array}{rcl}
+    \displaystyle\mathcal{L}(\lambda|\bm{y}) &=& \prodl f(y_i|\lambda)\\
+    &=& \displaystyle
+        \prodl\frac{e^{\lambda}\lambda^{y_i}}{y_i!}\\
+        
+    &=& \displaystyle
+        \frac{e^{-n\lambda}\lambda^{\suml y_i}}{\prodl y_i!}\\
+
+    \displaystyle l(\lambda|\bm y) & = & log(\mathcal{L}(\lambda|\bm{y}))\\
+    &=& \displaystyle -n\lambda+\suml y_i log(\lambda) - \suml y_i! \\
+    &=& -n + \frac{\suml y_i}{\lambda}\\
+
+    l^\prime & := &0\\
+    -n + \frac{\suml y_i}{\hat\lambda} &=& 0\\
+    \hat\lambda & = \displaystyle \frac{\suml y_i}{\lambda} = \bar{\bm y}
+
+  \end{array}  
+\]
+
+
+\subsection{Plot of MLE, and Prior and Posterior Distributions}
+
+<<design,echo=F>>=
+y <- as.vector(as.matrix(read.table("poisson.dat")))
+n <- length(y)
+
+a <- 2
+b <- 1
+c <- a+sum(y)
+d <- (n+1/b)^(-1)
+
+@
+
+\begin{center}
+<<fig=T,echo=F>>=
+  curve(dgamma(x,a,scale=b),from=0,to=6,col="red",lwd=3,ylim=c(0,1.15))
+  curve(dgamma(x,c,scale=d),from=0,to=6,col="blue",lwd=3,add=T)
+  abline(v=mean(y),lwd=3,col="orange",)
+  legend("topright",legend=c(paste0("Prior: Gam(",a,",",b,")"),
+                             paste0("Posterior: Gam(",a+sum(y),",",(n+1/b)^(-1),")"),
+                             "MLE"),
+                             col=c("red","blue","orange"),lwd=3)
+                             
+  ci <- round(qgamma(c(.025,.975),a,scale=b),4) 
+@
+\end{center}
+
+\subsection{Posterior Mean, Mode, Median, Variance, Standard Deviation, and 95\% 
+            Credible Interval}
+\[
+  \global\def\nephi{\lambda|\bm y}
+  \begin{array}{crcccl}
+    & \nephi   &\sim&  Gamma(a,b) && \\
+    \implies & E[\nephi] &=& ab &=& \Sexpr{a*b}\\
+             & Var[\nephi] &=& a^2b &=& \Sexpr{a^2*b}\\
+             & SD[\nephi]  &=& \sqrt{a^2b} &=& \Sexpr{sqrt(a^2*b)}\\
+             & Mode[\nephi] &=& (a-1)b &=& \Sexpr{(a-1)*b}\\
+             & Median[\nephi] &&&=& \Sexpr{round(qgamma(.5,a,scale=b),4)}\\
+             & 95\% CI[\nephi] &&&=& (\Sexpr{ci[1]},\Sexpr{ci[2]})\\
+  \end{array}
+\]
+
+\subsection{Three Other Prior Distributions \& Plots}
+I chose the priors Gamma(2,2), Gamma(4,1), and Gamma(1,4) because they don't generate draws greater than 10 with high probability. They each have an expected value of 4, but their variances are 8, 16, and 4, respectively. Their posteriors are very similar to the original posterior.
+
+\begin{center}
+<<fig=T,echo=F>>=
+update <- function(a,b){
+  c(sum(y)+a,1/(n+1/b))
+}
+u <- update(2,1)
+curve(dgamma(x,u[1],scale=u[2]),from=0,to=5,col="red",lwd=3,add=F,ylim=c(0,1.2),main="Posteriors")
+u <- update(2,2)
+curve(dgamma(x,u[1],scale=u[2]),col="darkgreen",lwd=3,add=T)
+u <- update(4,1)
+curve(dgamma(x,u[1],scale=u[2]),col="gold",lwd=3,add=T)
+u <- update(1,4)
+curve(dgamma(x,u[1],scale=u[2]),col="purple",lwd=3,add=T)
+
+legend("topright",legend=c("Gamma(2,1)",
+                           "Gamma(2,2)",
+                           "Gamma(4,1)",
+                           "Gamma(1,4)"),col=c("red","darkgreen","gold","purple"),
+                           lwd=3,title="Priors")
+
+@
+\end{center}
+
+
+
+
+\section{Exponential Data}
+\subsection{Conjugate Prior Distribution}
+The conjugate prior distribution is the \textbf{Inverse Gamma} distribution.\\\\
+\textbf{Proof:}\\
+\[
+  \begin{array}{rcl}
+    y_i|\lambda & \sim & EXP(\lambda) \\
+    \lambda & \sim & \Gamma^{-1}(a,b) \\
+    \pi(\lambda) & = & \frac{1}{\Gamma(a)b^a} \lambda^{-(a+1)} e^{\frac{-1}{b\lambda}}\\
+    & & \\
+
+    % I'll use this a lot
+    g(\lambda|\bm{y}) & = & \displaystyle \frac
+                     {\pi(\lambda)\prod\limits_{i=1}^{n}f(y_i|\lambda)}
+    {\int_{0}^{\infty}\pi(\lambda)\prod\limits_{i=1}^{n}f(y_i|\lambda)d\lambda}\\
+    &&\\
+    & = & \displaystyle\frac{
+            \frac{1}{\Gamma(a)b^a} \lambda^{-(a+1)} e^{\frac{-1}{b\lambda}} 
+            \prod\limits_{i=1}^n \frac{e^{-y_i/\lambda}}{\lambda} 
+          }{
+            \int_0^\infty
+            \frac{1}{\Gamma(a)b^a} \lambda^{-(a+1)} e^{\frac{-1}{b\lambda}} 
+            \prod\limits_{i=1}^n \frac{e^{-y_i/\lambda}}{\lambda} 
+            d\lambda
+          }\\
+
+    &&\\
+    &=& \piano{\dig{\lambda}{{a+n}}{\left(\frac{1}{\suml y_i + \frac{1}{b}}\right)}}
+        {0}{\infty}{\lambda} \\
+
+    &&\\
+    &=& \ds \dig{\lambda}{{a+n}}{\left(\frac{1}{\suml y_i + \frac{1}{b}}\right)}\\
+
+  \end{array} \\
+\]
+\wl\wl
+\[
+\implies \lambda|\bm{y} \sim \Gamma^{-1}(a+n,(\sum\limits_{i=1}^n y_i+\frac{1}{b})^{-1})
+\]
+
+\subsection{Chosen Values for Prior distribution}
+I chose a = 3 and b = 1/2000 because the mean of the inverse gamma distribution
+is $\frac{1}{b(a-1}=1000$ . And the variance is $\frac{1}{b^2(a-1)^2(a-2)} = 10^6$,
+for a > 2. I suspect the length of rivers to be highly variable, and 1000 miles 
+seems to be reasonable guess.
+
+\subsection{Derivation of Maximum Likelihood Estimator} 
+\[
+  \begin{array}{rcl}
+    \mleStart{y}{\lambda}\\
+    %&&\\
+    &=& \ds \prodl \frac{exp(-y_i / \lambda)}{\lambda}\\
+    &=& \ds \frac{exp(-\suml y_i / \lambda)}{\lambda^n}\\
+    &&\\
+    l &=& log(\mathcal{L}(\lambda|\bm y)) \\
+    &=& -\suml y_i / \lambda - n~log(\lambda) \\
+    &&\\
+    l^\prime &=& \ds \frac{\suml y_i}{\lambda^2} - \frac{n}{\lambda} \\
+    &&\\
+    l^\prime & := & 0\\
+    \ds \frac{\suml y_i}{\hat{\lambda}^2} - \frac{n}{\hat\lambda} &=& 0 \\
+    &&\\
+    \suml y_i - n\hat\lambda &=& 0\\
+    \hat\lambda &=& \frac{\suml y_i}{n}\\
+    &&\\
+    \hat\lambda &=& \bar{\bm y} \\
+  \end{array}
+\]
+
+\subsection{Plot of MLE, and Prior and Posterior Distributions}
+
+<<design, echo=F>>=
+dig <- function(x,a,b) {
+  (gamma(a)*b^a)^(-1) * x^(-a-1) * exp(-1/(b*x))
+}
+
+rig <- function(n,a,b) {
+  1/rgamma(n,a,scale=b)
+}
+
+y <- as.vector(as.matrix(read.table("exponential.dat")))
+n <- length(y)
+
+a <- 3
+b <- 1/2000
+c <- a+n
+d <- (sum(y) + 1/b)^-1
+draws <- rig(10^7,c,d)
+ci <- round(quantile(draws,c(.025,.975)),4)
+
+@
+
+\begin{center}
+<<fig=T,echo=F>>=
+  curve(dig(x,a,b),from=0,to=1500,lwd=3,col="red",ylim=c(0,.011))
+  #curve(dig(x,c,d),from=1,to=800,lwd=3,col="blue",add=T)
+  lines(density(draws),col="blue",lwd=3)
+  abline(v=mean(y),lwd=3,col="orange")
+  legend("topleft",legend=c(paste0("Prior: IG(",round(a,4),",",round(b,4),")"),
+                             paste0("Posterior: IG(",round(c,4),",",d,")"),
+                             "MLE"),
+                             col=c("red","blue","orange"),lwd=3)
+
+den.mode <- function(dens) dens$x[which.max(dens$y)]
+@
+\end{center}
+
+\subsection{Posterior Mean, Mode, Median, Variance, Standard Deviation, and 95\% 
+            Credible Interval}
+\[
+  \begin{array}{rcl}
+    E[\nephi]       &=& \Sexpr{round(mean(draws),4)}\\
+    Var[\nephi]     &=& \Sexpr{round(var(draws),4)}\\
+    SD[\nephi]      &=& \Sexpr{round(sd(draws),4)}\\
+    Mode[\nephi]    &=& \Sexpr{round(den.mode(density(draws)),4)}\\
+    Median[\nephi]  &=& \Sexpr{round(quantile(draws,.5),4)}\\
+    95\% CI[\nephi] &=& (\Sexpr{ci[1]},\Sexpr{ci[2]})\\
+  \end{array}
+\]
+
+
+
+\subsection{Three Other Prior Distributions \& Plots}
+I chose the Priors IG(3,1/200), IG(3,1/20), and IG(3,1/2) to illustrate how changing
+b affects the posterior. The variance of the prior is changed drastically as b 
+chages by a factor of 10. But the posteriors are similar.
+
+\begin{center}
+<<fig=T,echo=F>>=
+durig <- function(a,b,B=10^6) {
+  density(rig(B,a+n,1/(sum(y)+1/b))) 
+}
+plot(durig(3,1/2000),main="Posteriors",col="red",lwd=3)
+lines(durig(3,1/200 ),col="darkgreen",lwd=3)
+lines(durig(3,1/20  ),col="gold",lwd=3)
+lines(durig(3,1/2   ),col="purple",lwd=3)
+
+legend("topright",legend=c("IG(3,1/2000)",
+                           "IG(3,1/200 )",
+                           "IG(3,1/20  )",
+                           "IG(3,1/2   )"),col=c("red","darkgreen","gold","purple"),
+                           lwd=3,title="Priors")
+
+@
+\end{center}
+
+
+
+
+\section{Normal Data - $\sigma$ known}
+\subsection{Conjugate Prior Distribution}
+The conjugate prior distribution is the \textbf{Normal} distribution.\\
+\textbf{Proof:}\\
+\[
+  \begin{array}{rcl}
+    \global\def\dnorm#1#2#3{(2\pi#3^2)^{-.5} exp\{-\frac{(#1-#2)^2}{2#3^2}\}}
+
+    y_i|\mu & \sim & Normal(\mu,\sigma=9) \\
+    mu &\sim & Normal(m,s) \\
+    \pi(\mu) &=& \dnorm{y_i}{m}{s} \\
+    
+    &&\\
+    \global\def\dnormkm{\dnorm{\mu}{m}{s} \prodl \dnorm{y_i}{\mu}{\sigma}}
+    g(\mu|\bm y) &=& \piano{\dnormkm}{-\infty}{\infty}{\mu}\\
+
+    &&\\
+    &=& \piano{exp\{\suml \frac{-y_i^2+2\mu y_i - \mu^2}{2\sigma^2} + 
+        \frac{-\mu^2+2\mu m-m^2}{2s^2}\}}
+        {-\infty}{\infty}{\mu}\\
+
+    &&\\
+    &=& \piano{exp\{\frac{n\mu\bar y}{\sigma^2}-\frac{n\mu^2}{2\sigma^2}-\frac{\mu^2}{2s^2}+\frac{\mu m}{s^2}\}}
+        {-\infty}{\infty}{\mu}\\
+    &&\\
+    &=& \piano{exp\{\frac{-\mu^2}{2}(\frac{n}{\sigma^2}+\frac{1}{s^2}) + \frac{2\mu}{2}(\frac{n\bar y}{\sigma^2}+\frac{m}{s^2})\}}
+        {-\infty}{\infty}{\mu}\\
+
+    &&\\
+    &=& \piano{exp\{\frac{-\mu^2+2\mu(\frac{n\bar y}{\sigma^2}+\frac{m}{s^2})(\frac{s^2\sigma^2}{s^2+\sigma^2})}{2(\frac{n}{\sigma^2}+\frac{1}{s^2})^{-1}}\}}
+        {-\infty}{\infty}{\mu}\\
+    
+    &&\\
+    &=& \piano{exp\{\frac{-\mu^2 + 2\mu(\frac{n\bar y s^2 + m\sigma^2}{ns^2+\sigma^2}) - (\frac{n\bar y s^2 + m\sigma^2}{ns^2+\sigma^2}) ^2 + (\frac{n\bar y s^2 + m\sigma^2}{ns^2+\sigma^2})^2}{2(\frac{s^2\sigma^2}{ns^2+\sigma^2})}\}}
+        {-\infty}{\infty}{\mu}\\
+   
+    &&\\
+    \global\def\sigstar{\sqrt\frac{s^2\sigma^2}{ns^2+\sigma^2}}
+    \global\def\mustar{\frac{n\bar y s^2 + m    \sigma^2}{ns^2+\sigma^2}}
+
+    &=& \piano{(2\pi\sigstar^2)^{-.5}exp\{\frac{-\mu^2+2\mu(\mustar)-(\mustar)^2+(\mustar)^2}{2(\sigstar^2)}\}}
+        {-\infty}{\infty}{\mu}\\
+    &&\\ 
+    &=& \dnorm{\mu}{\mustar}{\sigstar}\\
+
+    &&\\
+  \end{array}
+\]
+\[
+  \implies \mu|\bm y \sim Normal(\mustar,\sigstar), ~~where~~ \sigma = 9.
+\]
+
+\subsection{Chosen Values for Prior distribution}
+I chose the $m=85$ and $s=5$ because Stat 221 apparently has easy exams.
+
+\subsection{Derivation of Maximum Likelihood Estimator}
+\[
+  \begin{array}{rcl}
+    \mleStart{y}{\lambda}\\
+    &=& \prodl \dnorm{y_i}{\mu}{\sigma}\\
+
+    l(\lambda|\bm y) &=& -\frac{n}{2} log(2\pi\sigma^2) - \frac{\suml(y_i-\mu)^2}{2\sigma^2}\\
+
+    l^\prime &=& \ds\frac{2\suml( y_i-\mu)}{2\sigma^2} \\
+    &=& \ds\frac{\suml y_i -n\mu}{\sigma^2} \\
+
+    &&\\
+    l^\prime & := & 0\\
+    \ds\frac{\suml y_i -n\hat\mu}{\sigma^2} & = & 0\\
+    \hat\mu & = & \frac{\suml y_i}{n} \\
+    &&\\
+    \hat\mu & = & \bm{\bar{y}} \\
+
+  \end{array}
+\]
+
+\subsection{Plot of MLE, and Prior and Posterior Distributions}
+
+<<design, echo=F>>=
+  y <- as.vector(as.matrix(read.table("normalmean.dat")))
+  n <- length(y)
+  sig <- 9
+  m <- 85
+  s <- 5 
+
+  r <- (sum(y) *s^2+m*sig^2) / (n*s^2+sig^2)
+  t <- sqrt((s^2*sig^2) / (n*s^2+sig^2))
+
+  ci <- round(qnorm(c(.025,.975),r,t),4)
+@
+
+\begin{center}
+<<fig=T,echo=F>>=
+  curve(dnorm(x,m,s),from=65,to=100,lwd=3,col="red",ylim=c(0,.3))
+  curve(dnorm(x,r,t),from=75,to=100,lwd=3,col="blue",add=T)
+  abline(v=mean(y),lwd=3,col="orange")
+  legend("topleft",legend=c(paste0("Prior: N(",round(m,4),",",round(s,4),")"),
+                             paste0("Posterior: N(",round(r,4),",",round(t,4),")"),
+                             "MLE"),
+                             col=c("red","blue","orange"),lwd=3)
+
+@
+\end{center}
+
+\subsection{Posterior Mean, Mode, Median, Variance, Standard Deviation, and 95\% 
+            Credible Interval}
+\[
+  \begin{array}{rcl}
+    E[\nephi]       &=& \Sexpr{round(r,4)}\\
+    Var[\nephi]     &=& \Sexpr{round(t,4)}\\
+    SD[\nephi]      &=& \Sexpr{round(sqrt(t),4)}\\
+    Mode[\nephi]    &=& \Sexpr{round(r,4)}\\
+    Median[\nephi]  &=& \Sexpr{round(r,4)}\\
+    95\% CI[\nephi] &=& (\Sexpr{ci[1]},\Sexpr{ci[2]})\\
+  \end{array}
+\]
+
+
+
+\subsection{Three Other Prior Distributions \& Plots}
+I chose the Priors N(90,5) and N(80,5) to show how changing the mean of the parameter changes the posterior. I chose N(85,10) to show how changing the standard deviation of the parameter changes the posterior. All the posteriors look similar. So, the posterior of the mean parameter is not affected much by the priors.
+
+\begin{center}
+<<fig=T,echo=F>>=
+un <- function(x,m,s){
+  m.new <- (sum(y) *s^2+m*sig^2) / (n*s^2+sig^2)
+  s.new <- sqrt((s^2*sig^2) / (n*s^2+sig^2))
+  dnorm(x,m.new,s.new)
+}
+curve(un(x,85,5),main="Posteriors",col="red",lwd=3,ylim=c(0,.27),xlim=c(75,105))
+curve(un(x,90,5),col="darkgreen",lwd=3,add=T)
+curve(un(x,85,5),col="gold",lwd=3,add=T)
+curve(un(x,85,10),col="purple",lwd=3,add=T)
+
+legend("topright",legend=c("N(85,5) ",
+                           "N(90,5) ",
+                           "N(80,5) ",
+                           "N(85,10)"),col=c("red","darkgreen","gold","purple"),
+                           lwd=3,title="Priors")
+
+@
+\end{center}
+
+
+
+\section{Normal Data - $\mu$ known}
+\subsection{Conjugate Prior Distribution}
+The conjugate prior distribution is the \textbf{this} distribution.\\\\
+\textbf{Proof:}\\
+\[
+  \begin{array}{rcl}
+    y_i|\sigma^2 & \sim & Normal(\mu=87,\sigma^2)\\
+    \sigma^2 & \sim & \Gamma^{-1}(a,b) \\
+    \pi(\sigma^2) &=& \dig{\sigma^2}{a}{b}\\
+
+    g(\sigma^2|\bm y) &=& \piano{\pi(\sigma^2) \prodl f(y_i|\sigma^2)}{0}{\infty}{\sigma^2}\\
+    
+    &=& \piano{\dig{\sigma^2}{a}{b} \prodl \dnorm{y_i}{\mu}{\sigma}}
+                          {0}{\infty}{\sigma^2}\\
+    
+    &=& \piano{(2\pi\sigma^2)^{-n/2} exp\{\frac{-\suml (y_i-\mu)^2}{2\sigma^2}\} 
+               \dig{\sigma^2}{a}{b}}
+        {0}{\infty}{\sigma^2} \\
+    &&\\    
+    \global\def\fiveKern{(\sigma^2)^{-(a+\frac{n}{2}+1)} exp\left\{-\left(\frac{1}{2/\suml(y_i-\mu)^2}+\frac{1}{b}\right)\frac{1}{\sigma^2}\right\}}
+    &=& \piano{\fiveKern}
+        {0}{\infty}{\sigma^2} \\
+    
+    &&\\
+    &=& \piano{\left\{\frac{1}{\Gamma(a+\frac{n}{2})\left(\frac{\suml(y_i-\mu)^2}{2}+\frac{1}{b}\right)^{-1}}\right\} \fiveKern}
+        {0}{\infty}{\sigma^2} \\
+
+    &=& \left\{\frac{1}{\Gamma(a+\frac{n}{2})\left(\frac{\suml(y_i-\mu)^2}{2}+\frac{1}{b}\right)^{-1}}\right\} \fiveKern\\
+
+  \end{array}
+\]
+\[
+  \implies \sigma^2 \sim \Gamma^{-1}\left(a+\frac{n}{2},\left(\frac{\suml(y_i -\mu)^2}{2}+\frac{1}{b}\right)^{-1}\right), ~~where~\mu=87.
+\]
+
+\subsection{Chosen Values for Prior distribution}
+I chose a=3 and b = 1/3 because the mean and variance for $\sigma^2$ would be 1.5
+and 2.25 respectively, which seems to be a good guess for standard deviation in 
+an ``easy'' statistics class.
+
+\subsection{Derivation of Maximum Likelihood Estimator}
+\[
+  \begin{array}{rcl}
+    \mleStart{y}{\sigma^2}\\
+    &=& \prodl \dnorm{y_i}{\mu}{\sigma}\\
+
+    l &=& \frac{-n}{2} log(2\pi\sigma^2) - \frac{\suml(y_i-\mu)^2}{2\sigma^2}\\
+    l^\prime &=& \frac{-n}{2\sigma^2} + \frac{\suml (y_i-\mu)^2}{2(\sigma^2)^2}\\
+
+    &&\\
+    l^\prime & := & 0\\
+    \frac{-n}{2\hat{\sigma^2}} + \frac{\suml (y_i-\mu)^2}{2(\hat{\sigma^2})^2} &=& 0\\
+    -n\hat{\sigma^2} + \sum (y_i-\mu)^2 &=& 0\\
+    \hat{\sigma^2} &=& \frac{\suml (y_i-\mu)^2}{n}, ~~where~ \mu=87. \\
+  \end{array}
+\]
+
+\subsection{Plot of MLE, and Prior and Posterior Distributions}
+<<design, echo=F>>=
+  mu <-87 
+  a <- 3
+  b <- 1/3 
+  
+  #mean=1/(b*(a-1)) = 1.5
+  #var=1/(b^2*(a-1)^2*(a-2)) =2.25
+  #a <- 3; b <- .006
+  #c(1/(b*(a-1)), 1/(b^2*(a-1)^2*(a-2))) 
+
+
+  c <- a+n
+  d <- (sum(y) + 1/b)^-1
+  draws <- rig(10^7,c,d)
+  ci <- round(quantile(draws,c(.025,.975)),4)
+
+@
+
+\begin{center}
+<<fig=T,echo=F>>=
+  curve(dig(x,a,b),from=0,to=120,lwd=3,col="red",ylim=c(0,.1))
+  lines(density(draws),col="blue",lwd=3)
+  abline(v=sum((y-mu)^2)/n,lwd=3,col="orange")
+  legend("topright",legend=c(paste0("Prior: IG(",round(a,4),",",round(b,4),")"),
+                             paste0("Posterior: IG(",round(c,4),",",round(d,4),")"),
+                             "MLE"),
+                             col=c("red","blue","orange"),lwd=3)
+
+den.mode <- function(dens) dens$x[which.max(dens$y)]
+@
+\end{center}
+
+\subsection{Posterior Mean, Mode, Median, Variance, Standard Deviation, and 95\% 
+            Credible Interval}
+\[
+  \begin{array}{rcl}
+    E[\nephi]       &=& \Sexpr{round(mean(draws),4)}\\
+    Var[\nephi]     &=& \Sexpr{round(var(draws),4)}\\
+    SD[\nephi]      &=& \Sexpr{round(sd(draws),4)}\\
+    Mode[\nephi]    &=& \Sexpr{round(den.mode(density(draws)),4)}\\
+    Median[\nephi]  &=& \Sexpr{round(quantile(draws,.5),4)}\\
+    95\% CI[\nephi] &=& (\Sexpr{ci[1]},\Sexpr{ci[2]})\\
+  \end{array}
+\]
+
+
+
+\subsection{Three Other Prior Distributions \& Plots}
+I chose the Priors IG(5,1/3), IG(7,1/3), and IG(9,1/3) to illustrate how changing
+b affects the posterior. The posteriors are noticeably affected by small changes in a.
+
+\begin{center}
+<<fig=T,echo=F>>=
+durig2 <- function(a,b,B=10^6) {
+  density(rig(B,a+n/2,1/(sum(y-mu)^2/2+1/b))) 
+}
+ plot(durig2(3,1/3),main="Posteriors",col="red",lwd=3,ylim=c(0,1.4),xlim=c(0,6))
+lines(durig2(5,1/3),col="darkgreen",lwd=3)
+lines(durig2(7,1/3),col="gold",lwd=3)
+lines(durig2(9,1/3),col="purple",lwd=3)
+
+legend("topright",legend=c("IG(3,1/3)",
+                           "IG(5,1/3)",
+                           "IG(7,1/3)",
+                           "IG(7,1/3)"),col=c("red","darkgreen","gold","purple"),
+                           lwd=3,title="Priors")
+
+@
+\end{center}
+
+
+
+\end{document}

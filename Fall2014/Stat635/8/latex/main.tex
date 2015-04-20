@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{pgffor}
+\usepackage{amssymb}
+\usepackage{Sweave}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{appendix}
+\usepackage[UKenglish]{isodate} % for: \today
+\cleanlookdateon                % for: \today
+
+\def\wl{\par \vspace{\baselineskip}\noindent}
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}
+\def\endmyfig{\end{center}\end{figure}}
+%\def\prodl{\prod\limits_{i=1}^n}
+\def\suml{\sum\limits_{i=1}^n}
+\def\ds{\displaystyle}
+
+\begin{document}
+% my title:
+\begin{center}
+  \section*{\textbf{Stat635 Spaghetti Plots}
+    \footnote{https://github.com/luiarthur/Fall2014/blob/master/Stat635/8}
+  }  
+  \subsection*{\textbf{Arthur Lui}}
+  \subsection*{\noindent\today}
+\end{center}
+
+\beginmyfig
+  \includegraphics{../SGPanel1.png}
+\endmyfig
+
+\beginmyfig
+  \includegraphics{../SGPanel.png}
+\endmyfig
+
+\beginmyfig
+  \includegraphics{../SGPlot.png}
+\endmyfig
+
+\end{document}

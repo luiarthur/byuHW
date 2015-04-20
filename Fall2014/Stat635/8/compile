@@ -1,0 +1,4 @@
+#!/bin/bash
+sas spag.sas
+vi spag.lst
+firefox *.png &

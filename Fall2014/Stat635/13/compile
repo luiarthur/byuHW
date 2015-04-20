@@ -1,0 +1,3 @@
+#!/bin/bash
+sas child.sas
+#vi child.lst

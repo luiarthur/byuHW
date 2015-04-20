@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{pgffor}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{appendix}
+\usepackage{graphicx}
+\usepackage[UKenglish]{isodate} % for: \today
+\cleanlookdateon                % for: \today
+
+\def\wl{\par \vspace{\baselineskip}\noindent}
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}
+\def\endmyfig{\end{center}\end{figure}}
+%\def\prodl{\prod\limits_{i=1}^n}
+\def\suml{\sum\limits_{i=1}^n}
+\def\ds{\displaystyle}
+
+\begin{document}
+% my title:
+
+
+\begin{center}
+  \section*{\textbf{Stat637 Homework 7}
+    \footnote{https://github.com/luiarthur/Fall2014/blob/master/Stat637/competition}
+  }  
+  \subsection*{\textbf{Arthur Lui}}
+  \subsection*{\noindent\today}
+\end{center}
+
+<<design,echo=F>>=
+  source("../reviews.R",chdir=T)
+@
+
+\section{Proportional Odds Model}
+\[
+  log\left(\ds\frac{p_1+...+p_j}{p_{j+1}+...+p5}\right) = \beta_{0j} + \beta_1~spline(helpProportion) + \beta_2~year + \beta_3~spline(negativeWords),
+\]
+where $j=1,2,3,4$, \textit{helpProportion = help.yes/help.count}, and \textit{negativeWords} is defined to be the count of words with negative 
+sentiments in a review. These words were identified and selected by after reading the reviews in the training set. The following 
+words were selected:\\
+
+\noindent
+\textit{too, nothing, why, how, shortcoming, didn't like, don't like, difficult, stinks, sucks, blows, annoy, bad, not recommend}
+
+\section{Parameters}
+<<label=tab1,echo=FALSE,results=tex>>=
+  library(xtable)
+  print(xtable(coef(summary(mod)),caption="Model Summary"))
+@
+
+\section{Prediction Error}
+From Table 2, we can compute the prediction accuracy to be (1+3+8)/(1+1+2+3+1+1+2+8) = 12/19 = 63\%. The MSE was computed to be
+\Sexpr{round(mse,3)}.
+
+<<label=tab1,echo=FALSE,results=tex>>=
+  library(xtable)
+  print(xtable(table(yi,y.hat),caption="Confusion Matrix. Rows are actual responses, columns are predicted responses"))
+@
+
+\section{Plots}
+The paired scatter plot below shows the relationship between the covariates chosen and the response variable. A strong
+trend cannot be seen between the covariates and the response.
+\begin{center}
+<<label=fig1,fig=T,echo=F>>=
+  pairs(cbind(jitter(y),x$helpful.prop,x$year,jitter(x$neg.count)),
+        labels=c("y","help prop","year","neg count"),
+        main="Paired Scatter Plots",col="blue")
+@
+\end{center}
+
+\section{Value of Model}
+The model is not easy to interpret. Nevertheless, it predicts well, with an MSE of \Sexpr{round(mse,3)} and few parameters.
+\end{document}

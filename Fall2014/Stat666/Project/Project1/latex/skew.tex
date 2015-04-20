@@ -1,0 +1,51 @@
+\global\def\ds{\displaystyle}
+
+  \subsection{Skewness \& Kurtosis}
+    One way to determine whether data are multivariate normal is to calculate
+    the skewness and kurtosis of the data. We estimate skewness and kurtosis
+    with:
+
+    \[
+        \begin{array}{rcl}
+          b_{1,p} &=& \frac{1}{n^2} 
+                      \sum\limits_{i=1}^n\sum\limits_{j=1}^n {g_{ij}}^3 \\
+          b_{2,p} &=& \frac{1}{n} \sum\limits_{i=1}^n {g_{ii}}^2\\
+        \end{array}
+    \]
+    
+    \noindent
+    where $n$ is the number of observations, $b_{1,p}$ is the skewness,
+    $b_{2,p}$ is the kurtosis, and 
+    
+    \[
+      g_{ij} = (\bm y_i-\bm{\bar y})^\prime \bm\Sigma^{-1}(\bm y_j-\bm{\bar y}).
+    \]
+    
+    The skewness for the transformed data is $31.75$, and the kurtosis is
+    $122.37$. This appears large. We expect the skewness and kurtosis for
+    multivariate data to be, respectively, $0$ and $p(p+2)=80$, where $p=$ the
+    number of covariates (8). To determine whether the skewness and kurtosis are
+    significantly greater than 0 and 80, respectively, we calculate the statistics:
+
+    \[
+      \begin{array}{rcl}
+        z_1 &=& \frac{\ds(p+1)(n+1)(n+3)}{\ds6[(n+1)(p+1)-6]}b_{1,p}\\
+        &&\\
+        z_2 &=& \frac{\ds b_{2,p}-p(p+2)/n}
+                     {\ds \sqrt{8p(p+2)/n}} \\
+        &&\\
+        %z_3 &=& \frac{\ds b_{2,p}-p(p+2)(n+p+1)/n}
+        %             {\ds \sqrt{8p(p+2)/(n-1)}} \\
+        %&&\\
+      \end{array}
+    \]
+
+    We calculated $z_1 = 287.54$. $z_1$ follows a $\chi^2$ distribution with
+    degrees of freedom $\frac{1}{6}p(p+1)(p+2)$. So, the p-value associated
+    with the statistic $z_1$ is $8.88 \times 10^{-16}$. $z_2=3.36$ and follows
+    a Normal(0,1) distribution. Since, the pvalue associated with a z-score of
+    3.36 is .000396 (<.05).  So we reject the hypothesis that the skewness is
+    0, and we reject the null hypothesis that the kurtosis is 80, and conclude
+    that the skewness is significantly different from 0.  Therefore, the
+    transformed data, with outliers removed, are \emph{not multivariate
+    normal}. 

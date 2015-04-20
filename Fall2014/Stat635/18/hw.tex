@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{pgffor}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{appendix}
+\usepackage{graphicx}
+\usepackage[UKenglish]{isodate} % for: \today
+\cleanlookdateon                % for: \today
+
+\def\wl{\par \vspace{\baselineskip}\noindent}
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}
+\def\endmyfig{\end{center}\end{figure}}
+%\def\prodl{\prod\limits_{i=1}^n}
+\def\suml{\sum\limits_{i=1}^n}
+\def\ds{\displaystyle}
+
+\begin{document}
+% my title:
+
+
+\begin{center}
+  \section*{\textbf{Stat635 Homework 18}
+    \footnote{https://github.com/luiarthur/Fall2014/blob/master/Stat635/18}
+  }  
+  \subsection*{\textbf{Arthur Lui}}
+  \subsection*{\noindent\today}
+\end{center}
+
+\section{Code}
+\verbatiminput{mud.sas}
+
+\section{Plots}
+\beginmyfig
+  \includegraphics{SGPanel.png}
+\endmyfig
+\beginmyfig
+  \includegraphics{SGPanel1.png}
+\endmyfig
+\beginmyfig
+  \includegraphics{SGPanel2.png}
+\endmyfig
+\beginmyfig
+  \includegraphics{SGPanel3.png}
+\endmyfig
+
+\end{document}

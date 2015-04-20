@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sas cluster.sas
+vi cluster.log

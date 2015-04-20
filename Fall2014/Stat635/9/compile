@@ -1,0 +1,4 @@
+#!/bin/bash
+sas carbon.sas
+vi carbon.lst
+#firefox *.png &

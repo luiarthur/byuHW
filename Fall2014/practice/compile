@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sas logistic.sas
+vi logistic.lst

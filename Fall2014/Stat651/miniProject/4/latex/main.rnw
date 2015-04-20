@@ -1,0 +1,202 @@
+\documentclass{article}                                                   %
+\usepackage{fullpage}                                                     %
+\usepackage{pgffor}                                                       %
+\usepackage{amssymb}                                                      %
+\usepackage{Sweave}                                                       %
+\usepackage{bm}                                                           %
+\usepackage{mathtools}                                                    %
+\usepackage{verbatim}                                                     %
+\usepackage{appendix}                                                     %
+\usepackage{graphicx}
+\usepackage[UKenglish]{isodate} % for: \today                             %
+\cleanlookdateon                % for: \today                             %
+                                                                          %
+\def\wl{\par \vspace{\baselineskip}\noindent}                             %
+\def\beginmyfig{\begin{figure}[!htbp]\begin{center}}                      %
+\def\endmyfig{\end{center}\end{figure}}                                   %
+\def\prodl{\prod\limits_{i=1}^n}                                          %
+\def\suml{\sum\limits_{i=1}^n}                                            %
+\def\ds{\displaystyle}                                                    %
+                                                                          %
+\begin{document}                                                          %
+% my title:                                                               %
+\begin{center}                                                            %
+  \section*{\textbf{Stat651 Mini Project 4}}                              %
+  \subsection*{\textbf{Arthur Lui}}                                       %
+  \subsection*{\noindent\today}                                           %
+\end{center}                                                              %
+\setkeys{Gin}{width=0.5\textwidth}                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%<<design,echo=F>>=
+%  source("../mp4.R",chdir=T)
+%@
+
+\section{Introduction}
+  Student evaluations of professors are made on a 7 point scale (1=poor,
+  7=outstanding). One measure of faculty performance is the evaluation score 
+  average across all students for a given professor. We are provided with a
+  data set containing 23 average evaluation scores (for 23 professors). 
+  We would like to make inference on professor evaluation scores. 
+
+\section{Model}
+  While evaluation scores are discrete, averaged evaluation scores are 
+  continuous. And by the Central Limit Theorem, we know that sample means
+  are distributed normally when our data are approximately normal and 
+  we have a large enough sample size. Therefore, using the model
+  \[
+    Y_i \sim N(\theta_i,\sigma^2), \text{ where i = 1,...,23}
+  \]
+  is appropriate. This model implies that each professor has their own mean
+  but the same variance. This is a reasonable \& flexible assumption as 
+  professors teaching varies from teacher to teacher. \\
+  \noindent
+  Note that while $Y_i$ is normal, and may take on values less than 1 and greater
+  than 7, which are beyond the range of faculty scores. Therefore, we should 
+  take care when specifying hyper priors for our model, so that we do not 
+  frequently draw values beyond [1,7].
+
+
+
+\section{Prior Distributions}
+  \subsection{Prior Specification \& Justification}
+    I have chosen the following prior distributions for my model. And I will
+    explain my choice in the following paragraphs.
+
+    \[
+      \begin{array}{rcl}
+        Y_i|\theta_i,\sigma^2\ & \sim & N(\theta_i,\sigma^2)\\
+        \sigma^2& \sim & IG(a_{\sigma^2},b_{\sigma^2})\\
+        & & \\
+        \theta_i|\mu,\tau^2& \sim & N(\mu,\tau^2)\\
+        \mu& \sim & N(m,s^2)\\
+        \tau^2& \sim & IG(a_{\tau^2},b_{\tau^2}), \text{ where}\\
+        & & \\
+        m & = & 4.5 \\              % => E[mu] = 4.5
+        s^2 & = & 2 \\              % => V[mu] = 2
+        a_{\sigma^2} & = & 2.5 \\   % => E[sig2] = 1
+        b_{\sigma^2} & = & 2/3 \\   % => V[sig2] = 2
+        a_{\tau^2} & = & 6.5 \\     % => E[tau2] = 3
+        b_{\tau^2} & = & 2/33 \\    % => V[tau2] = 2
+      \end{array}
+    \]
+  
+  \noindent \huge $\bm{\sigma^2}$ \normalsize
+  represents the variance I believe exists among the 23 professors. I believe
+  that value is centered at 1. But since I am very uncertain of this belief, I
+  want this parameter to have a variance of 2. Accordingly, I chose $\sigma^2$
+  to have a prior distribution of $IG(2.5,2/3)$ as $\sigma^2$ is constrained to
+  be positive. The values 2.5 and 2/3 were solved for using the method of moments. 
+  
+  \wl\noindent \huge $\bm{\mu}$ \normalsize
+  is the mean of the distribution I am drawing professors mean scores 
+  ($\theta_i$) from. I am not informed about the professors evaluation
+  scores. So, my uncertainty about $\mu$ is high also. But I beleive a 
+  reasonable mean for $\mu$ would be 4.5, which is 0.5 higher than 4, 
+  the average score. Therefore, I chose m = 4.5. Since I am very uncertain 
+  about professors scores, I will again want the variance for $\mu$ to be 2.
+  So, I chose $s^2$ = 2.
+
+  \wl\noindent \huge $\bm{\tau^2}$ \normalsize
+  represents the variance I believe exists between the 23 professor MEAN average
+  scores. This is different from $\sigma^2$, which is the variance of professor 
+  average scores. Once again, I set the prior for $\tau^2$ to be IG(6.5,2/33).
+  The values for my parameters were chosen such that the expected value
+  of $\tau^2$ = 3 and the variance of $\tau^2$ = 2. (I used the method of
+  moments, once again.) I am more uncertain about ${\theta_i}^2$, so I made its 
+  expected value 3, which is very high.
+
+
+  \subsection{Prior Predictive}
+     After specifying the model, I plotted the prior predictive distribution.
+     There is an 88\% probability of the values drawn from the prior predictive 
+     being between 1 and 7.
+
+     \beginmyfig
+        \includegraphics{../out/priorPred.pdf}
+        %\caption{}
+     \endmyfig
+
+\section{Posterior Distributions}
+  After calculating the complete conditionals for each parameter, I implemented
+  a Gibbs sampler to obtain a posterior distribution for my parameters.
+
+  \newpage
+  \subsection{Trace Plot for $\theta_1$}
+  From the trace plot, it \textit{appears} that the chain has converged for
+  $\theta_1$. 
+    \beginmyfig
+      \includegraphics[scale=2]{../out/traceUni.pdf}
+      %\caption{}
+    \endmyfig
+  \subsection{Posterior Distribution for $\theta_1$}  
+  This posterior distribution looks reasonable because it rarely has values 
+  above 7 or below 5.5. 
+
+  \noindent
+  The same can be said about the other $\theta$'s. They appeared normal, were
+  centered at values between 4 and 6, and rarely extended beyond 3 and 7.
+
+    \beginmyfig
+      \includegraphics[scale=2]{../out/postDistUni.pdf}
+      %\caption{}
+    \endmyfig
+
+  \newpage
+  \subsection{Other Trace Plots}
+    All the trace plots show that the chain has appeared to converged for 
+    each of the parameters. Here, as a token, I only plot the trace plots 
+    for $\theta_{23}$, $\mu$, $\sigma^2$, and $\tau^2$. All the other trace
+    plots look similar.
+
+    \beginmyfig
+      \includegraphics[scale=2]{../out/trace.pdf}
+      %\caption{}
+    \endmyfig
+
+
+  \newpage
+  \subsection{Posterior Distributions}
+  Again, I don't include posterior distributions for the other $\theta$'s as
+  they look similar. But I have included the posteriors for $\mu$, $\sigma^2$,
+  and $\tau^2$. 
+
+    \beginmyfig
+      \includegraphics[scale=2]{../out/postDist.pdf}
+      %\caption{}
+    \endmyfig
+
+  \newpage
+  \subsection{Posterior Means \& Variances}
+    Below are plots of the posterior means and variances. The first plot shows
+    the mean of the $\theta$'s (in blue). And the 95\% credible intervals (in 
+    red). The second plot shows the covariance matrix. And Table1 shows
+    the mean and variance of all the parameters.
+    Posterior variances / covariances were all below .05 except for the 
+    variance of $\tau^2$, which was .077.
+
+    \beginmyfig
+      \includegraphics[scale=2]{../out/postMean.pdf}
+      %\caption{}
+    \endmyfig
+    \beginmyfig
+      \includegraphics[scale=2]{../out/cov.pdf}
+      %\caption{}
+    \endmyfig
+    \input{../out/meanVar.tex}
+
+
+  \newpage
+  \subsection{Posterior Predictive}
+    Below is a graph of the posterior predictive. Note that the probability 
+    of the ``next" faculty member receiving a score greater than 5 is .74.
+    \beginmyfig
+      \includegraphics[scale=2]{../out/postPred.pdf}
+      %\caption{}
+    \endmyfig
+
+
+\newpage
+\section{Appendix -  Code}
+  \verbatiminput{../mp4.R}
+\end{document}

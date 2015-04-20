@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{pgffor}
+\usepackage{amssymb}
+\usepackage{Sweave}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{appendix}
+\usepackage[UKenglish]{isodate} % for: \today
+\cleanlookdateon                % for: \today
+
+\def\wl{\par \vspace{\baselineskip}\noindent}
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}
+\def\endmyfig{\end{center}\end{figure}}
+%\def\prodl{\prod\limits_{i=1}^n}
+\def\suml{\sum\limits_{i=1}^n}
+\def\ds{\displaystyle}
+
+\begin{document}
+% my title:
+\begin{center}
+  \section*{\textbf{Stat637 Homework 1-2}}
+  \subsection*{\textbf{Arthur Lui}}
+  \subsection*{\noindent\today}
+\end{center}
+
+\section{AIDS Data}
+<<design,echo=F>>=
+  source("../poisRegression/aids.R",chdir=T)
+@
+\subsection{Plot of Number of Cases Against Time Period}
+\beginmyfig
+%\caption{}
+%\vspace{-5mm}
+<<fig=T,echo=F,height=3.7>>=
+  plotall()
+@
+\endmyfig
+
+
+\section{Computing Estimates for $b^{(t)}$}
+With starting values of $b^{(0)}=(0,0)$, the aliterative weighted least squares
+algorithm computed esitmates that converged to (\Sexpr{round(out$b[1],6)},
+\Sexpr{round(out$b[2],6)}). Using the \textit{glm} function in R, the estimate
+computed were also (\Sexpr{round(poismod$coef[1],6)},
+\Sexpr{round(poismod$coef[2],6)}). The table below summarizes the value of the
+estimates and their $95\%$ confidence intervals.
+<<xtable1,results=tex,echo=F>>=
+  library(xtable)
+  xtable(M,digits=6)
+@
+
+
+\newpage
+\section{Deviance}
+<<design,echo=F>>=
+  source("../deviance/deviance.R",chdir=T)
+@
+
+\subsection{Linear Model}
+Model: 
+\[
+  y_i = \beta_0+\beta_1 x_i+\epsilon_i, 
+\]
+where $i=1,...,50$ and $\epsilon\sim N(0,1)$. x's were generated from $N(4,1)$.\\
+
+\noindent
+The residuals deviance for this model is 
+$\suml\ds\frac{(y_i-\bm{x_i\prime\beta_{mle}})^2}{2\sigma^2}$.\\
+
+\noindent
+For the model with a covariate, the deviance is \Sexpr{round(D.1,6)}.\\
+For the model with onlt the intercept, the deviance is \Sexpr{round(D.0,6)}.\\
+These values agree with the output in R.
+
+\subsection{Normal Model}
+Model: 
+\[
+  y_i ~ N(4,1) , 
+\]
+where $i=1,...,50$.\\
+
+\noindent
+The residuals deviance for this model is also
+$\suml\ds\frac{(y_i-\bm{x_i\prime\beta_{mle}})^2}{2\sigma^2}$.\\
+
+\noindent
+For the model with a covariate, the deviance is \Sexpr{round(D.1.norm,6)}.\\
+For the model with onlt the intercept, the deviance is \Sexpr{round(D.0.norm,6)}.\\
+These values agree with the output in R.
+
+\subsection{Comparison To Corresponding Saturated Models}
+The Deviance, D, for these models is distributed $\chi^2_{(m-p)}$
+Therefore, the
+\begin{itemize}
+  \item linear model with only the intercept is siginificantly different from its saturated model.
+  \item linear model with the covariate is not siginificantly different from its saturated model.
+  \item normal model with only the intercept is not siginificantly different from its saturated model.
+  \item normal model with the covariate is not siginificantly different from its saturated model.
+\end{itemize}
+
+\subsection{Comparison of Intercept-only Model to Covariate Model}
+The Deviance, $\Delta$ D, for these models is distributed $\chi^2_{(1)}$
+Therefore, for
+\begin{itemize}
+  \item linear model, the covariate model is significantly better that the intercept0-only model. ($\Delta$ D = \Sexpr{round(d.D,6)})
+  \item normal model, the covariate is not siginificantly than the intercept-only model. ($\Delta$ D = \Sexpr{round(d.D.norm,6)})
+\end{itemize}
+
+
+\end{document}
+

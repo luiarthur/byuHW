@@ -1,0 +1,7 @@
+#!/bin/bash
+pdflatex *.tex
+rm -f *.log *.aux
+sftp sonata.byu.edu <<EOF
+  cd PDF
+  put *.pdf
+EOF

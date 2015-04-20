@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{pgffor}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{appendix}
+\usepackage{graphicx}
+\usepackage[UKenglish]{isodate} % for: \today
+\cleanlookdateon                % for: \today
+
+\def\wl{\par \vspace{\baselineskip}\noindent}
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}
+\def\endmyfig{\end{center}\end{figure}}
+%\def\prodl{\prod\limits_{i=1}^n}
+\def\suml{\sum\limits_{i=1}^n}
+\def\ds{\displaystyle}
+
+\begin{document}
+% my title:
+\begin{center}
+  \section*{\textbf{Stat637 Homework 5}
+    \footnote{https://github.com/luiarthur/Fall2014/blob/master/Stat637/5}
+  }  
+  \subsection*{\textbf{Arthur Lui}}
+  \subsection*{\noindent\today}
+\end{center}
+
+
+\section{Q1:}
+From Figure 1, the univariate trace plots of each of the three $\beta$'s
+indicate that the convergence is likely to have occured. Each of the univariate
+plots of the posterior distributions look Normal. The credible intervals for
+$(\beta_0,\beta_1,\beta_2)$ are $(-1.86,.22)$, $(.01,.06)$, and $(-1.73, .05)$ 
+respectively. The credible interval for the deviance is $(30.3,37.1)$.
+The 95\% (hpd) credible intervals computed for each of the parameters are the 
+95\% most probable values for the parameters. 
+
+\section{Q2:}
+The posterior distributions are approximately the same. This is what we would expect
+because the same priors were used. The method of obtaining posterior distributions
+should not cause the posterior distribution to change.
+
+\section{Q3:}
+From Figure 3, we see that the estimated probability that a patient with a tracheal
+tube and a surgery lasting 44 minutes will wake with a sore throat is $52\%$, with
+a 95\% (hdp) credible interval of $(26.94\%,.7962\%)$.
+
+\section{Plots}
+\beginmyfig
+  \caption{Posterior Distribution (Albert Chib)}
+  \includegraphics{../pics/postGibbs.pdf}
+\endmyfig
+
+\beginmyfig
+  \caption{Posterior for Deviance (Albert Chib)}
+  \includegraphics{../pics/postGibbsDev.pdf}
+\endmyfig
+
+\beginmyfig
+  \caption{Posterior for $\hat{p}$ (Albert Chib)}
+  \includegraphics{../pics/postGibbsP.pdf}
+\endmyfig
+
+\beginmyfig
+  \caption{Posterior Distribution (Metropolis)}
+  \includegraphics{../pics/postMs.pdf}
+\endmyfig
+
+\beginmyfig
+  \caption{Posterior for Deviance (Metropolis)}
+  \includegraphics{../pics/postMDev.pdf}
+\endmyfig
+
+\beginmyfig
+  \caption{Posterior for $\hat{p}$ (Metropolis)}
+  \includegraphics{../pics/postMP.pdf}
+\endmyfig
+
+\end{document}

@@ -1,0 +1,343 @@
+\documentclass[mathserif,t]{beamer}
+%\usepackage{Sweave}                                                       
+\usepackage{amssymb,bm,mathtools,amsmath}                                                      
+\usepackage{graphicx,caption,float}
+\usepackage[UKenglish]{isodate} % for: \today                             
+\cleanlookdateon                % for: \today                             
+
+\def\wl{\par \vspace{\baselineskip}\noindent}                             
+\def\beginmyfig{\begin{figure}[ht]\begin{center}}                          
+\def\endmyfig{\end{center}\end{figure}}                                   
+
+\def\prodl#1#2#3{\prod\limits_{#1=#2}^{#3}}                               
+\def\suml#1#2#3{\sum\limits_{#1=#2}^{#3}}                                 
+\def\ds{\displaystyle}                                                    
+\def\tbf#1{\textbf{#1}}
+\def\inv{^{\raisebox{.2ex}{$\scriptscriptstyle-1$}}}
+\def\pm{^{\raisebox{.2ex}{$\scriptscriptstyle\prime$}}}
+
+% My Beamer Stuff
+  \geometry{vmargin=0.3in} % Formating the top bar
+  \newcommand{\m}[1]{\mathbf{\bm{#1}}} % Serif bold math
+  %\beamertemplatenavigationsymbolsempty % To get rid of navigation bar
+
+  % My Color Stuff
+  \usepackage{xcolor} % http://en.wikibooks.org/wiki/LaTeX/Colors
+                      % http://latexcolor.com/
+    \definecolor{grey}{rgb}{0.15, 0.15, 0.15} % Sets default color. CHANGE THIS!
+    \definecolor{pumpkin}{rgb}{1.0, 0.46, 0.09}
+    \definecolor{darktan}{rgb}{1.0, 0.66, 0.07}
+    \definecolor{coral}{rgb}{1.0, 0.5, 0.31}
+    \pagecolor{grey} % Sets the bar color.
+
+  \def\mylitecolor{coral}           % Bullet Color.       CHANGE THIS!
+  \def\mycolor{\color{pumpkin}}     % Frame Title Color.  CHANGE THIS!
+  \def\mydarkcolor{\color{darktan}} % Figure Color.       CHANGE THIS!
+    \def\frametitle#1{\vspace{-.32in{\mycolor\textbf{#1}}}}
+    \setbeamercolor{itemize item}{fg=\mylitecolor}
+    \setbeamercolor{enumerate item}{fg=\mylitecolor}
+    \setbeamercolor{itemize subitem}{fg=\mylitecolor}
+    \setbeamercolor{itemize subsubitem}{fg=\mylitecolor}
+    \setbeamercolor{title}{fg=\mylitecolor}
+    %\setbeamercolor{figure}{fg=\mylitecolor}
+
+    \usepackage[T1]{fontenc}
+    \DeclareCaptionFont{figcol}{\mydarkcolor} 
+    \captionsetup{
+      labelfont={bf,figcol},
+      %textfont={green}
+    }
+
+  %% my title:                                                               
+  %\title[short title]{long title}
+  %\logo{\includegraphics[width=1cm,height=1cm,keepspectration]{logo.pdf}
+  %\author[Arthur Lui]{Arthur Lui}
+  %\institute[Brigham Young University]{
+  %  Department of Statistics\\
+  %  Brigham Young University
+  %}
+
+%%%%%%%%%%%%%%%%
+\begin{document}
+% my title:                                                               
+\title[IBP in Mixed Models]{Using the Indian Buffet Process to Estimate the
+       Design Matrix Z in Random Intercept Mixed Models}
+\author[Arthur Lui]{Arthur Lui}
+\institute[Brigham Young University]{
+  Department of Statistics\\
+  Brigham Young University
+}
+
+\frame{\titlepage}
+
+\frame{
+  \frametitle{\textbf{Observations}}
+  \beginmyfig
+    \caption{Simulated Observations}
+    \includegraphics[scale=.4]{../images/scatter.pdf}
+  \endmyfig
+}    
+
+\frame{
+  \frametitle{\textbf{Observations}}
+  \beginmyfig  
+    \caption{True Groups}
+    \includegraphics[scale=.4]{../images/clus.pdf}
+  \endmyfig
+} 
+
+\frame{
+  \frametitle{Random Intercept Linear Mixed Models}
+  \begin{columns}
+    \begin{column}{.4\textwidth}
+      \beginmyfig
+        \includegraphics[scale=.3]{../images/clus.pdf}
+      \endmyfig
+    \end{column}
+    \begin{column}{.6\textwidth}
+      \begin{itemize}
+        \setlength\itemsep{1em}
+        %\bsquare $\m{y = X\beta + Z \gamma + \epsilon}$
+        \item $\m{y = X\beta + Z \gamma + \epsilon}$
+        \begin{itemize}
+          \setlength\itemsep{1em}
+          \pause
+          %\item[]
+          \item $\m{V=Z\hat GZ\pm+\hat R}$
+          \item $\m{\hat\beta=(X\pm V\inv X)\inv X\pm V\inv y}$
+          \item $\m{\hat\gamma=\hat G Z\pm V\inv (y-X\hat\beta)}$
+        \end{itemize}
+        \item []
+      \end{itemize}
+    \end{column}
+  \end{columns}
+}
+
+\frame{
+  \frametitle{Random Intercept Linear Mixed Models}
+  \begin{columns}
+    \begin{column}{.4\textwidth}
+      \beginmyfig
+        \includegraphics[scale=.3]{../images/truemm.pdf}
+      \endmyfig
+    \end{column}
+    \begin{column}{.6\textwidth}
+      \begin{itemize}
+        \setlength\itemsep{1em}
+        \item $\m{y = X\beta + Z \gamma + \epsilon}$
+        \begin{itemize}
+          \setlength\itemsep{1em}
+          %\item[]
+          \item $\m{V=Z\hat GZ\pm+\hat R}$
+          \item $\m{\hat\beta=(X\pm V\inv X)\inv X\pm V\inv y}$
+          \item $\m{\hat\gamma=\hat G Z\pm V\inv (y-X\hat\beta)}$
+        \end{itemize}
+        \pause
+        \item But what if we don't know $\m Z$?
+      \end{itemize}
+    \end{column}
+  \end{columns}
+}
+
+\frame{
+  \frametitle{Random Intercept Linear Mixed Models}
+  \beginmyfig
+    \caption{True Groups}
+    \includegraphics[scale=.4]{../images/clus.pdf}
+  \endmyfig
+} 
+\frame{
+  \frametitle{Random Intercept Linear Mixed Models}
+  \beginmyfig
+    \caption{Groups obtained by kmeans}
+    \includegraphics[scale=.4]{../images/kmean.pdf}
+  \endmyfig
+} 
+
+\frame{
+  \frametitle{Indian Buffet Process (IBP)}
+  $\underset{N\times\infty}{\m Z} \sim \text{IBP}_N(\alpha)$,
+  where $z_{ik} \in \left\{0,1\right\}$
+  \pause
+  \wl
+  \beginmyfig
+    \includegraphics[scale=.3]{../images/ibpExample.pdf}
+  \endmyfig
+}
+
+\frame{
+  \frametitle{Model}
+  \begin{align*}
+    \text{Likelihood:}\\
+    \m{y|X,\beta,Z,\gamma},\sigma_r^2 &\sim 
+      N(\m{X\beta+Z\gamma},\sigma_r^2 \m I_N)\\
+    \text{Priors:}\\
+    \m\beta &\sim N(0,s_\beta^2\m I_2)\\
+    \m Z|\alpha &\sim \text{IBP($\alpha$)}\\
+    \alpha &\sim \text{Gamma}(a_\alpha,b_\alpha)\\
+    \m\gamma &\sim N(0,s_\gamma^2\m I_{K?})\\
+    \sigma_r^2 &\sim \text{Gamma}(a_\sigma,b_\sigma)\\
+    \\
+    \text{Marginalized Likelihood:}\\
+    \m{[y|Z,X},\sigma_r^2] &= \int_{\beta,\gamma} \m{[y|Z,X,\beta,\gamma][\beta][\gamma]} 
+                               d\m\beta d\m\gamma\\
+  \end{align*}
+}
+
+\frame{
+  \frametitle{Results}
+  \beginmyfig
+    \includegraphics[scale=.4]{../images/agpost.pdf}
+  \endmyfig  
+}
+
+\frame{
+  \frametitle{Results}
+  \beginmyfig
+    \includegraphics[scale=.4]{../images/EZpre.pdf}
+    \vspace{-5mm}
+    \caption{Estimated Z Matrix}
+  \endmyfig  
+}
+
+\frame{
+  \frametitle{Results}
+  \beginmyfig
+    \includegraphics[scale=.4]{../images/EZ.pdf}
+    \vspace{-5mm}
+    \caption{Reparameterized Estimated Z Matrix}
+  \endmyfig  
+}
+
+\frame{
+  \frametitle{Results}
+  \beginmyfig
+    \includegraphics[scale=.4]{../images/KZ.pdf}
+    \vspace{-5mm}
+    \caption{Z Matrix (K-Means)}
+  \endmyfig  
+}
+
+\frame{
+  \frametitle{Results}
+  \begin{columns}
+    \begin{column}{.6\textwidth}
+      \beginmyfig
+        \caption{True}
+        \vspace{-5mm}
+        \includegraphics[scale=.4]{../images/truemm.pdf}
+      \endmyfig
+    \end{column}
+    \begin{column}{.4\textwidth}
+      \input{../images/mb.tex}
+      \input{../images/mg.tex}     
+    \end{column}
+  \end{columns}
+}
+\frame{
+  \frametitle{Results}
+  \begin{columns}
+    \begin{column}{.6\textwidth}
+      \beginmyfig
+        \caption{IBP}
+        \vspace{-5mm}
+        \includegraphics[scale=.4]{../images/ibpmm.pdf}
+      \endmyfig
+    \end{column}
+    \begin{column}{.4\textwidth}
+      \input{../images/mb.tex}
+      \input{../images/mg.tex}     
+    \end{column}
+  \end{columns}
+}
+\frame{
+  \frametitle{Results}
+  \begin{columns}
+    \begin{column}{.6\textwidth}
+      \beginmyfig
+        \caption{K-Means}
+        \vspace{-5mm}
+        \includegraphics[scale=.4]{../images/KMmm.pdf}
+      \endmyfig
+    \end{column}
+    \begin{column}{.4\textwidth}
+      \input{../images/mb.tex}
+      \input{../images/mg.tex}     
+    \end{column}
+  \end{columns}
+}
+
+\frame{
+  \frametitle{Future Work}
+  \begin{itemize}
+    \item Proposal mechanism for IBP
+    \item Non-normal likelihood
+    \item Applications
+    \item Random slope?
+  \end{itemize}
+}
+
+\frame{
+  \frametitle{Questions?}
+  \begin{center}
+    \Huge Thank You!
+  \end{center}
+}
+
+  \frame{
+    \frametitle{Indian Buffet Process (IBP)}
+    Customer $i$ taking a dish $k$ is analogous to observation $i$ possessing
+    feautre $k$. For $\m Z \sim \text{IBP}_N(\alpha)$:\\
+    \wl
+    \begin{enumerate}
+      \setlength\itemsep{1em}
+      \pause
+      \item The first customer takes Poisson($\alpha$) number of dishes
+      \pause
+      \item For customers $i=2 \text{ to } N$,
+      \begin{itemize}
+        \pause
+        \item For each previously sampled dish, customer $i$ takes dish $k$
+              with probability $m_{-i,k} / i$
+              \pause
+        \item after sampling the last sampled dish, customer $i$ samples 
+              Poisson($\alpha/i$) new dishes
+      \end{itemize}
+    \end{enumerate}
+  }
+
+  \frame{
+    \frametitle{Realizations from the IBP}
+    \beginmyfig
+      %\includegraphics[scale=.4]{ibp2.pdf}
+    \endmyfig
+  }
+
+  \frame{
+    \frametitle{PMF for the IBP}
+      \[
+      \begin{array}{rcl}
+        \underset{N \times \infty}{\m Z} &\sim& \text{IBP}(\alpha),
+           \text{ where $z_{ik} \in \{0,1\}$} \\
+        \implies \text{P}(\m Z) & = & \frac{\alpha^{K}}{\prodl{i}{1}{N} 
+                                       x_i!} 
+                                       exp\{-\alpha H_N\}\prodl{k}{1}{K}
+                                       \frac{(N-m_k)!(m_k-1)!}{N!}\\
+                                 \pause
+                                 & = & \frac{\alpha^{K}exp\{-\alpha H_N\}}
+                                            {\prodl{i}{1}{N}(x_i!~i^{x_i})} 
+                                       \prodl{i}{2}{N}\prodl{k}{1}{y_{i}}
+                                       \left(\frac{m_{-i,k}}{i}\right)^{z_{i,k}}
+                                       \left(1-\frac{m_{-i,k}}{i}\right)^{1-z_{i,k}}
+      \end{array}
+      \]
+      \pause
+      where $H_N$ is the harmonic number $\suml{i}{1}{N}i^{-1}$, $K$ is the
+      number of non-zero columns in $\m Z$, $m_k$ is the $k^{th}$ column sum
+      of $\m Z$, $y_i$ is the total number of dishes sampled before the
+      $i^{th}$ customer, $m_{-i,k}$ is the number of customers that sampled
+      dish k before customer $i$,and $x_i$ is the number of ``new dishes"
+      sampled by customer $i$.\\
+  }
+
+\end{document}

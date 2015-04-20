@@ -1,0 +1,6 @@
+#!/usr/bin/env Rscript
+
+Sweave("main.rnw")
+system("pdflatex main.tex")
+system("rm -f main-*.pdf *.log *.aux *.tex")
+#system("firefox main.pdf &")

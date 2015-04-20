@@ -1,0 +1,3413 @@
+Slcmorm
+Codebooks are saved as tab delimited text files.  To properly align columns, you may need to adjust the tab settings in your word processor.  To align numeric columns on the decimal, use the decimal align option when setting your tabs.
+
+1) WARD
+Of which Ward are you now a member? (circle one number)
+
+	TOTAL	%
+1) Taylorsville 11th	61	6.6
+2) Monument Park 4th	84	9.1
+3) Yalecrest 2nd	133	14.3
+4) Colonial Hills	99	10.7
+5) Millcreek 6th	63	6.8
+6) Murray 5th	78	8.4
+7) Murray 3rd	121	13.0
+8) Ensign 4th	85	9.2
+9) Salt Lake City 19th	88	9.5
+10) Valleyview 4th	90	9.7
+11) Other SLC Ward	26	2.8
+
+Missing	30
+TOTAL	928	100.0
+
+2) WARDYR
+How long have you lived in your present ward? (If your Ward has been divided while you have stayed in the same place, count it as living in the same Ward.)
+
+	TOTAL	%
+1) less than a year	74	7.8
+2) 1 or 2 years	111	11.7
+3) 3 to 5 years	153	16.2
+4) 6 to 10 years	154	16.3
+5) more than 10 years	389	41.2
+6) I have always been a member of this Ward	60	6.3
+7) Not sure	4	0.4
+
+Missing	13
+TOTAL	945	100.0
+
+3) PSTH
+(For males only): What office in the Priesthood do you hold (in the LDS Church)?
+
+	TOTAL	%
+1) Elder	187	39.8
+2) Teacher	23	4.9
+3) Deacon	12	2.6
+4) High Priest	170	36.2
+5) Priest	43	9.1
+6) Seventy	32	6.8
+7) Uncertain	2	0.4
+8) Other (please explain)	1	0.2
+
+Missing	488
+TOTAL	470	100.0
+
+4) FRIEND
+Of your five closest friends, how many are members of the LDS church? (circle one)
+
+	TOTAL	%
+0) 0 friends	23	2.5
+1) 1 friend	23	2.5
+2) 2 friends	44	4.7
+3) 3 friends	77	8.3
+4) 4 friends	143	15.4
+5) 5 friends	619	66.6
+
+Missing	29
+TOTAL	929	100.0
+
+5) FRNDSMTG
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE AT LEAST ONE CLOSE FRIEND IN THE LDS CHURCH: If any of these friends are LDS, what is the most often that you think any of them attend Church meetings?
+
+	TOTAL	%
+1) Every week	443	48.5
+2) Almost every week	309	33.8
+3) At least twice a month	53	5.8
+4) About once a month	23	2.5
+5) Several times a year	37	4.1
+6) Infrequently or never	48	5.3
+
+Missing	45
+TOTAL	913	100.0
+
+6) MISSION
+Have you ever served a mission for the LDS Church? (If so, which kind(s)?)
+
+	TOTAL	%
+1) Yes, a full-time mission	140	15.5
+2) Yes, a stake mission	66	7.3
+3) Yes, both kinds of mission	39	4.3
+4) No, no mission	661	73.0
+
+Missing	52
+TOTAL	906	100.0
+
+7) STATUS
+Which of the following most nearly represents your current membership status in the LDS Church?
+
+	TOTAL	%
+1) Born in the LDS Church, but no longer affiliated	80	8.4
+2) Life-long member and still affiliated	769	81.0
+3) Convert and still affiliated	92	9.7
+4) Once converted, but no longer affiliated	6	0.6
+5) Other (please explain):	2	0.2
+
+Missing	9
+TOTAL	949	100.0
+
+8) CONVERT
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: How long ago did you join the LDS Church?
+
+	TOTAL	%
+1) less than a year	2	2.1
+2) 1 or 2 years	5	5.2
+3) 3 to 5 years	11	11.5
+4) 6 to 10 years	11	11.5
+5) more than 10 years	67	69.8
+
+Missing	862
+TOTAL	96	100.0
+
+9) STAKEINF
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: How important were the following people in influencing you to become a member of the Church? -- stake (local) missionaries
+
+	TOTAL	%
+1) Very Important	17	41.5
+2) Fairly Important	9	22.0
+3) Not Very Important	15	36.6
+
+Missing	917
+TOTAL	41	100.0
+
+10) FULLINF
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: How important were the following people in influencing you to become a member of the Church? -- field ("full-time") missionaries
+
+	TOTAL	%
+1) Very Important	24	55.8
+2) Fairly Important	6	14.0
+3) Not Very Important	13	30.2
+
+Missing	915
+TOTAL	43	100.0
+
+11) MISS
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: How important were the following people in influencing you to become a member of the Church? -- missionaries, but I don't recall which kind
+
+	TOTAL	%
+1) Very Important	1	6.7
+2) Fairly Important	1	6.7
+3) Not Very Important	13	86.7
+
+Missing	943
+TOTAL	15	100.0
+
+12) LDSFRND
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: How important were the following people in influencing you to become a member of the Church? -- LDS friends
+
+	TOTAL	%
+1) Very Important	35	60.3
+2) Fairly Important	17	29.3
+3) Not Very Important	6	10.3
+
+Missing	900
+TOTAL	58	100.0
+
+13) FAMMEM
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: How important were the following people in influencing you to become a member of the Church? -- family members or relatives
+
+	TOTAL	%
+1) Very Important	30	61.2
+2) Fairly Important	9	18.4
+3) Not Very Important	10	20.4
+
+Missing	909
+TOTAL	49	100.0
+
+14) FIANCE
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: How important were the following people in influencing you to become a member of the Church? -- fiance or "steady"
+
+	TOTAL	%
+1) Very Important	16	57.1
+2) Fairly Important	3	10.7
+3) Not Very Important	9	32.1
+
+Missing	930
+TOTAL	28	100.0
+
+15) PLANSALV
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: As far as you can recall, how important were the following features of the Church in attracting you to it? -- Doctrines related to the Plan of Salvation (including pre-existence, resurrection, work for the dead, etc.)
+
+	TOTAL	%
+1) Very Important	42	61.8
+2) Fairly Important	14	20.6
+3) Not Very Important	12	17.6
+
+Missing	890
+TOTAL	68	100.0
+
+16) GODOCTRN
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: As far as you can recall, how important were the following features of the Church in attracting you to it? -- Doctrines relating to God or the Godhead (Trinity)
+
+	TOTAL	%
+1) Very Important	33	54.1
+2) Fairly Important	22	36.1
+3) Not Very Important	6	9.8
+
+Missing	897
+TOTAL	61	100.0
+
+17) ETERMAR
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: As far as you can recall, how important were the following features of the Church in attracting you to it? -- Doctrines relating to eternal marriage, family life, etc.
+
+	TOTAL	%
+1) Very Important	43	67.2
+2) Fairly Important	13	20.3
+3) Not Very Important	8	12.5
+
+Missing	894
+TOTAL	64	100.0
+
+18) MODREV
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: As far as you can recall, how important were the following features of the Church in attracting you to it? -- The doctrine of continuous (modern) revelation or modern prophets
+
+	TOTAL	%
+1) Very Important	37	61.7
+2) Fairly Important	12	20.0
+3) Not Very Important	11	18.3
+
+Missing	898
+TOTAL	60	100.0
+
+19) BOFM
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: As far as you can recall, how important were the following features of the Church in attracting you to it? -- The Book of Mormon
+
+	TOTAL	%
+1) Very Important	32	52.5
+2) Fairly Important	17	27.9
+3) Not Very Important	12	19.7
+
+Missing	897
+TOTAL	61	100.0
+
+20) BIBLINTR
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: As far as you can recall, how important were the following features of the Church in attracting you to it? -- The LDS understanding or interpretations of the Bible
+
+	TOTAL	%
+1) Very Important	28	45.2
+2) Fairly Important	21	33.9
+3) Not Very Important	13	21.0
+
+Missing	896
+TOTAL	62	100.0
+
+21) WOFW
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: As far as you can recall, how important were the following features of the Church in attracting you to it? -- The Church teachings about the care of the body (Word of Wisdom, etc.)
+
+	TOTAL	%
+1) Very Important	28	47.5
+2) Fairly Important	25	42.4
+3) Not Very Important	6	10.2
+
+Missing	899
+TOTAL	59	100.0
+
+22) SOCREC
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: As far as you can recall, how important were the following features of the Church in attracting you to it? -- The Church social and recreational programs
+
+	TOTAL	%
+1) Very Important	29	45.3
+2) Fairly Important	21	32.8
+3) Not Very Important	14	21.9
+
+Missing	894
+TOTAL	64	100.0
+
+23) WELFARE
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: As far as you can recall, how important were the following features of the Church in attracting you to it? -- The Church Welfare Program
+
+	TOTAL	%
+1) Very Important	14	25.0
+2) Fairly Important	12	21.4
+3) Not Very Important	30	53.6
+
+Missing	902
+TOTAL	56	100.0
+
+24) FELLSHIP
+ASKED ONLY OF THOSE RESPONDENTS WHO WERE ORIGINALLY BROUGHT INTO THE LDS CHURCH AS A CONVERT: As far as you can recall, how important were the following features of the Church in attracting you to it? -- Through personal influence of LDS friends, family members, or missionaries
+
+	TOTAL	%
+1) Very Important	63	76.8
+2) Fairly Important	9	11.0
+3) Not Very Important	10	12.2
+
+Missing	876
+TOTAL	82	100.0
+
+25) MBRMISS
+Have you ever personally tried to convert someone to the LDS faith (outside of periods of actual missionary service)?
+
+	TOTAL	%
+1) Yes, often	101	10.8
+2) Yes, once in a while	349	37.2
+3) No, not really	487	52.0
+
+Missing	21
+TOTAL	937	100.0
+
+26) DEFNDLDS
+Do you ever have religious discussions in which you defend the LDS Church or try to present it in a favorable light?
+
+	TOTAL	%
+1) Yes, often	199	21.0
+2) Yes, occasionally	468	49.5
+3) Yes, but rarely	229	24.2
+4) No, never	50	5.3
+
+Missing	12
+TOTAL	946	100.0
+
+27) PSTHKNOW
+Which of the following local leaders and workers in the LDS Church would you say that you know by name and by face?
+
+	TOTAL	%
+1) The Ward Bishop	34	5.1
+2) One or both of the Bishop's counselors	5	0.7
+5) The home teacher(s) who has been calling every month or so	24	3.6
+6) All of the above	573	85.3
+7) I don't know any of the above, but I do know (list by title	2	0.3
+8) I don't know any local LDS leaders or church workers	34	5.1
+
+Missing	286
+TOTAL	672	100.0
+
+28) SACRMTG
+Please indicate how often you attend or participate in each of the following -- Sacrament Service
+
+	TOTAL	%
+1) Every Week	354	38.5
+2) Almost Every Week	202	22.0
+3) At Least Twice a Month	76	8.3
+4) About Once a Month	48	5.2
+5) Several Times a Year	77	8.4
+6) Seldom or Never	163	17.7
+
+Missing	38
+TOTAL	920	100.0
+
+29) SUNSKOOL
+Please indicate how often you attend or participate in each of the following -- Sunday School
+
+	TOTAL	%
+1) Every Week	289	34.4
+2) Almost Every Week	157	18.7
+3) At Least Twice a Month	49	5.8
+4) About Once a Month	37	4.4
+5) Several Times a Year	93	11.1
+6) Seldom or Never	215	25.6
+
+Missing	118
+TOTAL	840	100.0
+
+30) PSRSMTG
+Please indicate how often you attend or participate in each of the following -- Priesthood Meeting (men) OR Relief Society (women)
+
+	TOTAL	%
+1) Every Week	324	38.0
+2) Almost Every Week	154	18.1
+3) At Least Twice a Month	53	6.2
+4) About Once a Month	33	3.9
+5) Several Times a Year	64	7.5
+6) Seldom or Never	225	26.4
+
+Missing	105
+TOTAL	853	100.0
+
+31) FHE
+Please indicate how often you attend or participate in each of the following -- Family Home Evening
+
+	TOTAL	%
+1) Every Week	103	15.2
+2) Almost Every Week	89	13.1
+3) At Least Twice a Month	44	6.5
+4) About Once a Month	63	9.3
+5) Several Times a Year	97	14.3
+6) Seldom or Never	283	41.7
+
+Missing	279
+TOTAL	679	100.0
+
+32) MIA
+Please indicate how often you attend or participate in each of the following -- MIA
+
+	TOTAL	%
+1) Every Week	82	13.7
+2) Almost Every Week	28	4.7
+3) At Least Twice a Month	7	1.2
+4) About Once a Month	14	2.3
+5) Several Times a Year	56	9.4
+6) Seldom or Never	411	68.7
+
+Missing	360
+TOTAL	598	100.0
+
+33) READSCRP
+Please indicate how often you participate in each of the following practices -- Reading the scriptures
+
+	TOTAL	%
+1) Daily	30	3.6
+2) Almost Every Day	77	9.4
+3) At Least Once a Week	162	19.7
+4) Once or Twice a Month	173	21.0
+5) Several Times a Year	195	23.7
+6) Rarely or Never	186	22.6
+
+Missing	135
+TOTAL	823	100.0
+
+34) READOTHR
+Please indicate how often you participate in each of the following practices -- Reading other Church books or magazines
+
+	TOTAL	%
+1) Daily	36	4.2
+2) Almost Every Day	101	11.8
+3) At Least Once a Week	249	29.1
+4) Once or Twice a Month	215	25.1
+5) Several Times a Year	130	15.2
+6) Rarely or Never	125	14.6
+
+Missing	102
+TOTAL	856	100.0
+
+35) FAMPRAYR
+Please indicate how often you participate in each of the following practices -- Family prayer
+
+	TOTAL	%
+1) Daily	283	37.7
+2) Almost Every Day	103	13.7
+3) At Least Once a Week	60	8.0
+4) Once or Twice a Month	43	5.7
+5) Several Times a Year	53	7.1
+6) Rarely or Never	208	27.7
+
+Missing	208
+TOTAL	750	100.0
+
+36) PRVPRAYR
+Please indicate how often you participate in each of the following practices -- Private prayer
+
+	TOTAL	%
+1) Daily	542	61.1
+2) Almost Every Day	120	13.5
+3) At Least Once a Week	58	6.5
+4) Once or Twice a Month	43	4.8
+5) Several Times a Year	35	3.9
+6) Rarely or Never	89	10.0
+
+Missing	71
+TOTAL	887	100.0
+
+37) BLSSMEAL
+Please indicate how often you participate in each of the following practices -- Blessing on meals
+
+	TOTAL	%
+1) Daily	654	72.4
+2) Almost Every Day	81	9.0
+3) At Least Once a Week	35	3.9
+4) Once or Twice a Month	19	2.1
+5) Several Times a Year	46	5.1
+6) Rarely or Never	68	7.5
+
+Missing	55
+TOTAL	903	100.0
+
+38) GOTEMPLE
+Please indicate how often you participate in each of the following practices -- Going through temple
+
+	TOTAL	%
+1) Daily	8	1.0
+2) Almost Every Day	6	0.7
+3) At Least Once a Week	10	1.2
+4) Once or Twice a Month	105	12.8
+5) Several Times a Year	337	41.0
+6) Rarely or Never	356	43.3
+
+Missing	136
+TOTAL	822	100.0
+
+39) AUXPART
+By circling the appropriate number, please estimate about how many hours a week, on the average, you spend in each of the following LDS Church activities -- Participating in the activities of the various auxiliary organizations such as MIA, Primary, Relief Society, etc. (but not including Sunday School here)
+
+	TOTAL	%
+1) None	344	41.0
+2) Up to 1 Hr	104	12.4
+3) 1 to 3 Hrs	195	23.2
+4) 3 to 5 Hrs	108	12.9
+5) 5 to 10 Hrs	55	6.6
+6) Over 10 Hrs	33	3.9
+
+Missing	119
+TOTAL	839	100.0
+
+40) MTGPREP
+By circling the appropriate number, please estimate about how many hours a week, on the average, you spend in each of the following LDS Church activities -- Preparation meetings, council meetings, committee meetings, etc.
+
+	TOTAL	%
+1) None	393	54.0
+2) Up to 1 Hr	177	24.3
+3) 1 to 3 Hrs	100	13.7
+4) 3 to 5 Hrs	39	5.4
+5) 5 to 10 Hrs	14	1.9
+6) Over 10 Hrs	5	0.7
+
+Missing	230
+TOTAL	728	100.0
+
+41) LESSPREP
+By circling the appropriate number, please estimate about how many hours a week, on the average, you spend in each of the following LDS Church activities -- Preparing lessons for classes you teach in any of the auxiliaries (including Sunday Sch.)
+
+	TOTAL	%
+1) None	414	60.3
+2) Up to 1 Hr	82	12.0
+3) 1 to 3 Hrs	123	17.9
+4) 3 to 5 Hrs	42	6.1
+5) 5 to 10 Hrs	20	2.9
+6) Over 10 Hrs	5	0.7
+
+Missing	272
+TOTAL	686	100.0
+
+42) OTHRPREP
+By circling the appropriate number, please estimate about how many hours a week, on the average, you spend in each of the following LDS Church activities -- Other Church-related activities (please explain briefly)
+
+	TOTAL	%
+2) Up to 1 Hr	5	26.3
+3) 1 to 3 Hrs	2	10.5
+5) 5 to 10 Hrs	1	5.3
+6) Over 10 Hrs	11	57.9
+
+Missing	939
+TOTAL	19	100.0
+
+43) PRPWRTIN
+By circling the appropriate number, please estimate about how many hours a week, on the average, you spend in each of the following LDS Church activities -- Other Church-related activities (please explain briefly)
+
+	TOTAL	%
+1) None	1	1.2
+2) Up to 1 Hr	31	36.9
+3) 1 to 3 Hrs	22	26.2
+4) 3 to 5 Hrs	13	15.5
+5) 5 to 10 Hrs	6	7.1
+6) Over 10 Hrs	11	13.1
+
+Missing	874
+TOTAL	84	100.0
+
+44) MIAHLPFL
+By circling the appropriate number after each of the following Church programs or auxiliaries. Please indicate how valuable or helpful you feel each has been to you and/or to members of your family -- MIA youth activities
+
+	TOTAL	%
+1) Very helpful	418	57.5
+2) Fairly helpful	125	17.2
+3) Not very helpful	26	3.6
+4) We haven't been participating in this program	158	21.7
+
+Missing	231
+TOTAL	727	100.0
+
+45) ADULTMIA
+By circling the appropriate number after each of the following Church programs or auxiliaries. Please indicate how valuable or helpful you feel each has been to you and/or to members of your family -- MIA adult activities (Mutual Marrieds, etc.)
+
+	TOTAL	%
+1) Very helpful	146	22.7
+2) Fairly helpful	99	15.4
+3) Not very helpful	46	7.2
+4) We haven't been participating in this program	351	54.7
+
+Missing	316
+TOTAL	642	100.0
+
+46) SNSKLHLP
+By circling the appropriate number after each of the following Church programs or auxiliaries. Please indicate how valuable or helpful you feel each has been to you and/or to members of your family -- Sunday School
+
+	TOTAL	%
+1) Very helpful	587	70.0
+2) Fairly helpful	130	15.5
+3) Not very helpful	20	2.4
+4) We haven't been participating in this program	102	12.2
+
+Missing	119
+TOTAL	839	100.0
+
+47) RLSOCHLP
+By circling the appropriate number after each of the following Church programs or auxiliaries. Please indicate how valuable or helpful you feel each has been to you and/or to members of your family -- Relief Society
+
+	TOTAL	%
+1) Very helpful	443	55.3
+2) Fairly helpful	111	13.9
+3) Not very helpful	33	4.1
+4) We haven't been participating in this program	214	26.7
+
+Missing	157
+TOTAL	801	100.0
+
+48) PRMHPFL
+By circling the appropriate number after each of the following Church programs or auxiliaries. Please indicate how valuable or helpful you feel each has been to you and/or to members of your family -- Primary
+
+	TOTAL	%
+1) Very helpful	533	72.0
+2) Fairly helpful	65	8.8
+3) Not very helpful	10	1.4
+4) We haven't been participating in this program	132	17.8
+
+Missing	218
+TOTAL	740	100.0
+
+49) SEMHLPFL
+By circling the appropriate number after each of the following Church programs or auxiliaries. Please indicate how valuable or helpful you feel each has been to you and/or to members of your family -- Seminary
+
+	TOTAL	%
+1) Very helpful	386	57.4
+2) Fairly helpful	73	10.9
+3) Not very helpful	22	3.3
+4) We haven't been participating in this program	191	28.4
+
+Missing	286
+TOTAL	672	100.0
+
+50) INSTHPFL
+By circling the appropriate number after each of the following Church programs or auxiliaries. Please indicate how valuable or helpful you feel each has been to you and/or to members of your family -- Institute (at College)
+
+	TOTAL	%
+1) Very helpful	177	32.4
+2) Fairly helpful	47	8.6
+3) Not very helpful	19	3.5
+4) We haven't been participating in this program	303	55.5
+
+Missing	412
+TOTAL	546	100.0
+
+51) GENHLPF
+By circling the appropriate number after each of the following Church programs or auxiliaries. Please indicate how valuable or helpful you feel each has been to you and/or to members of your family -- Genealogy
+
+	TOTAL	%
+1) Very helpful	216	29.3
+2) Fairly helpful	136	18.5
+3) Not very helpful	68	9.2
+4) We haven't been participating in this program	317	43.0
+
+Missing	221
+TOTAL	737	100.0
+
+52) WELHPFL
+By circling the appropriate number after each of the following Church programs or auxiliaries. Please indicate how valuable or helpful you feel each has been to you and/or to members of your family -- Welfare
+
+	TOTAL	%
+1) Very helpful	161	24.8
+2) Fairly helpful	89	13.7
+3) Not very helpful	44	6.8
+4) We haven't been participating in this program	355	54.7
+
+Missing	309
+TOTAL	649	100.0
+
+53) TEMPREP
+Have you ever participated in a Temple Preparation program (such as "Project Temple," "Temple Club," Priesthood Seminar, Special Priesthood School, etc.)?
+
+	TOTAL	%
+1) Yes	130	14.8
+2) No	749	85.2
+
+Missing	79
+TOTAL	879	100.0
+
+54) TMPRPLNG
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE PARTICIPATED IN A TEMPLE PREPARATION PROGRAM: About how long ago did you participate in such a program?
+
+	TOTAL	%
+1) Less than a year ago	22	18.6
+2) 1 to 3 years ago	40	33.9
+3) More than 3 years ago	56	47.5
+
+Missing	840
+TOTAL	118	100.0
+
+55) SPCLESSN
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE PARTICIPATED IN A TEMPLE PREPARATION PROGRAM: How helpful or rewarding do you feel were the following aspects of the program to you? -- The special lessons or instructions in the classes
+
+	TOTAL	%
+1) Very helpful	74	74.0
+2) Fairly helpful	23	23.0
+3) Not very helpful	3	3.0
+
+Missing	858
+TOTAL	100	100.0
+
+56) ASSIGNMT
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE PARTICIPATED IN A TEMPLE PREPARATION PROGRAM: How helpful or rewarding do you feel were the following aspects of the program to you? -- The special "challenges" or assignments given
+
+	TOTAL	%
+1) Very helpful	41	46.6
+2) Fairly helpful	28	31.8
+3) Not very helpful	19	21.6
+
+Missing	870
+TOTAL	88	100.0
+
+57) FLLWSHP
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE PARTICIPATED IN A TEMPLE PREPARATION PROGRAM: How helpful or rewarding do you feel were the following aspects of the program to you? -- The special attention or "fellowshipping" you received
+
+	TOTAL	%
+1) Very helpful	59	65.6
+2) Fairly helpful	22	24.4
+3) Not very helpful	9	10.0
+
+Missing	868
+TOTAL	90	100.0
+
+58) NEWFRNDS
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE PARTICIPATED IN A TEMPLE PREPARATION PROGRAM: How helpful or rewarding do you feel were the following aspects of the program to you? -- The new friendships or special relationships which were made
+
+	TOTAL	%
+1) Very helpful	57	58.8
+2) Fairly helpful	24	24.7
+3) Not very helpful	16	16.5
+
+Missing	861
+TOTAL	97	100.0
+
+59) OVRHABIT
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE PARTICIPATED IN A TEMPLE PREPARATION PROGRAM: How helpful or rewarding do you feel were the following aspects of the program to you? -- The help and support in overcoming undesirable habits & practices
+
+	TOTAL	%
+1) Very helpful	39	45.3
+2) Fairly helpful	30	34.9
+3) Not very helpful	17	19.8
+
+Missing	872
+TOTAL	86	100.0
+
+60) CHNGATTD
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE PARTICIPATED IN A TEMPLE PREPARATION PROGRAM: How helpful or rewarding do you feel were the following aspects of the program to you? -- The help in changing attitudes
+
+	TOTAL	%
+1) Very helpful	49	57.6
+2) Fairly helpful	24	28.2
+3) Not very helpful	12	14.1
+
+Missing	873
+TOTAL	85	100.0
+
+61) SPIRTEXP
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE PARTICIPATED IN A TEMPLE PREPARATION PROGRAM: How helpful or rewarding do you feel were the following aspects of the program to you? -- The new spiritual experiences, such as frequent prayers, blessings, or feelings of closeness to the Lord
+
+	TOTAL	%
+1) Very helpful	65	69.1
+2) Fairly helpful	17	18.1
+3) Not very helpful	12	12.8
+
+Missing	864
+TOTAL	94	100.0
+
+62) HTHELPFL
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE PARTICIPATED IN A TEMPLE PREPARATION PROGRAM: How helpful or rewarding do you feel were the following aspects of the program to you? -- The help of the home teachers
+
+	TOTAL	%
+1) Very helpful	30	35.7
+2) Fairly helpful	27	32.1
+3) Not very helpful	27	32.1
+
+Missing	874
+TOTAL	84	100.0
+
+63) USTDGOSP
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE PARTICIPATED IN A TEMPLE PREPARATION PROGRAM: How helpful or rewarding do you feel were the following aspects of the program to you? -- The new understandings about the Gospel, the Priesthood, etc.
+
+	TOTAL	%
+1) Very helpful	57	62.0
+2) Fairly helpful	26	28.3
+3) Not very helpful	9	9.8
+
+Missing	866
+TOTAL	92	100.0
+
+64) IMPHOME
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE PARTICIPATED IN A TEMPLE PREPARATION PROGRAM: How helpful or rewarding do you feel were the following aspects of the program to you? -- The improvement in home and family life
+
+	TOTAL	%
+1) Very helpful	46	51.7
+2) Fairly helpful	28	31.5
+3) Not very helpful	15	16.9
+
+Missing	869
+TOTAL	89	100.0
+
+65) CHCHINTR
+Some Church members experience change from time to time in the degree of their interest or activity in the Church. Would you say that your interest or activity in the Church has increased, decreased, or stayed about the same?
+
+	TOTAL	%
+1) Increased	226	24.2
+2) Decreased	156	16.7
+3) Stayed about same	552	59.1
+
+Missing	24
+TOTAL	934	100.0
+
+66) TEMPACT
+ASKED ONLY OF THOSE RESPONDENTS WHO FEEL THAT THERE INTEREST OR ACTIVITY IN THE CHURCH HAS INCREASED: How important or influential would you say each of the following has been in stimulating your interest or activity lately? -- A special course or seminar or "temple project"
+
+	TOTAL	%
+1) Very important	33	27.0
+2) Fairly important	14	11.5
+3) Not very important	75	61.5
+
+Missing	836
+TOTAL	122	100.0
+
+67) SOCRECAC
+ASKED ONLY OF THOSE RESPONDENTS WHO FEEL THAT THERE INTEREST OR ACTIVITY IN THE CHURCH HAS INCREASED: How important or influential would you say each of the following has been in stimulating your interest or activity lately? -- The social and recreational programs of the Church
+
+	TOTAL	%
+1) Very important	50	34.2
+2) Fairly important	46	31.5
+3) Not very important	50	34.2
+
+Missing	812
+TOTAL	146	100.0
+
+68) INFAMACT
+ASKED ONLY OF THOSE RESPONDENTS WHO FEEL THAT THERE INTEREST OR ACTIVITY IN THE CHURCH HAS INCREASED: How important or influential would you say each of the following has been in stimulating your interest or activity lately? -- The encouragement and influence of one or more family members or relatives
+
+	TOTAL	%
+1) Very important	77	49.0
+2) Fairly important	41	26.1
+3) Not very important	39	24.8
+
+Missing	801
+TOTAL	157	100.0
+
+69) FRNDACT
+ASKED ONLY OF THOSE RESPONDENTS WHO FEEL THAT THERE INTEREST OR ACTIVITY IN THE CHURCH HAS INCREASED: How important or influential would you say each of the following has been in stimulating your interest or activity lately? -- The encouragement and influence of one or more Church friends
+
+	TOTAL	%
+1) Very important	81	49.7
+2) Fairly important	46	28.2
+3) Not very important	36	22.1
+
+Missing	795
+TOTAL	163	100.0
+
+70) HMTCHACT
+ASKED ONLY OF THOSE RESPONDENTS WHO FEEL THAT THERE INTEREST OR ACTIVITY IN THE CHURCH HAS INCREASED: How important or influential would you say each of the following has been in stimulating your interest or activity lately? -- The encouragement and influence of home teachers
+
+	TOTAL	%
+1) Very important	44	27.5
+2) Fairly important	39	24.4
+3) Not very important	77	48.1
+
+Missing	798
+TOTAL	160	100.0
+
+71) LEADRACT
+ASKED ONLY OF THOSE RESPONDENTS WHO FEEL THAT THERE INTEREST OR ACTIVITY IN THE CHURCH HAS INCREASED: How important or influential would you say each of the following has been in stimulating your interest or activity lately? -- The encouragement and influence of Church leaders such as the Bishop
+
+	TOTAL	%
+1) Very important	108	60.0
+2) Fairly important	45	25.0
+3) Not very important	27	15.0
+
+Missing	778
+TOTAL	180	100.0
+
+72) MISSACT
+ASKED ONLY OF THOSE RESPONDENTS WHO FEEL THAT THERE INTEREST OR ACTIVITY IN THE CHURCH HAS INCREASED: How important or influential would you say each of the following has been in stimulating your interest or activity lately? -- The encouragement and influence of missionaries
+
+	TOTAL	%
+1) Very important	31	25.0
+2) Fairly important	15	12.1
+3) Not very important	78	62.9
+
+Missing	834
+TOTAL	124	100.0
+
+73) WELACT
+ASKED ONLY OF THOSE RESPONDENTS WHO FEEL THAT THERE INTEREST OR ACTIVITY IN THE CHURCH HAS INCREASED: How important or influential would you say each of the following has been in stimulating your interest or activity lately? -- The Church Welfare Program
+
+	TOTAL	%
+1) Very important	22	17.1
+2) Fairly important	22	17.1
+3) Not very important	85	65.9
+
+Missing	829
+TOTAL	129	100.0
+
+74) OTHRACT
+ASKED ONLY OF THOSE RESPONDENTS WHO FEEL THAT THERE INTEREST OR ACTIVITY IN THE CHURCH HAS INCREASED: How important or influential would you say each of the following has been in stimulating your interest or activity lately? -- Other Church programs (please explain briefly):
+
+	TOTAL	%
+1) Very important	4	12.5
+2) Fairly important	7	21.9
+3) Not very important	21	65.6
+
+Missing	926
+TOTAL	32	100.0
+
+75) INDVCHNG
+ASKED ONLY OF THOSE RESPONDENTS WHO FEEL THAT THERE INTEREST OR ACTIVITY IN THE CHURCH HAS INCREASED: How important or influential would you say each of the following has been in stimulating your interest or activity lately? -- Changes in yourself independent of Church influences (explain):
+
+	TOTAL	%
+1) Very important	46	86.8
+2) Fairly important	2	3.8
+3) Not very important	5	9.4
+
+Missing	905
+TOTAL	53	100.0
+
+76) LDSCHINT
+As we all know, people may have nominal membership in a church but not be interested, for one reason or another, in participating very much. How interested or active would you say that you have been lately in the LDS Church?
+
+	TOTAL	%
+1) Interested in LDS Church as a general rule	725	78.2
+2) Interested only occasionally	87	9.4
+3) Interested only rarely	59	6.4
+4) Not interested at all	55	5.9
+5) Other (explain briefly):	1	0.1
+
+Missing	31
+TOTAL	927	100.0
+
+77) PUSHHARD
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE NOT BEEN INTERESTED OR ACTIVE IN THE LDS CHURCH AS A GENERAL RULE: How important would you say was each of the following reasons why the LDS Church has failed to keep your interest? -- The church was pushed on me too hard when I was younger, and I grew to resent it
+
+	TOTAL	%
+1) Very important	41	26.1
+2) Fairly important	31	19.7
+3) Not very important	85	54.1
+
+Missing	801
+TOTAL	157	100.0
+
+78) TIMEDMND
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE NOT BEEN INTERESTED OR ACTIVE IN THE LDS CHURCH AS A GENERAL RULE: How important would you say was each of the following reasons why the LDS Church has failed to keep your interest? -- The church made too many demands on my time
+
+	TOTAL	%
+1) Very important	28	18.5
+2) Fairly important	45	29.8
+3) Not very important	78	51.7
+
+Missing	807
+TOTAL	151	100.0
+
+79) MONYDMND
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE NOT BEEN INTERESTED OR ACTIVE IN THE LDS CHURCH AS A GENERAL RULE: How important would you say was each of the following reasons why the LDS Church has failed to keep your interest? -- The church made too many demands on my money
+
+	TOTAL	%
+1) Very important	32	22.4
+2) Fairly important	40	28.0
+3) Not very important	71	49.7
+
+Missing	815
+TOTAL	143	100.0
+
+80) SPOUSENM
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE NOT BEEN INTERESTED OR ACTIVE IN THE LDS CHURCH AS A GENERAL RULE: How important would you say was each of the following reasons why the LDS Church has failed to keep your interest? -- My spouse is a devout member of another faith, and my family harmony might not be as great if I were active in the LDS Church.
+
+	TOTAL	%
+1) Very important	19	16.4
+2) Fairly important	7	6.0
+3) Not very important	90	77.6
+
+Missing	842
+TOTAL	116	100.0
+
+81) OFFNDLDS
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE NOT BEEN INTERESTED OR ACTIVE IN THE LDS CHURCH AS A GENERAL RULE: How important would you say was each of the following reasons why the LDS Church has failed to keep your interest? -- Some LDS people seem offended when I participate because they know I don't go along with everything the Church teaches
+
+	TOTAL	%
+1) Very important	31	21.1
+2) Fairly important	33	22.4
+3) Not very important	83	56.5
+
+Missing	811
+TOTAL	147	100.0
+
+82) WRKSCHED
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE NOT BEEN INTERESTED OR ACTIVE IN THE LDS CHURCH AS A GENERAL RULE: How important would you say was each of the following reasons why the LDS Church has failed to keep your interest? -- My work schedule has prevented me from being more active in the LDS Church
+
+	TOTAL	%
+1) Very important	56	33.3
+2) Fairly important	37	22.0
+3) Not very important	75	44.6
+
+Missing	790
+TOTAL	168	100.0
+
+83) TCHGOFFS
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE NOT BEEN INTERESTED OR ACTIVE IN THE LDS CHURCH AS A GENERAL RULE: How important would you say was each of the following reasons why the LDS Church has failed to keep your interest? -- Some of the teachings of the LDS Church strike me as offensive or unacceptable, so I think it would be wrong for me to be more active
+
+	TOTAL	%
+1) Very important	55	37.4
+2) Fairly important	28	19.0
+3) Not very important	64	43.5
+
+Missing	811
+TOTAL	147	100.0
+
+84) LEADHYP
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE NOT BEEN INTERESTED OR ACTIVE IN THE LDS CHURCH AS A GENERAL RULE: How important would you say was each of the following reasons why the LDS Church has failed to keep your interest? -- I have found too many LDS leaders or members to be hypocritical, unkind, or self-righteous
+
+	TOTAL	%
+1) Very important	89	53.3
+2) Fairly important	44	26.3
+3) Not very important	34	20.4
+
+Missing	791
+TOTAL	167	100.0
+
+85) OTHRORG
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE NOT BEEN INTERESTED OR ACTIVE IN THE LDS CHURCH AS A GENERAL RULE: How important would you say was each of the following reasons why the LDS Church has failed to keep your interest? -- I find that my time can be more valuably spent in civic, fraternal, or professional organizations than in the LDS Church
+
+	TOTAL	%
+1) Very important	28	19.3
+2) Fairly important	19	13.1
+3) Not very important	98	67.6
+
+Missing	813
+TOTAL	145	100.0
+
+86) NOREINVL
+ASKED ONLY OF THOSE RESPONDENTS WHO HAVE NOT BEEN INTERESTED OR ACTIVE IN THE LDS CHURCH AS A GENERAL RULE: How important would you say was each of the following reasons why the LDS Church has failed to keep your interest? -- No particular reason; I just got away from the church at one time and never got involved again
+
+	TOTAL	%
+1) Very important	46	33.3
+2) Fairly important	33	23.9
+3) Not very important	59	42.8
+
+Missing	820
+TOTAL	138	100.0
+
+87) INACTYR
+If you have not been actively participating in the LDS Church, about how long has this been the case?
+
+	TOTAL	%
+1) For less than a year	10	5.1
+2) For 1 or 2 years	13	6.6
+3) Between 2 and 5 years	29	14.6
+4) Between 5 and 10 years	43	21.7
+5) More than 10 years	103	52.0
+
+Missing	760
+TOTAL	198	100.0
+
+88) AGEINACT
+At about what age would you say your active interest in the LDS Church ceased?
+
+	TOTAL	%
+1) Before the age of 12	4	2.1
+2) Between 12 and 16 yrs. of age	26	13.7
+3) Between 16 and 20 yrs. of age	61	32.1
+4) Between 20 and 25 years	39	20.5
+5) Between 25 and 30 years	14	7.4
+6) Since the age of 30	46	24.2
+
+Missing	768
+TOTAL	190	100.0
+
+89) MBROTRDN
+Do you now consider yourself definitely a member of another denomination? If "Yes," would you mind telling me which denomination?
+
+	TOTAL	%
+1) Yes	8	4.0
+2) No	194	96.0
+
+Missing	756
+TOTAL	202	100.0
+
+90) JEWSCHOS
+Next I would like to know your opinion about certain doctrines or teachings, some of which are taught by the LDS Church, and some are not. Please indicate how you feel about each by circling the appropriate number. -- The Jews are considered by God as especially chosen and blessed
+
+	TOTAL	%
+1) Definitely true	423	47.5
+2) Probably true	153	17.2
+3) Probably not true	84	9.4
+4) Definitely not true	76	8.5
+5) Don't know	154	17.3
+
+Missing	68
+TOTAL	890	100.0
+
+91) JESUSDIV
+Next I would like to know your opinion about certain doctrines or teachings, some of which are taught by the LDS Church, and some are not. Please indicate how you feel about each by circling the appropriate number. -- Jesus is the Divine Son of God and was literally and actually born of a virgin
+
+	TOTAL	%
+1) Definitely true	793	85.2
+2) Probably true	62	6.7
+3) Probably not true	21	2.3
+4) Definitely not true	30	3.2
+5) Don't know	25	2.7
+
+Missing	27
+TOTAL	931	100.0
+
+92) CURSCAIN
+Next I would like to know your opinion about certain doctrines or teachings, some of which are taught by the LDS Church, and some are not. Please indicate how you feel about each by circling the appropriate number. -- Because of the wickedness of Cain and other forefathers of the Negroes, these people carry the mark of a black skin and the curse of perpetual inferiority
+
+	TOTAL	%
+1) Definitely true	356	39.2
+2) Probably true	140	15.4
+3) Probably not true	97	10.7
+4) Definitely not true	213	23.5
+5) Don't know	102	11.2
+
+Missing	50
+TOTAL	908	100.0
+
+93) DEVLREAL
+Next I would like to know your opinion about certain doctrines or teachings, some of which are taught by the LDS Church, and some are not. Please indicate how you feel about each by circling the appropriate number. -- The Devil actually exists as a real person of spirit
+
+	TOTAL	%
+1) Definitely true	694	75.6
+2) Probably true	79	8.6
+3) Probably not true	30	3.3
+4) Definitely not true	54	5.9
+5) Don't know	61	6.6
+
+Missing	40
+TOTAL	918	100.0
+
+94) PRSPROPH
+Next I would like to know your opinion about certain doctrines or teachings, some of which are taught by the LDS Church, and some are not. Please indicate how you feel about each by circling the appropriate number. -- There is only one man at a time authorized to be God's spokesman and prophet to the world, and today that man is the President of the LDS Church
+
+	TOTAL	%
+1) Definitely true	707	76.5
+2) Probably true	47	5.1
+3) Probably not true	40	4.3
+4) Definitely not true	82	8.9
+5) Don't know	48	5.2
+
+Missing	34
+TOTAL	924	100.0
+
+95) PSTHNEG
+Next I would like to know your opinion about certain doctrines or teachings, some of which are taught by the LDS Church, and some are not. Please indicate how you feel about each by circling the appropriate number. -- It is the will of God at present that the priesthood be withheld from Negroes
+
+	TOTAL	%
+1) Definitely true	690	74.8
+2) Probably true	64	6.9
+3) Probably not true	38	4.1
+4) Definitely not true	57	6.2
+5) Don't know	73	7.9
+
+Missing	36
+TOTAL	922	100.0
+
+96) LDSIRL
+Next I would like to know your opinion about certain doctrines or teachings, some of which are taught by the LDS Church, and some are not. Please indicate how you feel about each by circling the appropriate number. -- Most Latter-Day Saints are literal descendants of one or more of the ancient Israelite tribes
+
+	TOTAL	%
+1) Definitely true	622	68.1
+2) Probably true	126	13.8
+3) Probably not true	36	3.9
+4) Definitely not true	36	3.9
+5) Don't know	94	10.3
+
+Missing	44
+TOTAL	914	100.0
+
+97) GODBODY
+Next I would like to know your opinion about certain doctrines or teachings, some of which are taught by the LDS Church, and some are not. Please indicate how you feel about each by circling the appropriate number. -- God is a real, glorified person with a body of flesh and bone
+
+	TOTAL	%
+1) Definitely true	736	79.7
+2) Probably true	45	4.9
+3) Probably not true	27	2.9
+4) Definitely not true	46	5.0
+5) Don't know	70	7.6
+
+Missing	34
+TOTAL	924	100.0
+
+98) JEWSUNFG
+Next I would like to know your opinion about certain doctrines or teachings, some of which are taught by the LDS Church, and some are not. Please indicate how you feel about each by circling the appropriate number. -- The Jews can never be forgiven for what they did to Jesus until they accept Him as the true Messiah
+
+	TOTAL	%
+1) Definitely true	364	41.0
+2) Probably true	158	17.8
+3) Probably not true	80	9.0
+4) Definitely not true	122	13.8
+5) Don't know	163	18.4
+
+Missing	71
+TOTAL	887	100.0
+
+99) JSSAEGOD
+Next I would like to know your opinion about certain doctrines or teachings, some of which are taught by the LDS Church, and some are not. Please indicate how you feel about each by circling the appropriate number. -- Joseph Smith saw God the Father and Jesus Christ face to face
+
+	TOTAL	%
+1) Definitely true	742	80.3
+2) Probably true	62	6.7
+3) Probably not true	31	3.4
+4) Definitely not true	41	4.4
+5) Don't know	48	5.2
+
+Missing	34
+TOTAL	924	100.0
+
+100) LIFAFDTH
+Next I would like to know your opinion about certain doctrines or teachings, some of which are taught by the LDS Church, and some are not. Please indicate how you feel about each by circling the appropriate number. -- There is a life after death, where we shall be held accountable before God for the sins and failures of our moral lives
+
+	TOTAL	%
+1) Definitely true	789	84.4
+2) Probably true	74	7.9
+3) Probably not true	14	1.5
+4) Definitely not true	18	1.9
+5) Don't know	40	4.3
+
+Missing	23
+TOTAL	935	100.0
+
+101) JEWSPNSH
+Next I would like to know your opinion about certain doctrines or teachings, some of which are taught by the LDS Church, and some are not. Please indicate how you feel about each by circling the appropriate number. -- The reason that the Jews have had so much trouble is because the Lord has been punishing them for their unfaithfulness
+
+	TOTAL	%
+1) Definitely true	191	21.2
+2) Probably true	148	16.5
+3) Probably not true	134	14.9
+4) Definitely not true	187	20.8
+5) Don't know	239	26.6
+
+Missing	59
+TOTAL	899	100.0
+
+102) CHOSPEPL
+Who do you think are God's "Chosen People" today? (You may check more than one):
+
+	TOTAL	%
+1) The Americans	17	2.7
+2) The Christians	24	3.8
+3) The Jews	13	2.0
+4) The Latter-Day Saints	371	58.2
+5) None in particular	143	22.4
+6) Other (please write in):	5	0.8
+7) Don't know	64	10.0
+
+Missing	321
+TOTAL	637	100.0
+
+103) CRUXJES
+Which one of the following groups do you think was most responsible for crucifying Christ?
+
+	TOTAL	%
+1) The Romans	150	15.8
+2) The Greeks	1	0.1
+3) The Jews	637	67.1
+4) The Christians	4	0.4
+5) Other (please write in):	13	1.4
+6) None of these	20	2.1
+7) Don't know	124	13.1
+
+Missing	9
+TOTAL	949	100.0
+
+104) DNYJESUS
+Which one of Christ's disciples denied Him three times?
+
+	TOTAL	%
+1) James	4	0.4
+2) Judas	141	14.9
+3) Paul	5	0.5
+5) Peter	697	73.4
+7) Don't know	102	10.7
+
+Missing	9
+TOTAL	949	100.0
+
+105) BKOFACTS
+Would you say that the Book of Acts was an eye-witness account of the ministry of Jesus?
+
+	TOTAL	%
+1) Yes	192	20.3
+2) No	267	28.2
+3) Don't know	488	51.5
+
+Missing	11
+TOTAL	947	100.0
+
+106) LIETOAPL
+Which of the following Biblical characters do you remember as the one who lied to the Apostles?
+
+	TOTAL	%
+1) Judas	340	35.8
+2) Martha	2	0.2
+3) Rahab	8	0.8
+4) Ananias	129	13.6
+5) Don't recall	471	49.6
+
+Missing	8
+TOTAL	950	100.0
+
+107) MOROFTHR
+Which of the following would you say was the father of Moroni?
+
+	TOTAL	%
+1) Alma	24	2.5
+2) Nephi	57	6.0
+3) Mormon	659	69.4
+4) Don't recall	209	22.0
+
+Missing	9
+TOTAL	949	100.0
+
+108) HELAMAN
+Whom do you think of as the leader of the famous "Army of the 2,000 Youths?"
+
+	TOTAL	%
+1) Lot Smith	2	0.2
+2) Porter Rockwell	9	0.9
+3) Nephi	11	1.2
+4) Helaman	431	45.4
+5) Moroni	32	3.4
+6) Don't recall	465	48.9
+
+Missing	8
+TOTAL	950	100.0
+
+109) CAPTMORO
+Which character do you associate most closely with the inscription, "In memory of our God, our religion, and freedom, and our peace, our wives, and our children?"
+
+	TOTAL	%
+1) Joseph Smith	57	6.0
+2) Moroni	100	10.5
+3) Brigham Young	121	12.7
+4) Lehi	11	1.2
+5) Samuel Adams	26	2.7
+6) Don't recall	636	66.9
+
+Missing	7
+TOTAL	951	100.0
+
+110) DARWIN
+Do you tend to agree or disagree with Darwin's theory of evolution, which maintains that human beings evolved from lower forms of animal life over many millions of years?
+
+	TOTAL	%
+1) The theory is almost certainly true	41	4.4
+2) The theory is probably true	127	13.5
+3) The theory is probably false	148	15.7
+4) The theory could not possibly be true	541	57.5
+5) I don't really know or I haven't thought much about this before	84	8.9
+
+Missing	17
+TOTAL	941	100.0
+
+111) POLICY
+What do you think an LDS Church member ought to do when faced with a certain Church policy or program with which he does not fully agree?
+
+	TOTAL	%
+1) Accept it on faith and do his best to carry it out	406	44.3
+2) Refuse to go along as a matter of individual conscience	70	7.6
+3) Express himself frankly to his leaders and then go along wit	386	42.1
+4) Gather support for his position from other Church members and then petition the leaders to change the policy	26	2.8
+5) Other (please explain briefly):	29	3.2
+
+Missing	41
+TOTAL	917	100.0
+
+112) ATHSTBOK
+As you probably know, there are a number of people in this country who claim they do not believe in God. Suppose a man publicly admitted he did not believe in God. Would you agree or disagree that the following actions should be taken against him? -- A book he wrote should be removed from the public library
+
+	TOTAL	%
+1) Agree	72	8.7
+2) Disagree	754	91.3
+
+Missing	132
+TOTAL	826	100.0
+
+113) ATHSTTCH
+As you probably know, there are a number of people in this country who claim they do not believe in God. Suppose a man publicly admitted he did not believe in God. Would you agree or disagree that the following actions should be taken against him? -- He should not be allowed to teach in a private university
+
+	TOTAL	%
+1) Agree	192	23.0
+2) Disagree	644	77.0
+
+Missing	122
+TOTAL	836	100.0
+
+114) ATHSPSKL
+As you probably know, there are a number of people in this country who claim they do not believe in God. Suppose a man publicly admitted he did not believe in God. Would you agree or disagree that the following actions should be taken against him? -- He should not be allowed to teach in a public high school
+
+	TOTAL	%
+1) Agree	289	34.4
+2) Disagree	551	65.6
+
+Missing	118
+TOTAL	840	100.0
+
+115) ATHSBELF
+As you probably know, there are a number of people in this country who claim they do not believe in God. Suppose a man publicly admitted he did not believe in God . Would you agree or disagree that the following actions should be taken against him? -- He should not be allowed to preach his beliefs to others
+
+	TOTAL	%
+1) Agree	125	15.1
+2) Disagree	704	84.9
+
+Missing	129
+TOTAL	829	100.0
+
+116) ATHPUBOF
+As you probably know, there are a number of people in this country who claim they do not believe in God. Suppose a man publicly admitted he did not believe in God . Would you agree or disagree that the following actions should be taken against him? -- He should not be allowed to hold public office
+
+	TOTAL	%
+1) Agree	128	15.7
+2) Disagree	688	84.3
+
+Missing	142
+TOTAL	816	100.0
+
+117) ATHNOCTK
+As you probably know, there are a number of people in this country who claim they do not believe in God. Suppose a man publicly admitted he did not believe in God. Would you agree or disagree that the following actions should be taken against him? -- Church members should be counseled to avoid contact with him
+
+	TOTAL	%
+1) Agree	251	29.0
+2) Disagree	615	71.0
+
+Missing	92
+TOTAL	866	100.0
+
+118) SAVRPRES
+Listed below are certain inner experiences or feelings that people have reported having. Since you have been an adult, have you ever had any of these experiences? If so, how sure are you about it? (Please indicate below) -- A feeling that you were somehow in the presence of God or the Savior
+
+	TOTAL	%
+1) Yes, I'm sure I have	156	18.2
+2) Yes, I think that I have	174	20.3
+3) No, I don't think so	527	61.5
+
+Missing	101
+TOTAL	857	100.0
+
+119) HGTESTMY
+Listed below are certain inner experiences or feelings that people have reported having. Since you have been an adult, have you ever had any of these experiences? If so, how sure are you about it? (Please indicate below) -- A sure testimony, through the Holy Ghost, of the truth of the Restored Gospel
+
+	TOTAL	%
+1) Yes, I'm sure I have	487	54.0
+2) Yes, I think that I have	208	23.1
+3) No, I don't think so	207	22.9
+
+Missing	56
+TOTAL	902	100.0
+
+120) PNSHBYGD
+Listed below are certain inner experiences or feelings that people have reported having. Since you have been an adult, have you ever had any of these experiences? If so, how sure are you about it? (Please indicate below) -- A feeling that you were being punished by the Lord for something you had done
+
+	TOTAL	%
+1) Yes, I'm sure I have	111	12.8
+2) Yes, I think that I have	182	21.0
+3) No, I don't think so	575	66.2
+
+Missing	90
+TOTAL	868	100.0
+
+121) TEMPTED
+Listed below are certain inner experiences or feelings that people have reported having. Since you have been an adult, have you ever had any of these experiences? If so, how sure are you about it? (Please indicate below) -- A feeling of being tempted by the Devil
+
+	TOTAL	%
+1) Yes, I'm sure I have	426	48.1
+2) Yes, I think that I have	254	28.7
+3) No, I don't think so	205	23.2
+
+Missing	73
+TOTAL	885	100.0
+
+122) SPRIVOID
+Listed below are certain inner experiences or feelings that people have reported having. Since you have been an adult, have you ever had any of these experiences? If so, how sure are you about it? (Please indicate below) -- A feeling that there was some sort of spiritual void or lack in your life
+
+	TOTAL	%
+1) Yes, I'm sure I have	224	26.0
+2) Yes, I think that I have	243	28.2
+3) No, I don't think so	395	45.8
+
+Missing	96
+TOTAL	862	100.0
+
+123) JSIMPSTR
+Listed below are certain inner experiences or feelings that people have reported having. Since you have been an adult, have you ever had any of these experiences? If so, how sure are you about it? (Please indicate below) -- A feeling that Joseph Smith was an imposter
+
+	TOTAL	%
+1) Yes, I'm sure I have	41	4.7
+2) Yes, I think that I have	56	6.4
+3) No, I don't think so	780	88.9
+
+Missing	81
+TOTAL	877	100.0
+
+124) SWVISIT
+Listed below are certain inner experiences or feelings that people have reported having. Since you have been an adult, have you ever had any of these experiences? If so, how sure are you about it? (Please indicate below) -- A feeling that you were being visited by a departed relative or other personage from the Spirit World
+
+	TOTAL	%
+1) Yes, I'm sure I have	118	13.3
+2) Yes, I think that I have	99	11.1
+3) No, I don't think so	671	75.6
+
+Missing	70
+TOTAL	888	100.0
+
+125) ETERMARG
+Listed below are certain inner experiences or feelings that people have reported having. Since you have been an adult, have you ever had any of these experiences? If so, how sure are you about it? (Please indicate below) -- A feeling that you wanted an eternal marriage in the Temple
+
+	TOTAL	%
+1) Yes, I'm sure I have	697	77.9
+2) Yes, I think that I have	86	9.6
+3) No, I don't think so	112	12.5
+
+Missing	63
+TOTAL	895	100.0
+
+126) PSTHADV
+Listed below are certain inner experiences or feelings that people have reported having. Since you have been an adult, have you ever had any of these experiences? If so, how sure are you about it? (Please indicate below) -- A feeling that you wanted to advance in the priesthood
+
+	TOTAL	%
+1) Yes, I'm sure I have	308	65.3
+2) Yes, I think that I have	70	14.8
+3) No, I don't think so	94	19.9
+
+Missing	486
+TOTAL	472	100.0
+
+127) ANSPRAYR
+Listed below are certain inner experiences or feelings that people have reported having. Since you have been an adult, have you ever had any of these experiences? If so, how sure are you about it? (Please indicate below) -- A feeling that you had received a direct answer to a prayer
+
+	TOTAL	%
+1) Yes, I'm sure I have	650	71.2
+2) Yes, I think that I have	142	15.6
+3) No, I don't think so	121	13.3
+
+Missing	45
+TOTAL	913	100.0
+
+128) GONOEXST
+Listed below are certain inner experiences or feelings that people have reported having. Since you have been an adult, have you ever had any of these experiences? If so, how sure are you about it? (Please indicate below) -- A feeling that perhaps God did not really exist
+
+	TOTAL	%
+1) Yes, I'm sure I have	33	32.4
+2) Yes, I think that I have	69	67.6
+
+Missing	856
+TOTAL	102	100.0
+
+129) RESSHOAX
+Listed below are certain inner experiences or feelings that people have reported having. Since you have been an adult, have you ever had any of these experiences? If so, how sure are you about it? (Please indicate below) -- A feeling that perhaps the bodily resurrection of Jesus was a hoax
+
+	TOTAL	%
+1) Yes, I'm sure I have	29	50.0
+2) Yes, I think that I have	29	50.0
+
+Missing	900
+TOTAL	58	100.0
+
+130) SMOKE
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Smoking tobacco
+
+	TOTAL	%
+1) Very serious	358	38.9
+2) Fairly serious	296	32.1
+3) Not very serious	174	18.9
+4) Scarcely matters at all	83	9.0
+5) Can't decide	10	1.1
+
+Missing	37
+TOTAL	921	100.0
+
+131) TITHING
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Paying an incomplete tithing
+
+	TOTAL	%
+1) Very serious	415	46.3
+2) Fairly serious	282	31.5
+3) Not very serious	112	12.5
+4) Scarcely matters at all	61	6.8
+5) Can't decide	26	2.9
+
+Missing	62
+TOTAL	896	100.0
+
+132) PREMRSEX
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Having sex relations before marriage
+
+	TOTAL	%
+1) Very serious	708	77.3
+2) Fairly serious	127	13.9
+3) Not very serious	42	4.6
+4) Scarcely matters at all	22	2.4
+5) Can't decide	17	1.9
+
+Missing	42
+TOTAL	916	100.0
+
+133) COFFEE
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Drinking coffee
+
+	TOTAL	%
+1) Very serious	213	23.3
+2) Fairly serious	300	32.9
+3) Not very serious	249	27.3
+4) Scarcely matters at all	141	15.4
+5) Can't decide	10	1.1
+
+Missing	45
+TOTAL	913	100.0
+
+134) BEER
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Drinking beer
+
+	TOTAL	%
+1) Very serious	313	34.2
+2) Fairly serious	306	33.4
+3) Not very serious	184	20.1
+4) Scarcely matters at all	101	11.0
+5) Can't decide	11	1.2
+
+Missing	43
+TOTAL	915	100.0
+
+135) HARDLIQR
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Drinking hard liquor such as whiskey
+
+	TOTAL	%
+1) Very serious	462	50.3
+2) Fairly serious	250	27.2
+3) Not very serious	122	13.3
+4) Scarcely matters at all	77	8.4
+5) Can't decide	8	0.9
+
+Missing	39
+TOTAL	919	100.0
+
+136) ATNDSACR
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Poor attendance at sacrament service
+
+	TOTAL	%
+1) Very serious	375	41.3
+2) Fairly serious	336	37.0
+3) Not very serious	121	13.3
+4) Scarcely matters at all	60	6.6
+5) Can't decide	16	1.8
+
+Missing	50
+TOTAL	908	100.0
+
+137) LIEBSHP
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Withholding the truth from Bishop
+
+	TOTAL	%
+1) Very serious	524	58.7
+2) Fairly serious	213	23.9
+3) Not very serious	57	6.4
+4) Scarcely matters at all	69	7.7
+5) Can't decide	29	3.3
+
+Missing	66
+TOTAL	892	100.0
+
+138) TEA
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Drinking tea
+
+	TOTAL	%
+1) Very serious	211	23.3
+2) Fairly serious	307	34.0
+3) Not very serious	249	27.5
+4) Scarcely matters at all	126	13.9
+5) Can't decide	11	1.2
+
+Missing	54
+TOTAL	904	100.0
+
+139) IREGPRAY
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Praying irregularly or not at all
+
+	TOTAL	%
+1) Very serious	457	50.1
+2) Fairly serious	314	34.4
+3) Not very serious	81	8.9
+4) Scarcely matters at all	41	4.5
+5) Can't decide	19	2.1
+
+Missing	46
+TOTAL	912	100.0
+
+140) SUDAYREC
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Going to ball games or movies on Sunday
+
+	TOTAL	%
+1) Very serious	224	24.7
+2) Fairly serious	327	36.1
+3) Not very serious	214	23.6
+4) Scarcely matters at all	118	13.0
+5) Can't decide	23	2.5
+
+Missing	52
+TOTAL	906	100.0
+
+141) WEDNOLDS
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Marrying someone who is not LDS
+
+	TOTAL	%
+1) Very serious	332	36.6
+2) Fairly serious	275	30.3
+3) Not very serious	144	15.9
+4) Scarcely matters at all	132	14.5
+5) Can't decide	25	2.8
+
+Missing	50
+TOTAL	908	100.0
+
+142) NAMEVAIN
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Taking the Lord's name in vain
+
+	TOTAL	%
+1) Very serious	653	70.8
+2) Fairly serious	190	20.6
+3) Not very serious	44	4.8
+4) Scarcely matters at all	29	3.1
+5) Can't decide	6	0.7
+
+Missing	36
+TOTAL	922	100.0
+
+143) BRTHCTRL
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Using artificial birth control measures
+
+	TOTAL	%
+1) Very serious	150	16.8
+2) Fairly serious	130	14.6
+3) Not very serious	256	28.7
+4) Scarcely matters at all	271	30.4
+5) Can't decide	85	9.5
+
+Missing	66
+TOTAL	892	100.0
+
+144) SDAYSHOP
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Going shopping on Sunday
+
+	TOTAL	%
+1) Very serious	143	15.8
+2) Fairly serious	284	31.4
+3) Not very serious	299	33.1
+4) Scarcely matters at all	158	17.5
+5) Can't decide	20	2.2
+
+Missing	54
+TOTAL	904	100.0
+
+145) ADULTERY
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Having sex relations after marriage with someone other than spouse
+
+	TOTAL	%
+1) Very serious	864	93.0
+2) Fairly serious	40	4.3
+3) Not very serious	6	0.6
+4) Scarcely matters at all	11	1.2
+5) Can't decide	8	0.9
+
+Missing	29
+TOTAL	929	100.0
+
+146) BLKDISCR
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Discriminating against Negroes in housing, employment, etc.
+
+	TOTAL	%
+1) Very serious	277	30.7
+2) Fairly serious	321	35.6
+3) Not very serious	153	17.0
+4) Scarcely matters at all	77	8.5
+5) Can't decide	73	8.1
+
+Missing	57
+TOTAL	901	100.0
+
+147) SUNDAYTV
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Watching ball games on TV on Sunday
+
+	TOTAL	%
+1) Very serious	57	6.3
+2) Fairly serious	166	18.5
+3) Not very serious	376	41.8
+4) Scarcely matters at all	268	29.8
+5) Can't decide	32	3.6
+
+Missing	59
+TOTAL	899	100.0
+
+148) UNWTHSAC
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Partaking of the sacrament unworthily
+
+	TOTAL	%
+1) Very serious	541	59.6
+2) Fairly serious	243	26.8
+3) Not very serious	54	5.9
+4) Scarcely matters at all	39	4.3
+5) Can't decide	31	3.4
+
+Missing	50
+TOTAL	908	100.0
+
+149) NOGENLGY
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Neglecting genealogical research
+
+	TOTAL	%
+1) Very serious	264	29.3
+2) Fairly serious	311	34.6
+3) Not very serious	162	18.0
+4) Scarcely matters at all	125	13.9
+5) Can't decide	38	4.2
+
+Missing	58
+TOTAL	900	100.0
+
+150) JEWDISCR
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Discriminating against Jews
+
+	TOTAL	%
+1) Very serious	394	44.4
+2) Fairly serious	281	31.6
+3) Not very serious	98	11.0
+4) Scarcely matters at all	58	6.5
+5) Can't decide	57	6.4
+
+Missing	70
+TOTAL	888	100.0
+
+151) FALSDOCT
+Most of us probably feel that failure to live up to the Lord's commandments will have an adverse effect on our standing in His eyes, but that weakness in some commandments might be more serious than weakness in others. By circling the appropriate numbers below, please indicate how serious you believe each of the following to be -- Preaching doctrines not approved by the Church authorities
+
+	TOTAL	%
+1) Very serious	697	76.3
+2) Fairly serious	89	9.7
+3) Not very serious	32	3.5
+4) Scarcely matters at all	58	6.4
+5) Can't decide	37	4.1
+
+Missing	45
+TOTAL	913	100.0
+
+152) LOUDMTGS
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- LDS services and meetings are often noisy and irreverent
+
+	TOTAL	%
+1) Definitely agree	392	42.4
+2) Agree somewhat	361	39.0
+3) Disagree somewhat	108	11.7
+4) Disagree strongly	55	5.9
+5) Uncertain	9	1.0
+
+Missing	33
+TOTAL	925	100.0
+
+153) UNFRNMTG
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- LDS gatherings tend to be cold and unfriendly
+
+	TOTAL	%
+1) Definitely agree	34	3.7
+2) Agree somewhat	126	13.7
+3) Disagree somewhat	211	23.0
+4) Disagree strongly	542	59.1
+5) Uncertain	4	0.4
+
+Missing	41
+TOTAL	917	100.0
+
+154) NAIVETCH
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- Many teachings of the LDS Church are rather naive an intellectually hard to accept
+
+	TOTAL	%
+1) Definitely agree	92	10.1
+2) Agree somewhat	150	16.4
+3) Disagree somewhat	128	14.0
+4) Disagree strongly	525	57.6
+5) Uncertain	17	1.9
+
+Missing	46
+TOTAL	912	100.0
+
+155) RSTRCTCH
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- The teachings of the LDS Church try to place too many unnecessary restrictions on people's thoughts and actions
+
+	TOTAL	%
+1) Definitely agree	90	9.9
+2) Agree somewhat	139	15.2
+3) Disagree somewhat	116	12.7
+4) Disagree strongly	548	60.1
+5) Uncertain	19	2.1
+
+Missing	46
+TOTAL	912	100.0
+
+156) AUTHORIT
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- The LDS Church is undemocratic and authoritarian
+
+	TOTAL	%
+1) Definitely agree	103	11.5
+2) Agree somewhat	110	12.3
+3) Disagree somewhat	99	11.1
+4) Disagree strongly	528	59.2
+5) Uncertain	52	5.8
+
+Missing	66
+TOTAL	892	100.0
+
+157) DMDMONEY
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- The LDS Church makes too many demands on people's money
+
+	TOTAL	%
+1) Definitely agree	101	11.1
+2) Agree somewhat	230	25.3
+3) Disagree somewhat	169	18.6
+4) Disagree strongly	388	42.7
+5) Uncertain	21	2.3
+
+Missing	49
+TOTAL	909	100.0
+
+158) NAROWMND
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- LDS Church members tend to be narrow-minded and unduly critical
+
+	TOTAL	%
+1) Definitely agree	134	14.7
+2) Agree somewhat	323	35.3
+3) Disagree somewhat	179	19.6
+4) Disagree strongly	266	29.1
+5) Uncertain	12	1.3
+
+Missing	44
+TOTAL	914	100.0
+
+159) ACTPRSHR
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- The LDS Church puts too much pressure on members to get them to take part in services and activities
+
+	TOTAL	%
+1) Definitely agree	84	9.2
+2) Agree somewhat	216	23.7
+3) Disagree somewhat	243	26.7
+4) Disagree strongly	360	39.5
+5) Uncertain	8	0.9
+
+Missing	47
+TOTAL	911	100.0
+
+160) GOVTCTRL
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- The leaders of the LDS Church ought to speak out more often against the modern trends toward socialism and government control
+
+	TOTAL	%
+1) Definitely agree	159	17.7
+2) Agree somewhat	206	22.9
+3) Disagree somewhat	187	20.8
+4) Disagree strongly	271	30.2
+5) Uncertain	75	8.4
+
+Missing	60
+TOTAL	898	100.0
+
+161) CLTRPOOR
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- LDS Church programs and activities tend to be culturally and intellectually mediocre
+
+	TOTAL	%
+1) Definitely agree	65	7.3
+2) Agree somewhat	108	12.2
+3) Disagree somewhat	193	21.8
+4) Disagree strongly	464	52.3
+5) Uncertain	57	6.4
+
+Missing	71
+TOTAL	887	100.0
+
+162) DMNDTIME
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- The LDS Church makes too many demands on its people's time
+
+	TOTAL	%
+1) Definitely agree	95	10.5
+2) Agree somewhat	293	32.3
+3) Disagree somewhat	204	22.5
+4) Disagree strongly	293	32.3
+5) Uncertain	21	2.3
+
+Missing	52
+TOTAL	906	100.0
+
+163) CONSRVAT
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- The LDS Church is unduly conservative and unable to change with the times
+
+	TOTAL	%
+1) Definitely agree	71	7.9
+2) Agree somewhat	106	11.9
+3) Disagree somewhat	172	19.2
+4) Disagree strongly	506	56.6
+5) Uncertain	39	4.4
+
+Missing	64
+TOTAL	894	100.0
+
+164) DECRPROF
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- Participation in the LDS Church tends to interfere with success or progress in one's occupation or profession
+
+	TOTAL	%
+1) Definitely agree	20	2.2
+2) Agree somewhat	56	6.2
+3) Disagree somewhat	132	14.6
+4) Disagree strongly	675	74.4
+5) Uncertain	24	2.6
+
+Missing	51
+TOTAL	907	100.0
+
+165) SPKOUTSC
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- The leaders of the LDS Church ought to speak out more often against the modern social evils of discrimination, inequality & war
+
+	TOTAL	%
+1) Definitely agree	147	16.3
+2) Agree somewhat	225	24.9
+3) Disagree somewhat	191	21.2
+4) Disagree strongly	243	26.9
+5) Uncertain	96	10.6
+
+Missing	56
+TOTAL	902	100.0
+
+166) ANNOYMIS
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- The LDS Church tends to annoy people by sending representatives to their homes too often
+
+	TOTAL	%
+1) Definitely agree	72	7.8
+2) Agree somewhat	201	21.8
+3) Disagree somewhat	219	23.8
+4) Disagree strongly	389	42.2
+5) Uncertain	40	4.3
+
+Missing	37
+TOTAL	921	100.0
+
+167) FAMYINTF
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- The activities and programs of the LDS Church tend to interfere with family life
+
+	TOTAL	%
+1) Definitely agree	38	4.1
+2) Agree somewhat	180	19.7
+3) Disagree somewhat	171	18.7
+4) Disagree strongly	510	55.7
+5) Uncertain	17	1.9
+
+Missing	42
+TOTAL	916	100.0
+
+168) UNECMTGS
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- The LDS Church tends to have too many unnecessary meetings, even for its active members
+
+	TOTAL	%
+1) Definitely agree	154	16.8
+2) Agree somewhat	331	36.0
+3) Disagree somewhat	180	19.6
+4) Disagree strongly	222	24.2
+5) Uncertain	32	3.5
+
+Missing	39
+TOTAL	919	100.0
+
+169) IGRSOCPB
+Following are some criticisms which are sometimes heard about the LDS Church. For each of them, please indicate, by circling the appropriate number, to what extent you agree. -- The LDS Church puts too much emphasis on preparing for the next world; the real mission of religion lies in society, in areas such as civil rights, peace, and poverty
+
+	TOTAL	%
+1) Definitely agree	80	8.8
+2) Agree somewhat	118	12.9
+3) Disagree somewhat	141	15.4
+4) Disagree strongly	545	59.6
+5) Uncertain	30	3.3
+
+Missing	44
+TOTAL	914	100.0
+
+170) JEWSGIVE
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. Do you think this is true of Jews? -- Jews are rather generous and tend to give a great deal of money to charities
+
+	TOTAL	%
+1) Yes	203	24.6
+2) Somewhat	325	39.4
+3) No	296	35.9
+
+Missing	134
+TOTAL	824	100.0
+
+171) JEWHNSTY
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. Do you think this is true of Jews? -- Jews are more likely than others to engage in shady or questionable business practices
+
+	TOTAL	%
+1) Yes	94	11.4
+2) Somewhat	195	23.7
+3) No	535	64.9
+
+Missing	134
+TOTAL	824	100.0
+
+172) JEWOWNTV
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. Do you think this is true of Jews? -- The movie and television industries are pretty much run by the Jews
+
+	TOTAL	%
+1) Yes	369	45.1
+2) Somewhat	236	28.9
+3) No	213	26.0
+
+Missing	140
+TOTAL	818	100.0
+
+173) JEWCOMM
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. Do you think this is true of Jews? -- Jews are less likely than others to oppose Communism
+
+	TOTAL	%
+1) Yes	87	11.1
+2) Somewhat	67	8.5
+3) No	631	80.4
+
+Missing	173
+TOTAL	785	100.0
+
+174) JEWISREL
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. Do you think this is true of Jews? -- Jews, in general, are inclined to be more loyal to Israel than to America
+
+	TOTAL	%
+1) Yes	239	29.7
+2) Somewhat	215	26.7
+3) No	351	43.6
+
+Missing	153
+TOTAL	805	100.0
+
+175) JEWARB
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. Do you think this is true of Jews? -- American Jews are trying to influence our government to support Israel against the Arabs
+
+	TOTAL	%
+1) Yes	396	50.5
+2) Somewhat	239	30.5
+3) No	149	19.0
+
+Missing	174
+TOTAL	784	100.0
+
+176) JEWSWORK
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. Do you think this is true of Jews? -- Jews are ambitious and work hard to succeed
+
+	TOTAL	%
+1) Yes	744	87.5
+2) Somewhat	88	10.4
+3) No	18	2.1
+
+Missing	108
+TOTAL	850	100.0
+
+177) JEWGREAT
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. Do you think this is true of Jews? -- An unusually large number of the world's greatest men have been Jews
+
+	TOTAL	%
+1) Yes	339	42.5
+2) Somewhat	232	29.1
+3) No	226	28.4
+
+Missing	161
+TOTAL	797	100.0
+
+178) JEWBANK
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. Do you think this is true of Jews? -- International banking tends to be dominated by Jews
+
+	TOTAL	%
+1) Yes	277	37.5
+2) Somewhat	249	33.7
+3) No	213	28.8
+
+Missing	219
+TOTAL	739	100.0
+
+179) JEWBETTR
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. Do you think this is true of Jews? -- Jews tend to believe that they are better than other people
+
+	TOTAL	%
+1) Yes	234	29.4
+2) Somewhat	237	29.8
+3) No	324	40.8
+
+Missing	163
+TOTAL	795	100.0
+
+180) IFJEWGV
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. If this were true of Jews how would it make you feel toward them? -- Jews are rather generous and tend to give a great deal of money to charities
+
+	TOTAL	%
+1) Friendly	463	56.9
+2) Unfriendly	29	3.6
+3) Neither	322	39.6
+
+Missing	144
+TOTAL	814	100.0
+
+181) IFJEWHST
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. If this were true of Jews how would it make you feel toward them? -- Jews are more likely than other to engage in shady or questionable business practices
+
+	TOTAL	%
+1) Friendly	67	8.6
+2) Unfriendly	421	54.0
+3) Neither	291	37.4
+
+Missing	179
+TOTAL	779	100.0
+
+182) IFJEWTV
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. If this were true of Jews how would it make you feel toward them? -- The movie and television industries are pretty much run by the Jews
+
+	TOTAL	%
+1) Friendly	176	22.4
+2) Unfriendly	32	4.1
+3) Neither	577	73.5
+
+Missing	173
+TOTAL	785	100.0
+
+183) IFJEWCOM
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. If this were true of Jews how would it make you feel toward them? -- Jews are less likely than others to oppose Communism
+
+	TOTAL	%
+1) Friendly	203	27.5
+2) Unfriendly	256	34.6
+3) Neither	280	37.9
+
+Missing	219
+TOTAL	739	100.0
+
+184) IFJEWISR
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. If this were true of Jews how would it make you feel toward them? -- Jews, in general, are inclined to be more loyal to Israel than to America
+
+	TOTAL	%
+1) Friendly	134	17.7
+2) Unfriendly	166	21.9
+3) Neither	458	60.4
+
+Missing	200
+TOTAL	758	100.0
+
+185) IFJEWARB
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. If this were true of Jews how would it make you feel toward them? -- American Jews are trying to influence our government to support Israel against the Arabs
+
+	TOTAL	%
+1) Friendly	185	24.8
+2) Unfriendly	79	10.6
+3) Neither	483	64.7
+
+Missing	211
+TOTAL	747	100.0
+
+186) IFJEWWRK
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. If this were true of Jews how would it make you feel toward them? -- Jews are ambitious and work hard to succeed
+
+	TOTAL	%
+1) Friendly	523	65.8
+2) Unfriendly	7	0.9
+3) Neither	265	33.3
+
+Missing	163
+TOTAL	795	100.0
+
+187) IFJEWGRT
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. If this were true of Jews how would it make you feel toward them? -- An unusually large number of the world's greatest men have been Jews
+
+	TOTAL	%
+1) Friendly	355	47.6
+2) Unfriendly	3	0.4
+3) Neither	388	52.0
+
+Missing	212
+TOTAL	746	100.0
+
+188) IFJEWBNK
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. If this were true of Jews how would it make you feel toward them? -- International banking tends to be dominated by Jews
+
+	TOTAL	%
+1) Friendly	167	23.6
+2) Unfriendly	40	5.6
+3) Neither	502	70.8
+
+Missing	249
+TOTAL	709	100.0
+
+189) IFJEWBTR
+Let's turn first to relations between Christians and Jews. There is some disagreement as to what Jews are like. Below are some things people have said at one time or another about Jews. For each statement, I would like you to do two things: FIRST, read the statement and decide whether you tend to think it is true of Jews; then put your answer in Column A in the usual manner. SECOND, whether or not you think the statement is true of Jews, please indicate in Column B how you would feel if it were true. If this were true of Jews how would it make you feel toward them? -- Jews tend to believe that they are better than other people
+
+	TOTAL	%
+1) Friendly	99	13.2
+2) Unfriendly	201	26.9
+3) Neither	448	59.9
+
+Missing	210
+TOTAL	748	100.0
+
+190) NOPOLTIK
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner - Churches should stick to religion and not concern themselves with national social and political issues
+
+	TOTAL	%
+1) Agree strongly	167	18.4
+2) Agree somewhat	193	21.2
+3) Disagree somewhat	223	24.5
+4) Disagree strongly	300	33.0
+5) No opinion	26	2.9
+
+Missing	49
+TOTAL	909	100.0
+
+191) LIVFRTDY
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- Nowadays a person has to live pretty much for today and let tomorrow take care of itself
+
+	TOTAL	%
+1) Agree strongly	57	6.3
+2) Agree somewhat	122	13.5
+3) Disagree somewhat	139	15.3
+4) Disagree strongly	576	63.5
+5) No opinion	13	1.4
+
+Missing	51
+TOTAL	907	100.0
+
+192) WARCERT
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- Until the world accepts the Gospel, wars are probably inevitable
+
+	TOTAL	%
+1) Agree strongly	530	57.9
+2) Agree somewhat	194	21.2
+3) Disagree somewhat	63	6.9
+4) Disagree strongly	72	7.9
+5) No opinion	56	6.1
+
+Missing	43
+TOTAL	915	100.0
+
+193) ALLINUN
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- All nations, regardless of their political systems, ought to be admitted to the United Nations -- even Red China
+
+	TOTAL	%
+1) Agree strongly	112	12.4
+2) Agree somewhat	149	16.5
+3) Disagree somewhat	127	14.1
+4) Disagree strongly	402	44.6
+5) No opinion	112	12.4
+
+Missing	56
+TOTAL	902	100.0
+
+194) SELFCARE
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- The best way to improve world conditions is for each man to take care of his own corner of the vineyard
+
+	TOTAL	%
+1) Agree strongly	278	30.7
+2) Agree somewhat	259	28.6
+3) Disagree somewhat	157	17.3
+4) Disagree strongly	186	20.5
+5) No opinion	26	2.9
+
+Missing	52
+TOTAL	906	100.0
+
+195) UNIONBAD
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- As they are run now, labor unions probably do the country more harm than good
+
+	TOTAL	%
+1) Agree strongly	390	42.2
+2) Agree somewhat	305	33.0
+3) Disagree somewhat	123	13.3
+4) Disagree strongly	70	7.6
+5) No opinion	37	4.0
+
+Missing	33
+TOTAL	925	100.0
+
+196) SELFDPND
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- These days a person doesn't really know on whom he can count
+
+	TOTAL	%
+1) Agree strongly	180	19.7
+2) Agree somewhat	348	38.1
+3) Disagree somewhat	201	22.0
+4) Disagree strongly	163	17.8
+5) No opinion	22	2.4
+
+Missing	44
+TOTAL	914	100.0
+
+197) USASPTUN
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- The United Nations ought to have the strong support of the United States
+
+	TOTAL	%
+1) Agree strongly	523	57.3
+2) Agree somewhat	219	24.0
+3) Disagree somewhat	70	7.7
+4) Disagree strongly	55	6.0
+5) No opinion	45	4.9
+
+Missing	46
+TOTAL	912	100.0
+
+198) FORFREDM
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- When I hear of people who are deprived of freedom and justice, I really get involved; I find myself planning how I can help them
+
+	TOTAL	%
+1) Agree strongly	128	14.5
+2) Agree somewhat	340	38.5
+3) Disagree somewhat	169	19.2
+4) Disagree strongly	55	6.2
+5) No opinion	190	21.5
+
+Missing	76
+TOTAL	882	100.0
+
+199) COMYTHRT
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- Communism is as much a threat inside the United States as outside
+
+	TOTAL	%
+1) Agree strongly	646	70.0
+2) Agree somewhat	171	18.5
+3) Disagree somewhat	48	5.2
+4) Disagree strongly	43	4.7
+5) No opinion	15	1.6
+
+Missing	35
+TOTAL	923	100.0
+
+200) BIGCORPS
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- Big companies have too much power and control in the United States
+
+	TOTAL	%
+1) Agree strongly	232	25.5
+2) Agree somewhat	323	35.5
+3) Disagree somewhat	198	21.8
+4) Disagree strongly	102	11.2
+5) No opinion	55	6.0
+
+Missing	48
+TOTAL	910	100.0
+
+201) KIDDANGE
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- It is hardly fair to bring children into the world the way things look for the future
+
+	TOTAL	%
+1) Agree strongly	44	4.8
+2) Agree somewhat	125	13.6
+3) Disagree somewhat	144	15.6
+4) Disagree strongly	585	63.5
+5) No opinion	23	2.5
+
+Missing	37
+TOTAL	921	100.0
+
+202) MODVIEWS
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- The LDS and other churches must adapt themselves and their teachings to the findings of science and modern developments
+
+	TOTAL	%
+1) Agree strongly	142	15.5
+2) Agree somewhat	174	19.0
+3) Disagree somewhat	97	10.6
+4) Disagree strongly	451	49.3
+5) No opinion	50	5.5
+
+Missing	44
+TOTAL	914	100.0
+
+203) WICHHUNT
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- The House Committee on Un-American Activities ought to be encouraged in the work it is doing
+
+	TOTAL	%
+1) Agree strongly	441	48.7
+2) Agree somewhat	205	22.7
+3) Disagree somewhat	72	8.0
+4) Disagree strongly	39	4.3
+5) No opinion	148	16.4
+
+Missing	53
+TOTAL	905	100.0
+
+204) MEDCARE
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- It is only right and just for the government to provide medical care for the aged
+
+	TOTAL	%
+1) Agree strongly	252	27.5
+2) Agree somewhat	270	29.4
+3) Disagree somewhat	226	24.6
+4) Disagree strongly	142	15.5
+5) No opinion	27	2.9
+
+Missing	41
+TOTAL	917	100.0
+
+205) GSPLCHNG
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- There is little that the Church can do about the problems of society, except to try to change people's lives individually through the Gospel
+
+	TOTAL	%
+1) Agree strongly	386	42.0
+2) Agree somewhat	241	26.3
+3) Disagree somewhat	152	16.6
+4) Disagree strongly	119	13.0
+5) No opinion	20	2.2
+
+Missing	40
+TOTAL	918	100.0
+
+206) USSOCLST
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- In the past 25 years or so, this country has moved dangerously close to socialism
+
+	TOTAL	%
+1) Agree strongly	398	43.4
+2) Agree somewhat	286	31.2
+3) Disagree somewhat	93	10.1
+4) Disagree strongly	53	5.8
+5) No opinion	87	9.5
+
+Missing	41
+TOTAL	917	100.0
+
+207) JBIRCHOK
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- All things considered, the John Birch Society probably does more good than harm
+
+	TOTAL	%
+1) Agree strongly	126	13.7
+2) Agree somewhat	237	25.8
+3) Disagree somewhat	121	13.2
+4) Disagree strongly	204	22.2
+5) No opinion	229	25.0
+
+Missing	41
+TOTAL	917	100.0
+
+208) AVGMAN
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- In spite of what some people say, the lot of the average man is getting worse, not better
+
+	TOTAL	%
+1) Agree strongly	102	11.2
+2) Agree somewhat	184	20.2
+3) Disagree somewhat	239	26.2
+4) Disagree strongly	344	37.7
+5) No opinion	44	4.8
+
+Missing	45
+TOTAL	913	100.0
+
+209) NOSKLPRY
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- Public schools should not conduct prayers for children; this is the responsibility of the home and the church
+
+	TOTAL	%
+1) Agree strongly	155	16.8
+2) Agree somewhat	147	15.9
+3) Disagree somewhat	202	21.9
+4) Disagree strongly	388	42.0
+5) No opinion	32	3.5
+
+Missing	34
+TOTAL	924	100.0
+
+210) VIETNAM
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- The best way to end the war in Viet Nam is to apply enough military pressure to make the enemy give up, even if this means risking war with Russia or China
+
+	TOTAL	%
+1) Agree strongly	297	32.8
+2) Agree somewhat	184	20.3
+3) Disagree somewhat	114	12.6
+4) Disagree strongly	143	15.8
+5) No opinion	167	18.5
+
+Missing	53
+TOTAL	905	100.0
+
+211) PUBLKOFF
+Following is a list of statements which are made from time to time on current social and political issues. Please indicate your opinion of each in the usual manner -- There's no use writing to public officials, because they are not really interested in the problems of the average man
+
+	TOTAL	%
+1) Agree strongly	77	8.4
+2) Agree somewhat	181	19.7
+3) Disagree somewhat	254	27.7
+4) Disagree strongly	372	40.6
+5) No opinion	33	3.6
+
+Missing	41
+TOTAL	917	100.0
+
+212) BLAKDUMB
+As you undoubtedly know, race relations between Negroes and Whites have been very much in the news of late. Below are several statements which people have made regarding race relations. Please read each one and indicate in the usual way to what extent you agree or disagree with it -- It's too bad, but in general Negroes seem to have inferior intelligence when compared to Whites
+
+	TOTAL	%
+1) Agree strongly	129	14.1
+2) Agree somewhat	281	30.8
+3) Disagree somewhat	206	22.6
+4) Disagree strongly	258	28.3
+5) No opinion	39	4.3
+
+Missing	45
+TOTAL	913	100.0
+
+213) BLAKRTS
+As you undoubtedly know, race relations between Negroes and Whites have been very much in the news of late. Below are several statements which people have made regarding race relations. Please read each one and indicate in the usual way to what extent you agree or disagree with it -- Negroes ought to have the same rights and opportunities as others in society
+
+	TOTAL	%
+1) Agree strongly	511	55.8
+2) Agree somewhat	294	32.1
+3) Disagree somewhat	64	7.0
+4) Disagree strongly	28	3.1
+5) No opinion	19	2.1
+
+Missing	42
+TOTAL	916	100.0
+
+214) BLAKLDS
+As you undoubtedly know, race relations between Negroes and Whites have been very much in the news of late. Below are several statements which people have made regarding race relations. Please read each one and indicate in the usual way to what extent you agree or disagree with it -- It would probably be better for LDS Negroes to attend separate wards
+
+	TOTAL	%
+1) Agree strongly	38	4.2
+2) Agree somewhat	73	8.0
+3) Disagree somewhat	183	20.1
+4) Disagree strongly	543	59.6
+5) No opinion	74	8.1
+
+Missing	47
+TOTAL	911	100.0
+
+215) BLAKBAD
+As you undoubtedly know, race relations between Negroes and Whites have been very much in the news of late. Below are several statements which people have made regarding race relations. Please read each one and indicate in the usual way to what extent you agree or disagree with it -- It's a shame that Negroes are so immoral
+
+	TOTAL	%
+1) Agree strongly	119	13.5
+2) Agree somewhat	139	15.7
+3) Disagree somewhat	130	14.7
+4) Disagree strongly	296	33.5
+5) No opinion	200	22.6
+
+Missing	74
+TOTAL	884	100.0
+
+216) BLAKSEGR
+As you undoubtedly know, race relations between Negroes and Whites have been very much in the news of late. Below are several statements which people have made regarding race relations. Please read each one and indicate in the usual way to what extent you agree or disagree with it -- It would probably be better all around if Negroes and Whites went to separate schools
+
+	TOTAL	%
+1) Agree strongly	113	12.3
+2) Agree somewhat	171	18.6
+3) Disagree somewhat	219	23.8
+4) Disagree strongly	369	40.2
+5) No opinion	47	5.1
+
+Missing	39
+TOTAL	919	100.0
+
+217) BLAKLAZY
+As you undoubtedly know, race relations between Negroes and Whites have been very much in the news of late. Below are several statements which people have made regarding race relations. Please read each one and indicate in the usual way to what extent you agree or disagree with it -- Most Negro neighborhoods are run down because Negroes simply don't take care of property
+
+	TOTAL	%
+1) Agree strongly	279	30.4
+2) Agree somewhat	336	36.6
+3) Disagree somewhat	152	16.5
+4) Disagree strongly	102	11.1
+5) No opinion	50	5.4
+
+Missing	39
+TOTAL	919	100.0
+
+218) BLAKPSTH
+As you undoubtedly know, race relations between Negroes and Whites have been very much in the news of late. Below are several statements which people have made regarding race relations. Please read each one and indicate in the usual way to what extent you agree or disagree with it -- I wish that Negroes could be given the priesthood in the LDS Church
+
+	TOTAL	%
+1) Agree strongly	102	11.2
+2) Agree somewhat	113	12.5
+3) Disagree somewhat	81	8.9
+4) Disagree strongly	290	32.0
+5) No opinion	321	35.4
+
+Missing	51
+TOTAL	907	100.0
+
+219) BLAKMOVE
+Suppose you owned your home and several Negro families moved into your block. Frankly, would you be apt to move elsewhere if you could get a fair price for your house?
+
+	TOTAL	%
+1) Would almost certainly move	162	17.9
+2) Would probably move	298	32.9
+3) Probably wouldn't move	338	37.3
+4) Almost certainly wouldn't move	107	11.8
+
+Missing	53
+TOTAL	905	100.0
+
+220) FRAIGRPS
+First, I would like to know something about the organizations and clubs in which you participate. Below are listed various kinds of organizations. In the blank space to the left of each kind of organization, please write in the approximate number of hours per week you spend in its activities. If none, mark "0." In those cases where you do not belong to such an organization, mark an "X." -- FRATERNAL GROUPS (such as Elks, Masons, and women's auxiliaries to these, etc.); or SERVICE CLUBS (such as Rotary, Chamber of Commerce, etc.); or VETERANS' GROUPS (such as American Legion, VFW, etc.)
+
+	TOTAL	%
+0) 0 HRS PER WEEK	40	18.4
+1) 1 HR PER WEEK	77	35.5
+2) 2 HRS PER WEEK	46	21.2
+3) 3 HRS PER WEEK	24	11.1
+4) 4 HRS PER WEEK	15	6.9
+5) 5 HRS PER WEEK	7	3.2
+6) 6 HRS PER WEEK	2	0.9
+8) 8 HRS PER WEEK	1	0.5
+9) 9 HRS PER WEEK	5	2.3
+
+Missing	741
+TOTAL	217	100.0
+
+221) POLITGRP
+First, I would like to know something about the organizations and clubs in which you participate. Below are listed various kinds of organizations. In the blank space to the left of each kind of organization, please write in the approximate number of hours per week you spend in its activities. If none, mark "0." In those cases where you do not belong to such an organization, mark an "X." -- POLITICAL GROUPS (such as Republican or Democrat clubs, political study or education groups, political action groups, voter leagues, etc.)
+
+	TOTAL	%
+0) 0 HRS PER WEEK	68	39.3
+1) 1 HR PER WEEK	75	43.4
+2) 2 HRS PER WEEK	22	12.7
+3) 3 HRS PER WEEK	5	2.9
+5) 5 HRS PER WEEK	3	1.7
+
+Missing	785
+TOTAL	173	100.0
+
+222) LABUNION
+First, I would like to know something about the organizations and clubs in which you participate. Below are listed various kinds of organizations. In the blank space to the left of each kind of organization, please write in the approximate number of hours per week you spend in its activities. If none, mark "0." In those cases where you do not belong to such an organization, mark an "X." -- LABOR UNIONS (such as ITU, Teamsters, Carpenters, etc.)
+
+	TOTAL	%
+0) 0 HRS PER WEEK	56	62.9
+1) 1 HR PER WEEK	19	21.3
+2) 2 HRS PER WEEK	7	7.9
+3) 3 HRS PER WEEK	1	1.1
+5) 5 HRS PER WEEK	2	2.2
+6) 6 HRS PER WEEK	1	1.1
+9) 9 HRS PER WEEK	3	3.4
+
+Missing	869
+TOTAL	89	100.0
+
+223) SPORTGRP
+First, I would like to know something about the organizations and clubs in which you participate. Below are listed various kinds of organizations. In the blank space to the left of each kind of organization, please write in the approximate number of hours per week you spend in its activities. If none, mark "0." In those cases where you do not belong to such an organization, mark an "X." -- SPORTS GROUPS (such as bowling leagues, or sports-sponsoring groups, such as Downtown Quarterbacks, etc.)
+
+	TOTAL	%
+0) 0 HRS PER WEEK	18	8.2
+1) 1 HR PER WEEK	52	23.6
+2) 2 HRS PER WEEK	47	21.4
+3) 3 HRS PER WEEK	39	17.7
+4) 4 HRS PER WEEK	21	9.5
+5) 5 HRS PER WEEK	13	5.9
+6) 6 HRS PER WEEK	11	5.0
+7) 7 HRS PER WEEK	1	0.5
+8) 8 HRS PER WEEK	4	1.8
+9) 9 HRS PER WEEK	14	6.4
+
+Missing	738
+TOTAL	220	100.0
+
+224) SKOOLGRP
+First, I would like to know something about the organizations and clubs in which you participate. Below are listed various kinds of organizations. In the blank space to the left of each kind of organization, please write in the approximate number of hours per week you spend in its activities. If none, mark "0." In those cases where you do not belong to such an organization, mark an "X." -- SCHOOL SERVICE GROUPS (such as PTA, alumni associations, etc.)
+
+	TOTAL	%
+0) 0 HRS PER WEEK	106	32.7
+1) 1 HR PER WEEK	172	53.1
+2) 2 HRS PER WEEK	28	8.6
+3) 3 HRS PER WEEK	7	2.2
+4) 4 HRS PER WEEK	4	1.2
+5) 5 HRS PER WEEK	4	1.2
+6) 6 HRS PER WEEK	1	0.3
+8) 8 HRS PER WEEK	1	0.3
+9) 9 HRS PER WEEK	1	0.3
+
+Missing	634
+TOTAL	324	100.0
+
+225) HOBBYGRP
+First, I would like to know something about the organizations and clubs in which you participate. Below are listed various kinds of organizations. In the blank space to the left of each kind of organization, please write in the approximate number of hours per week you spend in its activities. If none, mark "0." In those cases where you do not belong to such an organization, mark an "X." -- HOBBY OR GARDEN ORGANIZATIONS (such as stamp or coin clubs, flower clubs, pet clubs, etc.)
+
+	TOTAL	%
+0) 0 HRS PER WEEK	23	19.0
+1) 1 HR PER WEEK	36	29.8
+2) 2 HRS PER WEEK	31	25.6
+3) 3 HRS PER WEEK	8	6.6
+4) 4 HRS PER WEEK	13	10.7
+5) 5 HRS PER WEEK	3	2.5
+6) 6 HRS PER WEEK	1	0.8
+8) 8 HRS PER WEEK	1	0.8
+9) 9 HRS PER WEEK	5	4.1
+
+Missing	837
+TOTAL	121	100.0
+
+226) LITERGRP
+First, I would like to know something about the organizations and clubs in which you participate. Below are listed various kinds of organizations. In the blank space to the left of each kind of organization, please write in the approximate number of hours per week you spend in its activities. If none, mark "0." In those cases where you do not belong to such an organization, mark an "X." -- LITERARY, ART, DISCUSSION, OR STUDY CLUBS, ETC. (such as American Medical Association, PBK, Bar Association, History Societies, etc.)
+
+	TOTAL	%
+0) 0 HRS PER WEEK	21	9.6
+1) 1 HR PER WEEK	108	49.5
+2) 2 HRS PER WEEK	41	18.8
+3) 3 HRS PER WEEK	18	8.3
+4) 4 HRS PER WEEK	8	3.7
+5) 5 HRS PER WEEK	11	5.0
+6) 6 HRS PER WEEK	4	1.8
+7) 7 HRS PER WEEK	1	0.5
+8) 8 HRS PER WEEK	2	0.9
+9) 9 HRS PER WEEK	4	1.8
+
+Missing	740
+TOTAL	218	100.0
+
+227) PROFGRPS
+First, I would like to know something about the organizations and clubs in which you participate. Below are listed various kinds of organizations. In the blank space to the left of each kind of organization, please write in the approximate number of hours per week you spend in its activities. If none, mark "0." In those cases where you do not belong to such an organization, mark an "X." -- PROFESSIONAL OR ACADEMIC SOCIETIES (such as American Medical Association, PBK, Bar Association, History Societies, etc.)
+
+	TOTAL	%
+0) 0 HRS PER WEEK	49	24.0
+1) 1 HR PER WEEK	92	45.1
+2) 2 HRS PER WEEK	31	15.2
+3) 3 HRS PER WEEK	14	6.9
+4) 4 HRS PER WEEK	11	5.4
+5) 5 HRS PER WEEK	5	2.5
+9) 9 HRS PER WEEK	2	1.0
+
+Missing	754
+TOTAL	204	100.0
+
+228) TVTIME
+Next, please estimate the average amount of time per day you spend watching TV:
+
+	TOTAL	%
+1) Between 1 and 2 hours	376	41.0
+2) 2 to 3 hours	189	20.6
+3) 3 to 5 hours	93	10.1
+4) 5 to 8 hours	27	2.9
+5) More than 8 hours	2	0.2
+6) Rarely or not at all	231	25.2
+
+Missing	40
+TOTAL	918	100.0
+
+229) OTHRENTR
+How about other forms of entertainment outside the home, such as "going out" to dinner, dancing, movies, theatres, etc.? (Not including church-sponsored activities) (Please denote approximate hours per week)
+
+	TOTAL	%
+1) 1 to 5 hours	590	65.7
+2) 6 to 10 hours	91	10.1
+3) More than 10 hours	34	3.8
+4) Rarely or never	183	20.4
+
+Missing	60
+TOTAL	898	100.0
+
+230) HHOCCUP
+What is the occupation of the head of your family (or of the "breadwinner")? Now, looking at the list below, find the category which comes closest to fitting this occupation and check the appropriate item:
+
+	TOTAL	%
+1) Clerical and related workers (such as bookkeepers, mail carriers, shipping clerks, secretaries, ticket agents, telephone operators, office machine operators etc.)	62	7.3
+2) Craftsmen, foremen, and related workers (such as bakers, carpenters, masons, shoemakers, electricians, cement workers, mechanics, machinists, painters, etc.)	147	17.4
+3) Laborers (such as stevedores, lumbermen, teamsters, gardeners, unskilled construction workers, car washers, gas station attendants etc.)	34	4.0
+4) Operatives and related workers (such as delivery men, chauffeurs, laundry workers, factory workers, bus drivers, mine workers, motormen, meat cutters etc.)	28	3.3
+5) Private household workers (such as servants, laundresses, emloyed housekeepers etc.)	6	0.7
+6) Professional and technical workers (such as teachers, editors, dentists, clergymen, professors, doctors, lawyers, nurses, architects, librarians, social workers, public accountants, photographers, optometrists etc.)	256	30.3
+7) Proprietors, managers, and officals (such as public officals, buyers, floor managers, owners or operators of small business, credit managers, office managers, branch managers etc.)	174	20.6
+8) Sales workers (such as salesmen, insurance agents, real estate agents, stock and bond salesmen, news vendors etc.)	100	11.8
+9) Service workers (except domestic) (such as firemen, policemen, barbers, beauticians, custodians, waiters, ushers, practical nurses)	37	4.4
+10) Other (please specify):	2	0.2
+
+Missing	112
+TOTAL	846	100.0
+
+231) COMMSIZE
+What was the approximate size of the community in which you were raised?
+
+	TOTAL	%
+1) Raised on a farm	196	21.5
+2) A town of less than 2,500 persons (not a suburb of a large city)	178	19.5
+3) A town of up to 15,000 persons (not a suburb)	112	12.3
+4) A town of up to 50,000 persons (not a suburb)	48	5.3
+5) A city of up to 100,000 persons	70	7.7
+6) A city of 100,000 to 3000,000 persons	228	25.0
+7) A city of more than 300,000 but less than a million persons	37	4.1
+8) A city of a million or more persons	15	1.6
+9) A suburb of a city of up to about 300,000	17	1.9
+10) A suburb of a city of more than 300,000	12	1.3
+
+Missing	45
+TOTAL	913	100.0
+
+232) MNYTOLDS
+Please check the figure that comes closest to indicating the range of your family's total yearly contribution to the LDS Church:
+
+	TOTAL	%
+1) $50 or less	169	19.1
+2) $51 to $100	57	6.4
+3) $101 to $200	82	9.2
+4) $201 to $300	63	7.1
+5) $301 to $400	50	5.6
+6) $401 to $500	55	6.2
+7) $501 to $750	106	12.0
+8) $751 to $1,000	120	13.5
+9) $1,001 to $1,250	61	6.9
+10) $1,251 to $1,500	43	4.8
+11) $1,501 to $2,000	31	3.5
+12) Over $2,000	50	5.6
+
+Missing	71
+TOTAL	887	100.0
+
+233) MARSTAT
+What is your current marital status?
+
+	TOTAL	%
+1) Married	757	81.7
+2) Single	41	4.4
+3) Divorced	30	3.2
+4) Widowed	98	10.6
+
+Missing	32
+TOTAL	926	100.0
+
+234) SPOUSLDS
+IF YOU ARE NOW, OR HAVE EVER BEEN, MARRIED, PLEASE ANSWER THE QUESTIONS IN THE BOX BELOW; OTHERWISE SKIP TO THE NEXT REGULAR QUESTION (If you have been married more than once, answer for your most recent spouse) -- Does your spouse belong to the LDS Church? (Or, if you are not now married, did your spouse belong to the LDS Church?)
+
+	TOTAL	%
+1) Yes, LDS	781	89.9
+2) No, not LDS	88	10.1
+
+Missing	89
+TOTAL	869	100.0
+
+235) RELIGINT
+IF YOU ARE NOW, OR HAVE EVER BEEN, MARRIED, PLEASE ANSWER THE QUESTIONS IN THE BOX BELOW; OTHERWISE SKIP TO THE NEXT REGULAR QUESTION (If you have been married more than once, answer for your most recent spouse) -- Would you say that you (were) more interested or less interested in religion than is (was) your spouse?
+
+	TOTAL	%
+1) More interested than my spouse	225	26.3
+2) Less interested than my spouse	121	14.2
+3) Our interest in religion is (was) about the same	509	59.5
+
+Missing	103
+TOTAL	855	100.0
+
+236) SPOSCHRC
+IF YOU ARE NOW, OR HAVE EVER BEEN, MARRIED, PLEASE ANSWER THE QUESTIONS IN THE BOX BELOW; OTHERWISE SKIP TO THE NEXT REGULAR QUESTION (If you have been married more than once, answer for your most recent spouse) -- About how often does (did) your spouse attend Sunday services?
+
+	TOTAL	%
+1) Every week	383	45.2
+2) Nearly every week	166	19.6
+3) At least twice a month	52	6.1
+4) About once a month	33	3.9
+5) Several times a year	71	8.4
+6) Rarely or never	142	16.8
+
+Missing	111
+TOTAL	847	100.0
+
+237) NUMBKIDS
+IF YOU ARE NOW, OR HAVE EVER BEEN, MARRIED, PLEASE ANSWER THE QUESTIONS IN THE BOX BELOW; OTHERWISE SKIP TO THE NEXT REGULAR QUESTION (If you have been married more than once, answer for your most recent spouse) -- How many children do you have (Write in the number, if any):
+
+	TOTAL	%
+0) 	25	3.1
+1) 	103	12.6
+2) 	174	21.3
+3) 	191	23.3
+4) 	137	16.7
+5) 	96	11.7
+6) 	50	6.1
+7) 	24	2.9
+8) 	7	0.9
+9) 	11	1.3
+
+Missing	140
+TOTAL	818	100.0
+
+238) BOTHWORK
+IF YOU ARE NOW, OR HAVE EVER BEEN, MARRIED, PLEASE ANSWER THE QUESTIONS IN THE BOX BELOW; OTHERWISE SKIP TO THE NEXT REGULAR QUESTION (If you have been married more than once, answer for your most recent spouse) -- Do both husband and wife in your family work outside the home (at least 20 Hrs/wk)?
+
+	TOTAL	%
+1) Yes; both employed 20 Hrs/wk or more	238	31.3
+2) No; only husband is employed	485	63.8
+3) No; only wife is employed	33	4.3
+4) Other (explain)	4	0.5
+
+Missing	198
+TOTAL	760	100.0
+
+239) FEELLDS
+IF YOU ARE NOW, OR HAVE EVER BEEN, MARRIED, PLEASE ANSWER THE QUESTIONS IN THE BOX BELOW; OTHERWISE SKIP TO THE NEXT REGULAR QUESTION (If you have been married more than once, answer for your most recent spouse) -- How would you describe the feelings of your spouse toward the LDS Church?
+
+	TOTAL	%
+1) Quite favorable toward the Church in general	704	83.1
+2) Not very favorable toward the Church	45	5.3
+3) Rather hostile toward the Church	25	3.0
+4) No particular feelings about the Church one way or the other	42	5.0
+5) Not sure about my spouse's feelings toward the Church	27	3.2
+6) Other (explain briefly):	4	0.5
+
+Missing	111
+TOTAL	847	100.0
+
+240) YEARMARR
+IF YOU ARE NOW, OR HAVE EVER BEEN, MARRIED, PLEASE ANSWER THE QUESTIONS IN THE BOX BELOW; OTHERWISE SKIP TO THE NEXT REGULAR QUESTION (If you have been married more than once, answer for your most recent spouse) -- About how long have you been married to your current spouse? (if now married)
+
+	TOTAL	%
+1) 2 years or less	52	6.5
+2) 2 to 5 years	64	8.1
+3) Between 5 and 10 years	82	10.3
+4) Between 10 and 15 years	82	10.3
+5) Between 15 and 20 years	105	13.2
+6) More than 20 years	410	51.6
+
+Missing	163
+TOTAL	795	100.0
+
+241) TEMPMARR
+IF YOU ARE NOW, OR HAVE EVER BEEN, MARRIED, PLEASE ANSWER THE QUESTIONS IN THE BOX BELOW; OTHERWISE SKIP TO THE NEXT REGULAR QUESTION (If you have been married more than once, answer for your most recent spouse) -- Were you married in the Temple?
+
+	TOTAL	%
+1) Yes, originally	428	50.4
+2) Yes, sometime after a civil marriage	180	21.2
+3) No, not so far	241	28.4
+
+Missing	109
+TOTAL	849	100.0
+
+242) YEARGONE
+IF YOU ARE NOW, OR HAVE EVER BEEN, MARRIED, PLEASE ANSWER THE QUESTIONS IN THE BOX BELOW; OTHERWISE SKIP TO THE NEXT REGULAR QUESTION (If you have been married more than once, answer for your most recent spouse) If you were once married but are no longer, about how long have you been without your spouse?
+
+	TOTAL	%
+1) Six months or less	8	6.6
+2) Between six months and a year	9	7.4
+3) 1 to 2 years	12	9.8
+4) 2 to 5 years	23	18.9
+5) More than 5 years	70	57.4
+
+Missing	836
+TOTAL	122	100.0
+
+243) YEAREDUC
+How much formal education have you had? (Check answer which comes nearest):
+
+	TOTAL	%
+1) Some grade school	10	1.1
+2) Finished grade school	37	3.9
+3) Some high school	93	9.9
+4) Finished high school	175	18.7
+5) Trade or technical training beyond high school	100	10.7
+6) Some college or university work	260	27.7
+7) Finished college (BS or BA degree)	112	12.0
+8) Attended graduate school or professional school after college	73	7.8
+9) MA, LLB, or other advanced professional degree	44	4.7
+10) Doctoral degree (Ph.D., M.D., etc.)	33	3.5
+
+Missing	21
+TOTAL	937	100.0
+
+244) YRSEMIN
+Please indicate about how many of your high school years you regularly attended Seminary:
+
+	TOTAL	%
+1) 3 years or more	283	32.9
+2) 1 or 2 years	178	20.7
+3) none at all	400	46.5
+
+Missing	97
+TOTAL	861	100.0
+
+245) MAJORCOL
+IF YOU ATTENDED COLLEGE OR UNIVERSITY, PLEASE ANSWER THE QUESTIONS IN THE BOX BELOW; OTHERWISE, SKIP TO THE NEXT REGULAR QUESTION -- During your latest (most recent) college or university work, what was your major field of interest or specialization?
+
+	TOTAL	%
+1) Life sciences (includng biology, zoology, botany, medicine, etc.)	63	12.6
+2) Physical sciences (including chemistry, physics, astronomy, geology, etc.)	39	7.8
+3) Social sciences (sociology, political science, anthropology, psychology, economics, etc.)	63	12.6
+4) History	6	1.2
+5) Mathematics	18	3.6
+6) Business or commerce	109	21.8
+7) Education	97	19.4
+8) Religion or philosophy	3	0.6
+9) General liberal arts -- no particular specialization or major	38	7.6
+10) Arts (music, drama, painting, etc.)	33	6.6
+11) Language and literature (English, German, Spanish, etc.)	29	5.8
+12) Other (please explain or specify):	2	0.4
+
+Missing	458
+TOTAL	500	100.0
+
+246) LDSCOLL
+IF YOU ATTENDED COLLEGE OR UNIVERSITY, PLEASE ANSWER THE QUESTIONS IN THE BOX BELOW; OTHERWISE, SKIP TO THE NEXT REGULAR QUESTION -- About how much of your college or university training was at a Church (LDS) college or university?
+
+	TOTAL	%
+1) All at a church college or university	65	13.4
+2) Partly at a church college or university	87	17.9
+3) None at a church college or university	333	68.7
+
+Missing	473
+TOTAL	485	100.0
+
+247) INSTCLAS
+IF YOU ATTENDED COLLEGE OR UNIVERSITY, PLEASE ANSWER THE QUESTIONS IN THE BOX BELOW; OTHERWISE, SKIP TO THE NEXT REGULAR QUESTION -- During how many of your college years did you regularly participate in Institute classes and/or religion classes?
+
+	TOTAL	%
+1) 4 years or more	47	9.7
+2) 3 years	30	6.2
+3) 2 years	60	12.3
+4) 1 year	95	19.5
+5) Not at all	254	52.3
+
+Missing	472
+TOTAL	486	100.0
+
+248) FATHERED
+Please indicate how much formal education your father had (or your male guardian during childhood):
+
+	TOTAL	%
+1) Some grade school	170	19.1
+2) Finished grade school	165	18.5
+3) Some high school	154	17.3
+4) Finished high school	133	14.9
+5) Some college	150	16.8
+6) Finished college	60	6.7
+7) Did graduate work after college	22	2.5
+8) Earned 1 or more graduate degrees	37	4.2
+
+Missing	67
+TOTAL	891	100.0
+
+249) LDSCONTB
+In the list below, please indicate each of the various funds of the LDS Church to which you make regular contributions:
+
+	TOTAL	%
+1) Local ward budget	12	10.8
+2) Missionary fund	2	1.8
+3) Tithing	18	16.2
+4) Building fund	3	2.7
+5) Fast offering	72	64.9
+6) Welfare	1	0.9
+7) Other (explain):	3	2.7
+
+Missing	847
+TOTAL	111	100.0
+
+250) GENDER
+What is your sex?
+
+	TOTAL	%
+1) Male	460	48.9
+2) Female	481	51.1
+
+Missing	17
+TOTAL	941	100.0
+
+251) AGE
+What was your age on your last birthday? (Please choose the appropriate range below):
+
+	TOTAL	%
+1) 20 years of age or less	11	1.2
+2) Between 20 and 25	71	7.6
+3) Between 26 and 30	88	9.5
+4) Between 31 and 35	90	9.7
+5) Between 36 and 40	80	8.6
+6) Between 41 and 45	103	11.1
+7) Between 46 and 50	91	9.8
+8) Between 51 and 55	87	9.4
+9) Between 56 and 60	74	8.0
+10) 61 and over	235	25.3
+
+Missing	28
+TOTAL	930	100.0
+
+252) INCOME
+Please check the figure below that comes closest to your family's yearly income:
+
+	TOTAL	%
+1) $4,000 or less	146	16.6
+2) $5,000	75	8.5
+3) $6,000	59	6.7
+4) $7,000	78	8.9
+5) $8,000	76	8.7
+6) $9,000	61	6.9
+7) $10,000	100	11.4
+8) $11,000 to $15,000	149	17.0
+9) $15,000 to $20,000	65	7.4
+10) $20,000 to $25,000	33	3.8
+11) $35,000 to $50,000	31	3.5
+12) more than $50,000	5	0.6
+
+Missing	80
+TOTAL	878	100.0
+
+253) POLPARTY
+Politically, in which of the following categories would you place yourself?
+
+	TOTAL	%
+1) Liberal Democrat	57	6.4
+2) Moderate Democrat	151	17.0
+3) Moderate Republican	332	37.3
+4) Conservative Republican	180	20.2
+5) Independent	168	18.9
+6) Other (please explain):	1	0.1
+
+Missing	69
+TOTAL	889	100.0
+
+254) REGION
+In which state or region of the country were you mainly brought up?
+
+	TOTAL	%
+1) Utah	762	80.9
+2) California	15	1.6
+3) Idaho	49	5.2
+4) Arizona	5	0.5
+5) Other Western state	36	3.8
+6) Elsewhere in the U.S. (specify):	43	4.6
+7) Foreign country (specify):	32	3.4
+
+Missing	16
+TOTAL	942	100.0
+
+255) YEARHOME
+About how long have you lived in the State where you are now living?
+
+	TOTAL	%
+1) I have always lived in this State (except for brief periods in military service, missionary work, etc.)	548	58.9
+2) Less than one year	2	0.2
+3) 1 to 3 years	18	1.9
+4) 3 to 5 years	25	2.7
+5) 6 to 10 years	25	2.7
+6) more than 10 years	313	33.6
+
+Missing	27
+TOTAL	931	100.0
+
+256) PRNTACTV
+As you look back on your childhood family life, would you say that your parents were active participants in the LDS Church (generally speaking)?
+
+	TOTAL	%
+1) Yes, both parents were	548	58.9
+2) Father was but not mother	22	2.4
+3) Mother was but not father	169	18.2
+4) No, neither one was	119	12.8
+5) One parent was active in another Church	9	1.0
+6) Both parents were active in another Church	19	2.0
+7) Parents were not active in any Church	45	4.8
+
+Missing	27
+TOTAL	931	100.0
+
+257) PRNTTEMP
+Were your parents ever married in the Temple?
+
+	TOTAL	%
+1) Yes, before I was born	544	58.4
+2) Yes, after I was born but before I was 12	62	6.7
+3) Yes, but after I was in my teens or grown up	83	8.9
+4) No	243	26.1
+
+Missing	26
+TOTAL	932	100.0
+
+258) ORTHO
+Mormon orthodoxy index (additive)--Constructed with JESUSDIV, DEVLREAL, GODBODY, JSSAEGOD. See summary notes for further details on the construction of indices.
+
+	TOTAL	%
+1) LOW	153	16.0
+2) 	185	19.3
+3) HIGH	620	64.7
+
+TOTAL	958	100.0
+
+259) PARTIC
+Mormon particularism index--Constructed with PRSPROPH and CHOSPEPL (2 pts for Mormons only, 1 pt. For Mormons plus any others, and zero for any response without Mormons). See summary notes for further details on the construction of indices.
+
+	TOTAL	%
+1) LOW	82	8.6
+2) 	159	16.6
+3) HIGH	717	74.8
+
+TOTAL	958	100.0
+
+260) LIBERT
+Religious Libertarianism index--Constructed with ATHSTTCH, ATHSPSKL, ATHPUBOF, ATHNOCTK. See summary notes for further details on the construction of indices.
+
+	TOTAL	%
+1) LOW	182	19.0
+2) 	343	35.8
+3) HIGH	433	45.2
+
+TOTAL	958	100.0
+
+261) PROVIN
+Religious provincialism index--Constructed by adding ORTHO, PARTIC and LIBERT (reversed). See summary notes for further details on the construction of indices.
+
+	TOTAL	%
+1) LOW	175	18.3
+2) 	106	11.1
+3) 	294	30.7
+4) 	256	26.7
+5) HIGH	127	13.3
+
+TOTAL	958	100.0
+
+262) AFFINJ
+Religious affinity for Jews index--Constructed with JEWSCHOS, LDSIRL. See summary notes for further details on the construction of indices.
+
+	TOTAL	%
+1) LOW	167	17.4
+2) 	313	32.7
+3) HIGH	478	49.9
+
+TOTAL	958	100.0
+
+263) RHOSTJ
+Religious hostility toward Jews index--Constructed with JEWSUNFG, JEWSPNSH. See summary notes for further details on the construction of indices.
+
+	TOTAL	%
+1) LOW	405	42.3
+2) 	315	32.9
+3) HIGH	238	24.8
+
+TOTAL	958	100.0
+
+264) RHOSTB
+Religious hostility toward blacks--Constructed with CURSCAIN, PSTHNEG. See summary notes for further details on the construction of indices.
+
+	TOTAL	%
+1) LOW	185	19.3
+2) 	333	34.8
+3) HIGH	440	45.9
+
+TOTAL	958	100.0
+
+265) SECANTIS
+Secular anti-Semitism index--Constructed with JEWHNSTY, JEWISREL, JEWBETTR. See summary notes for further details on the construction of indices.
+
+	TOTAL	%
+0) LOW	146	15.2
+1) 	269	28.1
+2) 	285	29.7
+3) 	223	23.3
+4) HIGH	35	3.7
+
+TOTAL	958	100.0
+
+266) ABPREJ
+Anti-black prejudice index--Constructed with BLAKDUMB, BLAKBAD, BLAKLAZY. See summary notes for further details on the construction of indices.
+
+	TOTAL	%
+0) LOW	33	3.4
+1) 	463	48.3
+2) 	288	30.1
+3) HIGH	174	18.2
+
+TOTAL	958	100.0
+
+267) ABDISC
+Anti-black discrimination index--Constructed with BLAKLDS, BLAKSEGR, BLAKMOVE. See summary notes for further details on the construction of indices.
+
+	TOTAL	%
+1) LOW	327	35.3
+2) 	296	32.0
+3) 	202	21.8
+4) HIGH	101	10.9
+
+Missing	32
+TOTAL	926	100.0
+
+268) I-INCOME
+Please check the figure below that comes closest to your family's yearly income: (For use with on-line analysis)
+
+	TOTAL	%
+1) LT $4K	146	16.6
+2) $5K-$7K	212	24.1
+3) $8K-$10K	237	27.0
+4) $11K-$25K	247	28.1
+5) GT $35K	36	4.1
+
+Missing	80
+TOTAL	878	100.0
+
+269) I-SEX
+What is your sex? (For use with on-line analysis)
+
+	TOTAL	%
+1) Male	460	48.9
+2) Female	481	51.1
+
+Missing	17
+TOTAL	941	100.0
+
+270) I-MARITAL
+What is your current marital status? (For use with on-line analysis)
+
+	TOTAL	%
+1) Married	757	81.7
+2) Single	41	4.4
+3) Divorced	30	3.2
+4) Widowed	98	10.6
+
+Missing	32
+TOTAL	926	100.0
+
+271) I-EDUC
+How much formal education have you had? (Check answer which comes nearest): (Recoded for use with on-line analysis)
+
+	TOTAL	%
+1) LT HS	140	14.9
+2) HS Grad	175	18.7
+3) Some Coll	360	38.4
+4) Coll Grad	112	12.0
+5) Post Coll	150	16.0
+
+Missing	21
+TOTAL	937	100.0
+
+272) I-AGE
+ What was your age on your last birthday? (Please choose the appropriate range below): (Recoded for use with on-line analysis)
+
+	TOTAL	%
+1) LT 20	11	1.2
+2) 20-30	159	17.1
+3) 31-40	170	18.3
+4) 41-60	355	38.2
+5) 61+	235	25.3
+
+Missing	28
+TOTAL	930	100.0
+

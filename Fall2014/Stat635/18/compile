@@ -1,0 +1,5 @@
+#!/bin/bash
+sas mud.sas
+vi mud.lst
+pdflatex *.tex
+rm -f *-*.pdf *.log *.aux

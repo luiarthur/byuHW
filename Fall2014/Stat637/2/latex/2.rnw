@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{pgffor}
+\usepackage{amssymb}
+\usepackage{Sweave}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{appendix}
+\usepackage[UKenglish]{isodate} % for: \today
+\cleanlookdateon                % for: \today
+
+\def\wl{\par \vspace{\baselineskip}\noindent}
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}
+\def\endmyfig{\end{center}\end{figure}}
+%\def\prodl{\prod\limits_{i=1}^n}
+\def\suml{\sum\limits_{i=1}^n}
+\def\ds{\displaystyle}
+
+\begin{document}
+% my title:
+\begin{center}
+  \section*{\textbf{Stat637 Homework 3}
+    \footnote{https://github.com/luiarthur/Fall2014/blob/master/Stat637/2/sleep.R}
+  }  
+  \subsection*{\textbf{Arthur Lui}}
+  \subsection*{\noindent\today}
+\end{center}
+
+<<design,echo=F>>=
+  source("../sleep.R",chdir=T)
+@
+
+\section{Q1}
+\subsection{Estimates of $p$ and 95\% Confidence Intervals for Group 1}
+<<xtable1,results=tex,echo=F>>=
+  xtable(X1,digits=6)
+@
+
+\subsection{Estimates of $p$ and 95\% Confidence Intervals for Group 2}
+<<xtable2,results=tex,echo=F>>=
+  xtable(X2,digits=6)
+@
+
+\noindent
+The confidence intervals obtained using $p=.5$ and $\hat{p}$ are wider (more conservative).
+The confidence intervals obtained using $p=.5, \hat{p}, \text{and } \tilde{p}$ also
+sometimes extend beyond the interval $(0,1)$. 
+The confidence intervals for group 1 are all similar as $\hat{p}=.5$. But the confidence intervals for group 2 vary widely because the most conservative estimate
+of $p$, which is $.5$, is much less that $\hat{p}$, which is $.9$.
+I prefer the confidence interval obtained using $\eta$ because it does not exceed
+unity.\\
+
+\noindent
+It appears that drugs in Group 2 significantly increase sleeping at the $95\%$
+confidence level because the $95\%$ confidence intervals (excluding the one for 
+$p=.5$) are all above $.5$.\\
+
+
+\section{Q3}
+\noindent
+a) The model fit using the logit link has slightly higher residual deviance than 
+that using the probit link. But logit is easier to interpret, so I choose to use
+the logit link for fitting this model.\\
+
+\noindent
+b) The expected increase in log odds is .14486 for a one level increase in L1.
+   The coefficient is significant for predicting probability of remission at the
+   $.95\%$ confidence level (p-val = .01464).\\
+
+\noindent
+c) 26.07\\
+
+\noindent
+d) The 95\% confidence interval for the chance of remission given an L1 of 8 is
+   (0.01121483, 0.31924807). So, we are 95\% confident that the true chance of 
+   remission given an L1 of 8 is in between 0.01121483 and 0.31924807.
+
+\end{document}
+

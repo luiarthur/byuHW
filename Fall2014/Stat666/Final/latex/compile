@@ -1,0 +1,6 @@
+#!/usr/bin/env Rscript
+
+Sweave("report.rnw")
+system("pdflatex report.tex")
+system("rm -f report-*.pdf *.log *.aux *.tex")
+system("firefox report.pdf &")

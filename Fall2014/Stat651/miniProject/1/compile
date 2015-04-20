@@ -1,0 +1,6 @@
+#!/usr/bin/env Rscript
+
+Sweave("mp1.rnw")
+system("pdflatex mp1.tex")
+system("rm -f mp1-*.pdf *.log *.aux *.tex")
+system("evince mp1.pdf &")

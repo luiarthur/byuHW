@@ -1,0 +1,12 @@
+% latex table generated in R 3.1.1 by xtable 1.7-3 package
+% Thu Nov 20 12:20:40 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & Super.Genres & Natural,k=5 \\ 
+  \hline
+Error Rate & 0.36 & 0.24 \\ 
+   \hline
+\end{tabular}
+\end{table}

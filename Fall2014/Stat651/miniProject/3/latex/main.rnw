@@ -1,0 +1,145 @@
+\documentclass{article}                                                   %
+\usepackage{fullpage}                                                     %
+\usepackage{pgffor}                                                       %
+\usepackage{amssymb}                                                      %
+\usepackage{Sweave}                                                       %
+\usepackage{bm}                                                           %
+\usepackage{mathtools}                                                    %
+\usepackage{verbatim}                                                     %
+\usepackage{appendix}                                                     %
+\usepackage{graphicx}
+\usepackage[UKenglish]{isodate} % for: \today                             %
+\cleanlookdateon                % for: \today                             %
+                                                                          %
+\def\wl{\par \vspace{\baselineskip}\noindent}                             %
+\def\beginmyfig{\begin{figure}[!htbp]\begin{center}}                      %
+\def\endmyfig{\end{center}\end{figure}}                                   %
+\def\prodl{\prod\limits_{i=1}^n}                                          %
+\def\suml{\sum\limits_{i=1}^n}                                            %
+\def\ds{\displaystyle}                                                    %
+                                                                          %
+\begin{document}                                                          %
+% my title:                                                               %
+\begin{center}                                                            %
+  \section*{\textbf{Stat651 Mini Project 3}}                              %
+  \subsection*{\textbf{Arthur Lui}}                                       %
+  \subsection*{\noindent\today}                                           %
+\end{center}                                                              %
+\setkeys{Gin}{width=0.5\textwidth}                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<design,echo=F>>=
+  source("../mp3.R",chdir=T)
+@
+
+\section{Boostrap Importance Sampling}
+\subsection{Importance Function}
+The importance function $I(\Theta)$ I chose was the envelop function:
+\[
+  I(\Theta) = p(\theta_1,.5,1) p(\theta_2,5,1)
+\]
+where $ p(x,a,b) = \frac{1}{\Gamma(a)\Gamma(b)} x^{a-1} e^{-x/b}$.
+The importance function I chose is easy to sample from and mirrors the
+sampling distribution well. It preserves the parameter space
+because a and b are positive. Also, the gamma distribution has long tails. 
+
+\subsection{Posterior - Importance Sampling}
+\beginmyfig
+<<fig=T,echo=F>>=
+  plot.1b()
+@
+\endmyfig
+
+\[  
+  \begin{array}{rcl}
+    E[\Theta|\bm Y] &=&
+    (\Sexpr{round(imp.mean[1],4)},\Sexpr{round(imp.mean[2],4)}) \\
+    V[\Theta|\bm Y] &=&
+    (\Sexpr{round(imp.var[1],4)},\Sexpr{round(imp.var[2],4)}) \\
+    SD[\Theta|\bm Y] &=&
+    (\Sexpr{round(imp.sd[1],4)},\Sexpr{round(imp.sd[2],4)}) \\
+    P[Y_{n+1}>5|\bm Y_n] &=& \Sexpr{prob.1}
+    %P[Y_{n+1}>5|\bm Y_n] &=& 0.4556
+  \end{array}
+\]
+
+
+\beginmyfig
+    %\includegraphics{postpred1.pdf}
+    %\caption{}
+<<fig=T,echo=F>>=
+  plot.pred.1()
+@
+\endmyfig
+
+\newpage
+\section{Metropolis Hastings}
+\subsection{Plot of Unormalized Density \& MH Density}
+\beginmyfig
+<<fig=T,echo=F>>=
+  plot.2()
+@
+\endmyfig
+
+\newpage
+\section{Metropolis Hastings \& Gibbs}
+\subsection{Posterior Mean}
+$E[\Theta|\bm Y] = $
+<<xtable1,results=tex,echo=F>>=
+  print(xtable(post.mean.3))
+@
+
+\subsection{Posterior Variance}
+$V[\Theta|\bm Y] = $
+<<xtable1,results=tex,echo=F>>=
+  print(xtable(post.var.3))
+@
+
+\subsection{97\% HPD}
+<<xtable2,results=tex,echo=F>>=
+  xtable(A3d)
+@
+
+\subsection{Posterior Probability that Next Ball Bearing will be Superior}
+$P[Y_{n+1}>100|\bm Y_n] = \Sexpr{prob.3e}$
+
+
+\subsection{MCMC Settings}
+Length = $\Sexpr{B}$ \\
+Burn = $\Sexpr{B*.1}$ \\
+$\sigma_{cand}=0.1$ \\
+Candidate Density for $x_i$= Normal($x_{i-1}$,$\sigma_{cand}$)\\
+
+
+\newpage
+\subsection{Plots of Posteriors}
+\beginmyfig
+<<fig=T,echo=F>>=
+  plot.ga()
+@
+\endmyfig
+
+\beginmyfig
+<<fig=T,echo=F>>=
+  plot.be()
+@
+\endmyfig
+
+\beginmyfig
+<<fig=T,echo=F>>=
+  plot.joint()
+@
+\endmyfig
+
+\beginmyfig
+<<fig=T,echo=F>>=
+  plot.post.pred()
+@
+\endmyfig
+
+
+\section{Appendix -  Code}
+  \verbatiminput{../mp3.R}
+
+
+\end{document}

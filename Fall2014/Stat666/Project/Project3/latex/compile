@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pdflatex cluster.tex
+rm -f *.log *.aux *.snm *.toc *.out
+firefox cluster.pdf &

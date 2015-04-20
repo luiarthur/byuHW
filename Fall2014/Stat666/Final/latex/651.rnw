@@ -1,0 +1,314 @@
+\documentclass[10]{article}                                                   %
+\usepackage{fullpage}                                                     %
+\usepackage{pgffor}                                                       %
+\usepackage{amssymb}                                                      %
+\usepackage{Sweave}                                                       %
+\usepackage{bm}                                                           %
+\usepackage{mathtools}                                                    %
+\usepackage{verbatim}                                                     %
+\usepackage{appendix}                                                     %
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[UKenglish]{isodate} % for: \today                             %
+\cleanlookdateon                % for: \today                             %
+                                                                          %
+\def\wl{\par \vspace{\baselineskip}\noindent}                             %
+%\def\beginmyfig{\begin{figure}[!Htbp]\begin{center}}                     %
+\def\beginmyfig{\begin{figure}[H]\begin{center}}                          %
+\def\endmyfig{\end{center}\end{figure}}                                   %
+\def\prodl#1#2#3{\prod\limits_{#1=#2}^{#3}}                               %
+\def\suml#1#2#3{\sum\limits_{#1=#2}^{#3}}                                 %
+\def\ds{\displaystyle}                                                    %
+                                                                          %
+\begin{document}                                                          %
+% my title:                                                               %
+\begin{center}                                                            %
+  \section*{\textbf{Stat651 Final Project - The Indian Buffet Process}}   %
+  \subsection*{\textbf{Arthur Lui}}                                       %
+  \subsection*{\noindent\today}                                           %
+\end{center}                                                              %
+\setkeys{Gin}{width=0.5\textwidth}                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<design,echo=F>>=
+  source("../code/ibp.R",chdir=T)
+@
+
+% Between 6 & 8 pages
+\section{Introduction} % < 1 page
+One key problem in recovering the latent structure responsible for generating
+observed data is determining the number of latent features. The Indian Buffet
+process (IBP) provides a flexible distribution for sparse binary matrices with
+infinite dimensions (i.e. finite number of rows, and infinite number of columns).
+When used as a prior distribution in a latent feature model, the IBP can
+learn the number of latent features generating the observations because it can
+draw binary matrices which have a potentially infinite number of columns. I will
+use the IBP as a prior distribution in a Gaussian latent feature model to
+recover the latent structures generating the observations.\\
+
+\section{Model} % 3-4 pages
+The IBP is a distribution for sparse binary matrices with finite number of rows
+and potentially infinite number of columns. The process of generating a
+realization from the IBP can be described by an analogy involving Indian buffet
+restaurants.\\
+
+\noindent
+Let $Z$ be an $N \times \infty$ binary matrix. Each row in $Z$ represents a
+customer which enters an Indian buffet and each column represents a dish in the
+buffet. Customers enter the restaurant one after another. The first customer
+samples an $r=Poisson(\alpha)$ number of dishes, where $\alpha > 0$ is a mass
+parameter which influences the final number of sampled dishes. This is
+indicated in by setting the first r columns of the first row in $Z$ to be $1$.
+The other values in the row are set to $0$. Each subsequent customer samples
+each previously sampled dish with probability proportional to its popularity.
+That is, the next customer samples dish $k$ with probability $\frac{m_k}{i}$,
+where $m_k$ is the number of customers that sampled dish $k$, and $i$ is the
+current customer number (or row number in $Z$). Each customer also samples an
+additional $Poisson(\alpha/i)$ number of new dishes. Once all the $N$ customers
+have gone through this process, the resulting $Z$ matrix will be a draw from
+the Indian buffet process with mass parameter $\alpha$. In other words, $Z \sim
+IBP(\alpha)$. Note that $\alpha \propto K_+$, where $K_+$ is the final number of
+sampled dishes (occupied columns). Figure1 shows a draw from an IBP(10) with 50
+rows. The white squares are 1, indicating that a dish was taken; black squares
+are 0, indicating that a dish was not taken. \\
+\beginmyfig
+%\caption{}
+%\vspace{-5mm}
+<<fig=T,echo=F,height=3.7>>=
+  opts <- par()
+    #par(bg="blue",mar=c(1,1,1,1))
+    par(mar=c(0,0,0,0))
+    a.image(rIBP(50,10))
+  par(opts)
+@
+\endmyfig
+
+\noindent
+The probability of any particular matrix produced from this process is
+\begin{equation}
+  P(\bm{Z}) = \frac{\alpha^{K_+}}{\prodl{i}{1}{N} {K_1}^{(i)}!} 
+              exp\{-\alpha H_N\}\prodl{k}{1}{K_+}
+              \frac{(N-m_k)!(m_k-1)!}{N!},
+\end{equation}
+where $H_N$ is the harmonic number, $\suml{i}{1}{N}\ds\frac{1}{i}$, $K_+$ is
+the number of non-zero columns in $\bm Z$, $m_k$ is the $k^{th}$ column sum of
+$\bm Z$, and $K_1^{(i)}$ is the ``number of new dishes" sampled by customer $i$.\\
+
+\noindent
+One way to get a draw from the IBP($\alpha$) is to simulate the process
+according to the description above. Another way is to implement a Gibbs sampler
+as follows:
+
+\begin{enumerate}
+  \item Start with an arbitrary binary matrix of $N$ rows
+  \item For each row, $i$,
+  \begin{enumerate}
+    \item For each column, $k$,
+    \item if $m_{-i,k}$ = $0$, delete column $k$. Otherwise,
+    \item set $z_{ik}$ to $0$
+    \item set $z_{ik}$ to $1$ with probability $P(z_{ik}=1|\bm{z_{-i,k}}) = \frac{m_{-i,k}}{i}$
+    \item at the end of row $i$, add Poisson($\ds\frac{\alpha}{N}$) columns of $1$'s
+  \end{enumerate}
+  \item iterate step 2 a large number of times
+\end{enumerate}
+We can likewise incorporate this Gibbs sampler to sample from the posterior distribution P($\bm{Z|X}$)
+where $\bm Z \sim IBP(\alpha)$ by sampling from the complete conditional
+\begin{equation}
+  P(z_{ik}=1|\bm{Z_{-(ik)},X})  \propto p(\bm{X|Z}) P(z_{ik}=1|\bm{Z_{-(ik)}}).
+\end{equation}\\
+
+\noindent
+Note that the conjugate prior for $\alpha$ is a Gamma distribution.
+\[
+  \begin{array}{rcl}
+    \bm Z|\alpha & \sim & IBP(\alpha)\\
+          \alpha & \sim & Gamma(a,b), \text{where $b$ is the scale parameter}\\
+    & & \\
+    p(\alpha|\bm Z) & \propto & p(\bm Z|\alpha) p(\alpha)\\
+    p(\alpha|\bm Z) & \propto & \alpha^{K_+} e^{-\alpha H_N}  
+                                \alpha^{a-1} e^{-\alpha/b}\\
+    p(\alpha|\bm Z) & \propto & \alpha^{a+K_+-1} e^{-\alpha(1/b+H_N)}\\
+  \end{array}
+\]
+\begin{equation}
+  \alpha|\bm Z  \sim  Gamma(a+K_+, (1/b+H_N)^{-1})
+\end{equation}
+
+\noindent
+%\section{Example (Data Analysis)} % 2-3 pages
+\section{Example: Linear-Gaussian Latent Feature Model with Binary Features}
+Suppose, we observe an $N \times D$ matrix $\bm X$, and we believe
+\[
+  \bm X = \bm{ZA} + \bm E,
+\]
+where $\bm Z|\alpha \sim IBP(\alpha)$, 
+$\bm A \sim MVN(\bm 0,{\sigma_A}^2\textbf{I})$, 
+$\bm E \sim MVN(\bm 0,{\sigma_X}^2\textbf{I})$, and 
+$\alpha \sim Gamma(a,b)$,
+%$\sigma_A=1$, and $\sigma_X=.5$.\\
+
+\noindent
+It can be shown that
+\begin{equation}  
+  p(\bm{X|Z}) = \ds\frac{1}{(2\pi)^{ND/2}\sigma_X^{(N-K)D}\sigma_A^{KD}
+                            |\bm Z^T \bm Z+({\frac{\sigma_X}{\sigma_A}})^2
+                            \textbf{I}|^{D/2}}
+                \exp\{-\frac{1}{2\sigma_X^2}tr(\bm X^T
+                (\textbf{I}-\bm Z(\bm Z^T\bm Z+({\frac{\sigma_X}{\sigma_A}})^2
+                            \textbf{I})^{-1}\bm Z))
+                \bm X\}            
+\end{equation}
+Now, we can use equation (2) to implement a Gibbs sampler to draw from the 
+posterior $\bm{Z|X},\alpha$.
+
+\subsection{Data \& Results}
+Each of ten Stat666 students created a $6 \times 6$ binary image. To the
+image, Gaussian noise (mean=0,variance=.25) was added to each cell of the
+binary image. Gaussian noise was added to the same image to generate 10 $6
+\times 6$ images. These images were turned into $1 \times 36$ row vectors. All
+these vectorized images were stacked together to form one large $100 \times 36$
+matrix.  (Note that I did not know the design of these images before hand. The
+images could be letters, numbers, interesting patterns, pokemon faces, etc.)
+Figure2 displays the data from the ten Stat666 students.\\
+
+\begin{figure}\begin{center}
+  \vspace{-5mm}
+  \caption{Data From Ten Stat666 Students}
+  \vspace{-2mm}
+  \includegraphics[scale=.2]{../code/draw.post.out/Y.pdf}
+  \vspace{-15mm}
+\end{center}\end{figure}
+
+\noindent
+A Gibbs sampler was implemented to retrieve posterior distributions for $\bm Z$,
+$\bm A$, and $\alpha$. $\alpha$ was initially set to $1$, and the posterior for
+$\alpha$ was obtained by equation (3) with prior distribution $Gamma(3,2)$.
+The parameters were chosen such that $\alpha$ was centered at 6 and had a
+variance of 12, as I believed I may have many latent features, but my
+uncertainty was high.  Equation(2) was used to retrieve the posterior
+distribution for $\bm Z$ (a collection of binary matrices). After 5000
+iterations, the trace plot for the number of columns in the binary matrices
+drawn were plotted (See Figure 3). Diagnostics for a cell by cell trace plot
+could also be plotted, but may be too difficult to analyze as the dimensions of
+the matrices are changing, and the matrices are large. The execution time was
+about 4 hours.\\
+\beginmyfig
+  \caption{}
+  \includegraphics{../code/draw.post.out/trace.pdf}
+  %\vspace{-15mm}
+\endmyfig 
+%\beginmyfig
+%  \caption{}
+%  \includegraphics{../code/draw.post.out/traceplot.pdf}
+%  \vspace{-15mm}
+%\endmyfig
+%\beginmyfig
+%  \caption{}
+%  \includegraphics{../code/draw.post.out/postAlpha.pdf}
+%\endmyfig
+%\noindent
+The number of columns in $\bm Z$ appears to have converged to 9. This means
+that the number of latent features discovered appears to be 9. This is
+reasonable as the image $\bm X$ is comprised of 10 students' images. A burn-in
+of the first 1000 draws were removed. Then, the 4000 $\bm Z$ matrices were
+superimposed, summed element by element, and divided by 4000. Cells that had
+values $> .9$ were set to 1; and 0 otherwise. This is not necessary, but this
+removes the columns that were not likely to exist. To elaborate, from the trace
+plot (Figure3), we see that after burn-in, there is one instance where the
+number of columns in $\bm Z$ was $10$.  One instance out of 4000 is not
+significantly large enough to say that \textit{that} latent feature is 
+generating the observed data. So, the tenth column was removed. The resulting
+matrix, I will call the posterior mean for $\bm Z$.  The trace plot for
+$\alpha$ (Figure 4) shows that $\alpha$ appears to have converged, with mean
+$=2.08$ and variance $=.359$.  Figure 4 shows the posterior mean for $\bm Z$.
+We can interpret the matrix in the following way. All the observations are 
+being generated by the first column (feature). The $11^{th} through 20^{th}$
+observations in $\bm X$ are being generated by the second column, etc.
+The posterior mean for $\bm A$ calculated as $E[\bm{A|X,Z}] = (\bm Z^T\bm Z +
+\frac{\sigma_X^2}{\sigma_A^2} \textbf{I})^{-1}\bm Z^T \bm X$, and is shown
+in Figure 5 and Figure 6. Figure 5 shows the matrix in a $10 \times 36$ form;
+Figure 6 shows the matrix in $6 \times 6$ form. That is, each row in $\bm A$
+were back-transformed into its matrix form.\\
+
+%\begin{figure}\begin{center}.
+\beginmyfig
+\minipage{.32\textwidth}
+  \caption{Posterior Mean for Z}
+  \includegraphics{../code/draw.post.out/postZ.pdf}
+\endminipage\hfill
+\minipage{.32\textwidth}
+  \caption{Posterior Mean for A}
+  \includegraphics{../code/draw.post.out/postA.pdf}
+\endminipage\hfill
+\minipage{.32\textwidth}%
+  \caption{Latent Features}
+  \includegraphics{../code/draw.post.out/postA66.pdf}
+\endminipage\hfill
+\endmyfig
+%\end{center}\end{figure}
+
+
+
+%\beginmyfig
+%  \caption{}
+%  \includegraphics{../code/draw.post.out/postZ.pdf}
+%  \vspace{-10mm}
+%\endmyfig
+%
+%\beginmyfig
+%  \caption{}
+%  \includegraphics{../code/draw.post.out/postA.pdf}
+%\endmyfig
+%\beginmyfig
+%  \caption{The latent features turned back into $6 \times 6$ images.}
+%  %\includegraphics[height=1\textwidth]{../code/draw.post.out/postA66.pdf}
+%  \includegraphics{../code/draw.post.out/postA66.pdf}
+%\endmyfig
+
+\noindent
+Now, we can predict the latent features generating each observation by
+multiplying the posterior mean of $\bm Z$ by the posterior mean of $\bm A$. We
+will call this matrix the posterior mean of $\bm {ZA}$. Each row in this matrix
+will reveal the latent structures generating the observation in the respective
+row of $\bm X$. Figure 8 shows the latent structure learned from the data. 
+For each observation, the data and latent structures are layed side by side
+for a visual comparison. The features learned were similar to the images
+created by the ten Stat666 students.
+
+
+\begin{figure}\begin{center}
+  \caption{The latent features for each student.}
+  %\includegraphics[height=1\textwidth]{../code/draw.post.out/postA66.pdf}
+  \includegraphics[height=.8\textwidth]{../code/draw.post.out/postFriends.pdf}
+\end{center}\end{figure}
+
+
+\section{Conclusions}
+The IBP provides a flexible distribution on sparse binary matrices. The
+distribution can be extremely valuable when used as a prior on binary matrices
+in latent feature models. Using Gibbs sampling, the number of latent features
+can be quickly learned and the features can be discovered. Prior distributions
+can be set on $\sigma_X$ and $\sigma_A$ to improve performance. In practice,
+these parameters are unknown so they should be modeled. Areas of practical
+application for the IBP are still being studied, and requires further
+investigation.
+
+
+\newpage
+\section{Appendix -  Code \& Data}
+  \subsection{generateData.R}
+  \verbatiminput{../code/generateData.R}
+  \subsection{ibp.R}
+  \verbatiminput{../code/ibp.R}
+  \subsection{gibbs.R}
+  \verbatiminput{../code/gibbs.R}
+  \subsection{rfunctions.R}
+  \verbatiminput{../code/rfunctions.R}
+  \subsection{patterns.R}
+  \verbatiminput{../code/patterns.R}
+  \subsection{Data}
+  The data can be downloaded at: \\
+  \noindent https://github.com/luiarthur/Fall2014/blob/master/Stat666/Final/code/Y.dat\\
+  \textbf{Arthur! MAKE SURE THIS IS CURRENT!}
+
+\end{document}

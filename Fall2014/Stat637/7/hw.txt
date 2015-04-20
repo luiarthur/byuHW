@@ -1,0 +1,48 @@
+Arthur Lui
+Stat 637
+Modeling Count Data
+
+a)
+          Deviance
+GH.GI     11.66574
+GH.HI      4.12671
+GI.HI      2.38313
+GH.GI.HI   0.30072
+
+The GH.GI model does not have the HI term and has the highest deviance.
+Models without the HI term fit poorly.
+
+b)
+
+Coefficients for the GH.GI.HI Model:
+
+                          Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                 3.8521     0.1415  27.219  < 2e-16 ***
+genderM                    -0.5976     0.2242  -2.666  0.00768 ** 
+infosupport                 1.3514     0.1575   8.578  < 2e-16 ***
+healthsupport              -1.3750     0.2750  -5.001 5.71e-07 ***
+genderM:infosupport         0.4636     0.2406   1.927  0.05401 .  
+genderM:healthsupport      -0.2516     0.1749  -1.438  0.15035    
+infosupport:healthsupport   0.8997     0.2852   3.155  0.00160 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+OR.GH:
+log.OR.GH = -.2516 +/- 1.96*.1749 =  (-0.594404, 0.091204)
+=> OR.GH = c(0.5518914, 1.0954925)
+
+We are 95% confident that the odds of males supporting the government pay all
+of the health care costs of AIDS to that of males opposing is between .55 and 1.10.
+__________________________________________________________________________________
+
+
+OR.GI:
+log.OR.GI =  .4636 + c(-1,1)*1.96*.2406 = (-0.007976, 0.935176)
+=> OR.GI = (0.9920557, 2.5476618)
+
+We are 95% confident that the odds of males supporting the government developing an information
+program to promote safe sex practices to that of males opposing is between .99 and 2.55.
+__________________________________________________________________________________
+
+It is plausible that gender has no effect on opinion for these issues because the
+confidence intervals include 1.

@@ -1,0 +1,4 @@
+#!/bin/bash
+pdflatex probitBayes.tex
+rm -f *.log *.aux
+firefox probitBayes.pdf &

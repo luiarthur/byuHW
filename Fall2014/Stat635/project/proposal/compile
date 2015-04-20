@@ -1,0 +1,7 @@
+#!/usr/bin/env Rscript
+
+Sweave("proposal.rnw")
+system("pdflatex *.tex")
+system("rm -f *-*.pdf *.log *.aux *.tex")
+system("rm -f Rplots.*")
+system("firefox *.pdf &")

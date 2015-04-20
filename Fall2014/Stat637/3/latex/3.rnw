@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{pgffor}
+\usepackage{amssymb}
+\usepackage{Sweave}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{appendix}
+\usepackage[UKenglish]{isodate} % for: \today
+\cleanlookdateon                % for: \today
+
+\def\wl{\par \vspace{\baselineskip}\noindent}
+\def\beginmyfig{\begin{figure}[htbp]\begin{center}}
+\def\endmyfig{\end{center}\end{figure}}
+%\def\prodl{\prod\limits_{i=1}^n}
+\def\suml{\sum\limits_{i=1}^n}
+\def\ds{\displaystyle}
+
+\begin{document}
+% my title:
+\begin{center}
+  \section*{\textbf{Stat637 Homework 3}
+    \footnote{https://github.com/luiarthur/Fall2014/blob/master/Stat637/3/sleep.R}
+  }  
+  \subsection*{\textbf{Arthur Lui}}
+  \subsection*{\noindent\today}
+\end{center}
+
+<<design,echo=F>>=
+  source("../roc.R",chdir=T)
+@
+
+\section{Titanic}
+The odds ratio is the ratio between odds, and not probabilities. The correct
+interpretation should be, ``the \textit{odds} of survival for females is 11.4
+times that for males".
+
+\begin{align*}
+  \text{Odds} &=& \ds\frac{p_f/(1-p_f)}{p_m/(1-p_m)} &=& 11.4\\
+  & \implies & \ds\frac{2.9}{p_m/(1-p_m)} &=& 11.4\\
+  & \implies & p_m &=& \ds\frac{2.9/11.4}{1+2.9/11.4}\\
+  & \implies & p_m &=& \bm{.2027972} \\
+  \\
+  \text{Odds for females} &=& \ds\frac{p_f}{1-p_f} &=& 2.9 \\
+  &\implies & p_f &=& \ds\frac{2.9}{1+2.9} \\
+  &\implies & p_f &=& \bm{.7435897} 
+\end{align*}
+
+\noindent
+Therefore, the proportion of males that survived = \textbf{.2027972}, 
+and the proportion of females that survived = \textbf{.7435897}.
+
+\section{Crime}
+The conditional distribution these statistics refer to is X|Y. Assuming the set
+of all races only includes "Black" and "White",
+\[
+  P[Y=W|X=W] = \ds\frac{P(X=W|Y=W)P(Y=W)}{P(X=W|Y=W)P(Y=W)+P(X=W|Y=B)P(Y=B)},
+\]
+and the only statistics unknown in the above formula is P[Y=B] 
+(or P[Y=W] = 1-P[Y=B]). So, the only other statistic needed is the proportion
+of victims that are white.
+
+\section{Sensitivity \& Specificity}
+\begin{center}
+<<fig=T,echo=F>>=
+  plot(M,type="o",col="gray30",lwd=2,main="ROC for Logit Model");abline(0,1)
+@
+\end{center}
+
+\noindent
+On average, the model predicts better than guessing. This means that the logit
+model was a good model choice.\\
+
+
+\end{document}

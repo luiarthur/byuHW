@@ -1,0 +1,3 @@
+#!/bin/bash
+pdflatex overdispersion.tex
+rm -f *.log *.aux

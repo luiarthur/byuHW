@@ -1,0 +1,4 @@
+#!/bin/bash
+sas ibp.sas
+vi ibp.lst
+
