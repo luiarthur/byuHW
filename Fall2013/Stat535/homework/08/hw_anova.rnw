@@ -1,0 +1,302 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{amssymb}
+\usepackage{Sweave}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\title{Stat535 HW 8}
+\author{Arthur Lui}
+\maketitle
+
+<<results=hide>>=
+options('scipen'=8)
+options(continue=" ")
+@
+
+
+\section*{FUNCTIONS:}
+<<design,echo=T>>=
+y <- list( c(15,2,-2,21,-12,6,-5), 
+           c(16,46,4,36,16,25,24,1,1,4), 
+           c(35,27,22,16,17,32,43,13),
+           c(32,33,58,31,53,27,36,51,34) )
+
+#FIND n <- number of rows is X
+#     k <- number of columns in X
+get.y.info <- function(y){
+  k <- length(y)
+  n. <- NULL
+  for (i in 1:k) {n.[i] <- length(y[[i]])}
+  n <- sum(n.)
+
+  list (y=y, k=k, n.=n., n = n)
+}
+
+#FUNCTION to create X and Y matrices
+create.X.Y <- function(y.in, ones=FALSE){
+  y.class <- get.y.info(y.in)
+
+  k <- y.class$k
+  n. <- y.class$n.
+  n <- y.class$n
+
+  y <- y.class$y
+  Y <- as.matrix(unlist(y))
+
+  #CREATE X MATRIX
+  X <- matrix(0,n,k)
+
+  i <- 1
+  b <- 1; e <- n.[i] #b for begin & e for end
+  while (i <= k){
+    X[b:e, i] <- 1
+    i <- i + 1
+    b <- e + 1; e <- e + n.[i]
+  }
+
+  if (ones) {X[,1] <- 1}
+
+  list(Y=Y, X=X, info=y.class)
+}
+
+#COMPUTATION FUNCTION:
+anova.lm <- function(y,ones=FALSE){
+  y.class <- create.X.Y(y,ones)
+  y.info  <- y.class$info
+
+  y <- y.info$y
+  k <- y.info$k
+  n. <- y.info$n.; n <- y.info$n
+
+  X <- y.class$X
+  Y <- y.class$Y
+
+  mu <- solve( t(X) %*% X ) %*% t(X) %*% Y
+  
+  SSE <- t(Y-X%*%mu) %*% (Y-X%*%mu)
+  ss <- SSE / (n-k)
+
+  se <- sqrt(ss * diag(solve(t(X)%*%X)))
+  
+  t <- mu / se
+  p <- 2 * pt(abs(t),n-k,lower.tail=FALSE)
+
+  #my.pt <- function(t) {pt(abs(t),n-k,lower.tail=FALSE)} 
+  #p <- as.matrix(apply(t,1,my.pt))
+
+  Coefficients <- cbind(mu,se,t,p)
+  colnames(Coefficients) <- c('mu','se','t','p')
+  rownames(Coefficients) <- paste('mu',1:k,sep='')
+  list (Coefficients=Coefficients,ss=ss,info=y.class)
+}
+
+F.test <- function(C,model,t=0){
+  mu <- model$Coefficients[,'mu']
+  Y <- model$info$Y
+  X <- model$info$X
+
+  SSH <- t(C %*% mu - t) %*% solve(C %*% solve(t(X)%*%X) %*% t(C)) %*% (C%*%mu -t)
+  SSE <- t(Y-X%*%mu) %*% (Y-X%*%mu)
+  q <- nrow(C)
+  n <- nrow(X); k <- ncol(X)
+  F.stat <- (SSH/q) / (SSE/(n-k))
+  p.val <- pf(F.stat, q, n-k, lower.tail=FALSE)
+  
+  out <- cbind(F.stat=F.stat,p.val=p.val)
+  colnames(out) <- c('F.stat','p.val')
+
+  out
+}
+
+make.Bonferroni <- function(model){
+  function(C){
+    coef <- model$Coefficients
+    X <- model$info$X; Y <- model$info$Y
+    b <- coef[,'mu']
+    s <-sqrt(model$ss)
+    n <- model$info$info$n; k <- model$info$info$k
+    t <- abs(qt(.05/4,n-k))
+
+    C <- matrix(C,nrow=1)
+    CI <- C%*%b + c(-1,1) * t * s * sqrt((C) %*% solve(t(X) %*% X) %*% t(C))
+    CI <- c('LowerBound'=CI[1], 'UpperBound'=CI[2])
+  }
+}
+@
+
+\section*{Code and Answers:}
+
+\subsection*{Q1:What is $\mu$?
+                Why are the standard errors different for each $\mu_j$?}
+<<design,echo=T>>=
+model1 <- anova.lm(y)
+model1$Coefficients
+@
+<<design,echo=F>>=
+ans1 <- model1$Coefficients[,'mu']
+ans2 <- model1$Coefficients[,'p']
+@
+\[
+\mu = \left( \begin{array}{l}
+                   \Sexpr{round(ans1[1],8)}\\
+                   \Sexpr{round(ans1[2],8)}\\
+                   \Sexpr{round(ans1[3],8)}\\
+                   \Sexpr{round(ans1[4],8)}
+                 \end{array} \right)
+\]
+The standard errors are different because each $y_j$ is of a different length.
+
+\subsection*{Q2: Report the p-values for each $H_0: \mu_j = 0$.
+                 Explain what this test is investigating to a non-statstician.}
+
+The p-values for $(\mu_1,\mu_2,\mu_3,\mu_4)$ are:
+\[p=\left( \begin{array} {l}
+  \Sexpr{ans2[1]}\\
+  \Sexpr{ans2[2]}\\
+  \Sexpr{ans2[3]}\\
+  \Sexpr{ans2[4]}
+\end{array} \right) \]
+
+\subsection*{Q3: Compute the test-statistic and p-value for
+                 $H_0: \mu_1 = \frac{\mu_2+\mu_3+\mu_4}{3}$}
+\[
+  \begin{array}{llll}
+              & H_0: \mu_1 & = & \frac{\mu_2+\mu_3+\mu_4}{3} \\
+  \Rightarrow & H_0: 3\mu_1 & = & \mu_2+\mu_3+\mu_4 \\
+  \Rightarrow & H_0: C\mu & = & 0,
+  \end{array}
+\] where C = (3,-1,-1,-1).
+<<design,echo=T>>=
+C <- t(c(3,-1,-1,-1)) 
+ans3 <- F.test(C,model1)
+@
+The F-statistic for this test is \Sexpr{ans3[1]} (p-value=\Sexpr{ans3[2]}).
+
+\subsection*{Q4: Compute the test-statistic and p-value for
+                 $H_0: \mu_2 = \mu_3 = \mu_4$}
+<<design,echo=T>>=
+C <- matrix(c(0,1,0,-1,
+              0,0,1,-1),2,4,byrow=TRUE)
+ans4 <- F.test(C,model1)
+@
+The F-statistic for this test is \Sexpr{ans4[1]} (p-value=\Sexpr{ans4[2]}).
+
+\subsection*{Q5: Plot the 95\% confidence region for the pair 
+                 $(\mu_3-\mu_2,\mu_4-\mu_3)$. Is there evidence that increasing 
+                 the dosage results in larger decreases in blood pressure.}
+\begin{center}
+<<fig=T>>=
+n <- 100
+cc <- seq(-10,30,length=n) 
+xx <- rep(cc,each=n)
+yy <- rep(cc,times=n)
+
+C <- matrix(c(0,-1,1,0,
+              0,0,-1,1),2,byrow=T)
+#H <- matrix(0,length(xx),length(yy))
+xy <- cbind(xx,yy)
+H <- cbind(0,xy)
+
+myF <- function(xy){
+  out <-F.test(C,model1,t=c(xy))[1,2]
+}
+
+H[,1] <- apply(xy,1,myF)
+new <- H[H[,1] > .05,]
+
+plot(xx,yy,col='red',pch=15,main='95% Confidence Region',
+     xlab=expression(mu[3]-mu[2]),ylab=expression(mu[4]-mu[3]))
+points(new[,-1],pch=15,col='blue')
+abline(v=0,h=0,lwd=3)
+legend(14,29,legend=c('Reject','Fail to Reject'),col=c('red','blue'),lwd=5)
+@
+\end{center}
+Since, the confidence region
+does not contain (0,0), at the 95\% confidence level
+we reject the null hypothesis that increasing dosage does not result in 
+larger decreases in blood pressure and conclude
+that increasing dosage results in larger decreases in blood pressure.
+
+\subsection*{Q6: Report the estimates $\hat{\beta}$}
+<<design,echo=T>>=
+model2 <- anova.lm(y,ones=TRUE)
+ans6 <- bh <- model2$Coefficients[,'mu']
+@
+\[
+\hat{\beta} =  \left( \begin{array}{l}
+                 \Sexpr{ans6[1]}\\
+                 \Sexpr{ans6[2]}\\
+                 \Sexpr{ans6[3]}\\
+                 \Sexpr{ans6[4]}
+               \end{array} \right)
+\]
+
+\subsection*{Q7: Compare the new medicine to the standard medicine. Report the 
+                 test statistic and the p-value.}
+
+\[
+\begin{array}{llll}
+              & H_0: \mu_1 & = & \frac{\mu_2+\mu_3+\mu_4}{3} \\
+  \Rightarrow & H_0: 0     & = & \frac{\mu_2+\mu_3+\mu_4}{3} - \mu_1 \\
+  \Rightarrow & H_0: 0     & = & \frac{(\mu_2-\mu_1)+(\mu_3-\mu_1)+(\mu_4-\mu_1)}{3} \\
+  \Rightarrow & H_0: 0     & = & \beta_1 + \beta_2 + \beta_3
+\end{array}  
+\]
+<<design,echo=T>>=
+C <- t(c(0,-1,-1,-1))
+ans7 <- F.test(C,model2)
+@
+The F-statistic is \Sexpr{ans7[1]} (p-value=\Sexpr{ans7[2]}).
+
+\subsection*{Q8: Compare the dosages of the new medicine.}
+\[
+  H_0: \mu_2 = \mu_3 = \mu_4 \\
+  \Rightarrow H_0: \beta_1 = \beta_2 = \beta_3
+\]
+
+<<desgin,echo=T>>=
+C <- matrix(c(0,1,0,-1,
+              0,0,1,-1),2,4,byrow=TRUE)
+ans8 <- F.test(C,model2)
+@
+\[
+C = \left( \begin{array} {llll}
+      0 & 1 & 0 & -1 \\
+      0 & 0 & 1 & -1
+    \end{array} \right)
+\]
+This C matrix has two rows as to test for $\mu_2=\mu_3=\mu_4$, we only need to 
+make a maximum of 2 comparisons. That is, we only need to check if: 
+\[ \left\{
+  \begin{array}{l l l}
+    \mu_2 & = & \mu_3\\
+    \mu_3 & = & \mu_4
+  \end{array} \right.
+\]
+The resulting F-statistic is \Sexpr{ans8[1]} (p-value = \Sexpr{ans8[2]}).
+
+\subsection*{Q9: Compute the Bonferroni 95\% simultaneous confidence intervals for
+                 $\beta_2-\beta_1$ and $\beta_3-\beta_2$.}
+<<design,echo=T>>=
+bonferroni <- make.Bonferroni(model2)
+C <- matrix(c(0,-1,1,0,
+              0,0,-1,1),nrow=2,byrow=T)
+ans9 <- t(apply(C,1,bonferroni))
+@
+Bonferroni 95\% Confidence Intervals:
+\[
+  \begin{array} {l l l}
+                     & LowerBound        & UpperBound\\
+    \beta_2-\beta_1: & \Sexpr{ans9[1,1]} & \Sexpr{ans9[1,2]}\\
+    \beta_3-\beta_2: & \Sexpr{ans9[2,1]} & \Sexpr{ans9[2,2]}
+  \end{array}
+\]
+Since both of the confidence intervals contain 0, we fail to reject the null 
+hypothesis that there is no difference between the new medicines with different
+dosages at the 95\% confidence level. We conclude that the difference in 
+blood pressure changes is not significant across different dosages of the new 
+medication.
+
+\end{document}
+

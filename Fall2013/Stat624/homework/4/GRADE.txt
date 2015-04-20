@@ -1,0 +1,19 @@
+Homework 4
+Name: Arthur Thunder
+Grade: 97
+
+-Only summary.tex and slope.R
+
+CODE: --Good
+-didn't edit skeleton
+-different error terms
+-returns point estimates and CI's
+
+WRITEUP:
+Under what error terms is the estimator of the slope biased? --but 0 is in the confidence intervall...? should be the correlated errors that are biased (-3pts)
+Does the confidence interval estimator have the right coverage under the normally distributed error terms? 
+How about under the chi-squared distributed error terms? 
+How about under the correlated error terms? 
+If the error terms in which the coverage is not correct, under what situation is it noticeable? 
+When, if ever, does this coverage problem go away?
+What phenomenon makes it go away? --Assuming this is included in your statement "Monte Carlo error goes/tends to 0"

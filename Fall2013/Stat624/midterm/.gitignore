@@ -1,0 +1,7 @@
+out/*.*
+*.Rout
+plot.pdf
+.RData
+midterm.txt
+.birthdayAfter.R
+

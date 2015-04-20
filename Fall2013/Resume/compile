@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pdflatex ActuaryResume.tex
+rm *.aux *.log
+firefox ActuaryResume.pdf &

@@ -1,0 +1,70 @@
+STAT 624 Student Questionnaire
+
+ 1. What is your full name?
+    Arthur Laureano Lui
+
+ 2. By what name do you prefer to be called and how is it pronounced?
+    Arthur
+
+ 3. Where are you from?
+
+ 4. Which of the following describes you?
+    [X] Integrated BS/MS statistics student
+    [ ] Traditional masters student in statistics
+    [ ] Not a statistics major
+
+ 5. What is/was your undergraduate major?
+    Statistics
+
+ 6. If you were not a statistics major as a undergraduate, what statistics
+    classes you have taken?
+    Stat 151, Stat 370
+
+ 7. What computer science courses, if any, have you taken?
+    CS 142, Audited CS 235
+
+ 8. Indicate your familiarity with R.
+    [ ] Never used it
+    [ ] Have used it just a bit in classes
+    [ ] Comfortable writing basic programs
+    [X] Comfortable writing complex programs
+
+ 9. Indicated what languages you have used before.
+    [ ] C
+    [X] C++
+    [ ] Java
+    [ ] Fortran
+    [ ] C#
+    [X] Visual Basic
+    [X] Scala
+    [ ] Python
+    [ ] Perl
+    [ ] Ruby
+
+10. Indicate the operating systems with which you are at least somewhat familiar.
+    [X] Windows   (if so, do you ever use the command prompt?) Rarely.
+    [ ] Mac OS X  (if so, do you use the terminal much?)
+    [X] Linux     (if so, describe your experience.) Using terminal to compile C++ and Scala Code.
+    [ ] Other     (if so, describe your experience.)
+
+11. Do have your own personal computer?
+    [X] Yes, I have a Windows laptop.
+    [ ] Yes, I have a Windows desktop where I live.
+    [ ] Yes, I have a Mac laptop.
+    [ ] Yes, I have a Mac desktop where I live.
+    [ ] Yes, I have something else.
+    [ ] No.
+
+12. Tell me something about yourself.
+    If I could, I would double major in music.
+
+13. What is your preference.
+    [X] Start each lecture with prayer and I'm willing to say it.
+    [ ] Start each lecture with prayer but I'd prefer to not say it myself.
+    [ ] Pray on occasion and I'm willing to say it.
+    [ ] Pray on occasion and I'd prefer to not say it myself.
+    [ ] No prayers in lecture.
+
+Thanks for helping me get to know you.  I'm looking forward to a great
+semester!
+

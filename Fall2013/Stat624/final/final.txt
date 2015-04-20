@@ -1,0 +1,73 @@
+STAT 624
+Fall 2013
+Brigham Young University
+Dr. David B. Dahl
+Final exam
+
+
+AVAILABLE: 10:00am on 2013-12-16
+DUE:       10:00am on 2013-12-17
+
+
+
+RULES
+
+Read through the entire exam before you get started!
+
+You may use any resource in taking the exam, except human interactions (whether
+direct or indirect). So, for example, it is permissible to search online forums
+for answers, but you may not post to an online forum to get help from someone.
+
+Your R code, however, must be written entirely by you.  Further, you may not
+use the "integrate" function and may not load any libraries (via the "library"
+function).
+
+
+
+MEAN OF THE LOGIT-NORMAL DISTRIBUTION
+
+The logit-normal distribution, as defined on Wikipedia
+(http://en.wikipedia.org/wiki/Logit-normal_distribution), has a mean with no
+analytical solution.  Your task is to write functions to compute the mean of
+the logit-normal distribution for any values mu and sigma^2 in the parameter
+space, where -Inf < mu < Inf and sigma^2 > 0.  (Note that mu is *not* the
+mean.)  Specifically, write the following function:
+
+1. "mean.via.direct.sampling <- function(mu,sigma2,B)" which computes the mean
+by transforming B normal random deviates (obtained from the "rnorm" function)
+as described in the Wikipedia page.
+
+2. "mean.via.rejection.sampling <- function(mu,sigma2,B)" which computes the
+mean using rejection sampling based on B proposals.  (Note that the number of
+acceptances will be less than the B proposals.)  See the Wikipedia page for
+details on the mode.  Hint: Consider using the "uniroot" function in R to find
+the mode.
+
+3. "mean.via.importance.sampling <- function(mu,sigma2,B)" which computes the
+mean using importance sampling based on B draws from the importance
+distribution.
+
+4. "mean.via.mcmc <- function(mu,sigma2,B)" which computes the mean using
+Markov chain Monte Carlo based on B iterations of a Metropolis algorithm.
+
+5. "mean.via.simpsons.rule <- function(mu,sigma2,M)" which computes the mean
+using Simpson's rule for numerical integration where the unit interval is
+divided into 2M equally-spaced subintervals.
+
+The return value for all but the last function should be a vector of length
+three giving the estimate, the lower bound of a 95% confidence interval, and
+the upper bound of a 95% confidence interval.  The return value for
+"mean.via.simpsons.rule" should be a vector of length 1 giving only the
+estimate.  The functions should *not* display any output (e.g., using "cat" or
+"print" functions).
+
+The details on the implementation is left to your discretion, but make your
+implementation reasonably efficient yet simple.
+
+All of your functions should be defined in one well-documented and
+clearly-labeled R script named "final.R".  This script should not do any
+computation!  So, to test your code, you will want to write another R script
+which sources "final.R" and tries your functions with various arguments.  Do
+not submit this test script; only submit "final.R" using git to Dr. Dahl's
+server.
+

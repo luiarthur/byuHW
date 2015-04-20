@@ -1,0 +1,61 @@
+Introduction. Suppose that we have samples of sizes n1 and n2 from populations
+pi1 and pi2 respectively. Let THE populations be normal in form, pi1 having mean
+and standard deviation alpha1 and sigma1, and pi2 having mean and standard
+deviation alpha2 and sigma2. Let it be required to test whether alpha1 = alpha2.
+Two cases may be distinguished: (i) sigma1 and sigma2 may be equal or (ii) they
+may be unequal. In THE first case THE most appropriate test for THE equality of
+THE alpha's is made by referring THE criterion
+
+to THE t distribution with f=(n1+n2-2).* In THE second case, if THE ratio of THE
+two sigma's is known, a similar criterion can be used: if, however, this ratio
+is unknown, no criterion quite so simple is available. A solution of THE problem
+of testing THE hypothesis in this instance has been proposed by R. A. Fisher,
+using THE concept of fiducial distributions. Fisher notes THE equivalence of his
+test to that given previously by W. V. Behrens in 1929. THE validity of this
+test has, however, been questioned by M. S. Barlett. An alternative criterion
+which has been often employed is
+
+This may be referred to THE normal probability table if THE samples are large
+enough, but for small samples it does not yield an exact test and it is not
+clear how it may best be made to furnish approximations.
+
+It has been pointed out by Fisher that in many practical situations where u is
+used, THE fact that THE sigma's must be equal for THE criterion to be
+distributed as t does not necessarily mean that an assumption of equality is
+involved. It may mean that equality of THE sigma's is being regarded as part of
+THE hypothesis under test. In such situations it may be argued that there is no
+point in testing whether alpha1 = alpha2 unless we have also sigma1 = sigma2.
+However, even if THE question posed is one of testing whether two normal
+populations are identical, u will not necessarily be THE be THE best criterion
+to use. u will afford a valid* test, in THE sense that it will control
+satisfactorily THE chance of rejecting THE hypothesis when it is actually true,
+but it is only one of many such. THE choice of criterion must depend on what
+sort of departure from THE hypothesis under THE test we are most interested in
+detecting. u is demonstrably THE test criterion when we wish to detect
+differences in means without attendant differences in standard deviations. It is
+conceivable, however, that THE test based on u may sometimes operate in such a
+fashion that differences in THE standard deviations sigma1 and sigma2 may mask
+differences in THE means alpha1 and alpha2, with THE result that judgments of
+non-significance may be too frequently made. THE investigations in this paper
+throw some light on this point, although explicitly they are concerned with
+cases where it is reasonable to test whether alpha1 = alpha2, whatever THE
+ration of sigma1 to sigma2.
+
+In THE first place I shall consider THE problem--how far is THE criterion u
+valid even when sigma1<>sigma2? (That THE test is liable to be biased in this
+instance is generally realized, but THE extent of THE bias has not hitherto
+received any detailed discussion.) In THE second place I shall consider THE
+validity of testing THE hypothesis by referring v to THE t distribution with
+f=(n1+n2-2). Finally, I wish to made some observations about THE test of Fisher
+and Behrens, mentioned above.
+
+It is easily seen that u in general is not distributed as t. For whereas THE
+square of THE standard error of (x1bar-x2bar) is (sigma1^2/n1+sigma2^2/n2), THE
+quantity under THE root in (1) is an unbiased estimate of
+
+This is equal to (sigma1^2/n1+sigma2^2/n2) only if sigma1 = sigma2 or n1 = n2.
+The criterion v does not suffer from this objection, but its distribution still
+depends to a certain extent on sigma1/sigma2. THE first problem will be to
+obtain THE distributions of u and v. THE exact distributions will not be derived
+here, but only certain approximations adequate, I believe, for THE purpose in
+hand.

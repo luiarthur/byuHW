@@ -1,0 +1,391 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{amssymb}
+\usepackage{Sweave}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{subfig}
+\def\wl{\par \vspace{\baselineskip}}
+
+\begin{document}
+\title{Stat624 Final Project}
+\author{Arthur Lui}
+\maketitle
+
+\subsection*{Code:}
+<<design,echo=T>>=
+#rm(list=ls())
+source('frechet.R')
+dyn.load("c/frechet.so")
+
+n <- c(500,500,1000,1000)
+N <- 50 #2
+param1 <- as.double(c(8,4,1))  # a,m,s
+param2 <- as.double(c(15,7,4)) # a,m,s
+param <- list(param1,param2,
+              param1,param2)
+
+BigSim <- function(n=c(500,1000)[2], N=c(5,50)[1],init=param1){
+  M <- matrix(0,N,3)
+
+  M.mle  <- matrix(.C("simMLE", as.integer(N), as.integer(n), 
+                   as.double(init),est=as.double(M))$est,N,3,byrow=T)
+
+  cs    <- c(3,.1,.1)
+  M.be  <- matrix(.C("simBE", as.integer(N), as.integer(n), 
+                  as.double(init),as.double(cs),est=as.double(M))$est,N,3,byrow=T)
+
+  M.me  <- matrix(.C("simME", as.integer(N), as.integer(n), 
+                  as.double(init),est=as.double(M))$est,N,3,byrow=T)
+  
+  list(mle=M.mle,bayes=M.be,me=M.me)
+}
+
+library(foreach)
+library(doMC)
+registerDoMC(16)
+
+
+# N =50. 
+# [[1]]: n=500,  param1
+# [[2]]: n=500,  param2 # [[3]]: n=1000, param1
+# [[4]]: n=1000, param2
+Sim <- foreach(k=1:4) %dopar% BigSim(n=n[k],N=N,init=param[[k]])
+
+Bias.Sim <- list()
+MSE.Sim  <- list()
+for (i in 1:4){
+  bias <- matrix(0,3,3)
+  colnames(bias) <- c("a","m","s")
+  rownames(bias) <- c("MLE","BE","ME")
+  mse <- matrix(0,3,3)
+  colnames(mse) <- c("a","m","s")
+  rownames(mse) <- c("MLE","BE","ME")
+  for (j in 1:3){
+    bias[j,] <- apply(Sim[[i]][[j]],2,mean,na.rm=T) - param[[i]]
+    mse[j,] <- apply(Sim[[i]][[j]],2,var,na.rm=T) + bias[j,]^2
+  }
+  Bias.Sim[[i]] <- bias
+  MSE.Sim[[i]] <- mse
+}
+#Bias.Sim
+#MSE.Sim
+
+plot.bias.sim <-function(i=c(1,2)[1]){
+  yl <- c(-6,20) 
+  if (i==1) {
+    yl <- c(-1,5)
+  }
+
+  par(mfrow=c(3,1))
+  plot (n[c(i,i+2)],c(Bias.Sim[[i]][1,1],Bias.Sim[[i+2]][1,1]),type='o',col=2,
+        ylab="Bias",xlab="Sample Size (n)",ylim=yl,
+        main="a=8,m=4,s=1") # MLE
+  lines(n[c(i,i+2)],c(Bias.Sim[[i]][2,1],Bias.Sim[[i+2]][2,1]),type='o',col=3) # BE
+  lines(n[c(i,i+2)],c(Bias.Sim[[i]][3,1],Bias.Sim[[i+2]][3,1]),type='o',col=4) # ME
+  legend("topright",col=2:4,lwd=3,legend=c("MLE","BE","ME"))
+
+  plot (n[c(i,i+2)],c(Bias.Sim[[i]][1,2],Bias.Sim[[i+2]][1,2]),type='o',col=2,
+        ylab="Bias",xlab="Sample Size (n)",ylim=yl,
+        main="a=8,m=4,s=1") # MLE
+  lines(n[c(i,i+2)],c(Bias.Sim[[i]][2,2],Bias.Sim[[i+2]][2,2]),type='o',col=3) # BE
+  lines(n[c(i,i+2)],c(Bias.Sim[[i]][3,2],Bias.Sim[[i+2]][3,2]),type='o',col=4) # ME
+  legend("topright",col=2:4,lwd=3,legend=c("MLE","BE","ME"))
+
+  plot (n[c(i,i+2)],c(Bias.Sim[[i]][1,3],Bias.Sim[[i+2]][1,3]),type='o',col=2,
+        ylab="Bias",xlab="Sample Size (n)",ylim=yl,
+        main="a=8,m=4,s=1") # MLE
+  lines(n[c(i,i+2)],c(Bias.Sim[[i]][2,3],Bias.Sim[[i+2]][2,3]),type='o',col=3) # BE
+  lines(n[c(i,i+2)],c(Bias.Sim[[i]][3,3],Bias.Sim[[i+2]][3,3]),type='o',col=4) # ME
+  legend("topright",col=2:4,lwd=3,legend=c("MLE","BE","ME"))
+}
+#plot.bias.sim(1)
+#plot.bias.sim(2)
+
+plot.mse.sim <-function(i=c(1,2)[1]){
+  yl <- c(0,900) 
+  if (i==1) {
+    yl <- c(0,5)
+  }
+
+  par(mfrow=c(3,1))
+  plot (n[c(i,i+2)],c(MSE.Sim[[i]][1,1],MSE.Sim[[i+2]][1,1]),type='o',col=2,
+        ylab="MSE",xlab="Sample Size (n)",ylim=yl,
+        main="a=15,m=7,s=4") # MLE
+  lines(n[c(i,i+2)],c(MSE.Sim[[i]][2,1],MSE.Sim[[i+2]][2,1]),type='o',col=3) # BE
+  lines(n[c(i,i+2)],c(MSE.Sim[[i]][3,1],MSE.Sim[[i+2]][3,1]),type='o',col=4) # ME
+  legend("topright",col=2:4,lwd=3,legend=c("MLE","BE","ME"))
+
+  plot (n[c(i,i+2)],c(MSE.Sim[[i]][1,2],MSE.Sim[[i+2]][1,2]),type='o',col=2,
+        ylab="MSE",xlab="Sample Size (n)",ylim=yl,
+        main="a=15,m=7,s=4") # MLE
+  lines(n[c(i,i+2)],c(MSE.Sim[[i]][2,2],MSE.Sim[[i+2]][2,2]),type='o',col=3) # BE
+  lines(n[c(i,i+2)],c(MSE.Sim[[i]][3,2],MSE.Sim[[i+2]][3,2]),type='o',col=4) # ME
+  legend("topright",col=2:4,lwd=3,legend=c("MLE","BE","ME"))
+
+  plot (n[c(i,i+2)],c(MSE.Sim[[i]][1,3],MSE.Sim[[i+2]][1,3]),type='o',col=2,
+          ylab="MSE",xlab="Sample Size (n)",ylim=yl,
+          main="a=15,m=7,s=4") # MLE
+    lines(n[c(i,i+2)],c(MSE.Sim[[i]][2,3],MSE.Sim[[i+2]][2,3]),type='o',col=3) # BE
+  lines(n[c(i,i+2)],c(MSE.Sim[[i]][3,3],MSE.Sim[[i+2]][3,3]),type='o',col=4) # ME
+  legend("topright",col=2:4,lwd=3,legend=c("MLE","BE","ME"))
+}
+#plot.mse.sim(1)
+#plot.mse.sim(2)
+
+#EARTHQAUKE STUFF:
+plot.quake <- function(){  
+  data(quakes)
+  x <- quakes$mag
+  init <- c(19,-1,5)
+  min <- min(x)
+  N <- 10000
+  n <- length(x)
+  outA <- rep(0,N)
+  outM <- rep(0,N)
+  outS <- rep(0,N)
+  #par(mfrow=c(1,1))
+  cs <- c(3,.10,.10)
+  Cdata <- .C("mig",as.double(x),as.integer(n),as.integer(N),
+                    A=as.double(outA), M=as.double(outM), S=as.double(outS),
+                    as.double(init),as.double(cs))
+  A <- Cdata$A;  mA <- mean(A[(N*.9):N]); #plot(A,type='l'); 
+  M <- Cdata$M;  mM <- mean(M[(N*.9):N]); #plot(M,type='l'); 
+  S <- Cdata$S;  mS <- mean(S[(N*.9):N]); #plot(S,type='l'); 
+
+  #plot(density(x),lwd=3,ylim=c(0,1.2))
+
+  hist(x,prob=T,ylim=c(0,8),main="Histogram of Fiji Earthquake Magnitudes",
+       xlab="Earthquake Magnitudes (Richter)")
+  curve(dfrechet(x,mA,mM,mS),from=4,to=6,add=T,col='blue',lwd=3)
+
+  meq <- .C("myEst",as.double(x),as.integer(n),est=init)$est
+  lines(density(rfrechet(100000,meq[1],meq[2],meq[3])),col='green',lwd=3)
+
+  legend("topright",legend=c("Data","Bayes Estimate","My Estimate"),
+         col=c('black','blue','Green'),lwd=5)
+}
+#plot.quake()
+
+plot.mod.misspecify <- function() {
+  # Model Misspecification
+  # Generate Gamma(2,1), fit Frechet
+  misp <- rgamma(1000,3,1)
+  n <- length(misp)
+  N <- 10000
+  init <- c(19,-1,5)
+  cs <- c(.5,.10,.10)
+  outA <- rep(0,N)
+  outM <- rep(0,N)
+  outS <- rep(0,N)
+  Cdata <- .C("mig",as.double(misp),as.integer(n),as.integer(N),
+                    A=as.double(outA), M=as.double(outM), S=as.double(outS),
+                    as.double(init),as.double(cs))
+  A <- Cdata$A; mA <- mean(A[(N*.9):N]); #plot(A,type='l')
+  M <- Cdata$M; mM <- mean(M[(N*.9):N]); #plot(M,type='l')
+  S <- Cdata$S; mS <- mean(S[(N*.9):N]); #plot(S,type='l')
+
+  hist(misp,prob=T,ylim=c(0,.3),main="Model Misspecification",xlab="Data")
+  curve(dfrechet(x,mA,mM,mS),from=0,to=12,add=T,col="red",lwd=3)
+  legend("topright",col=c("black","red"),lwd=3,legend=c("Gamma(3,1)","Frechet"))
+}
+#plot.mod.misspecify()
+@
+
+
+
+
+
+\newpage
+\subsection*{Frechet Distribution}
+    In hydrology, the Frechet distribution is applied to extreme events
+    such as annually maximum one-day rainfalls and river discharges.
+    \textbf{PDF:}
+    \[
+      \frac{\alpha}{s} \left(\frac{x-m}{s}\right) ^{-1-\alpha}
+      e^{-\frac{x-m}{s}^{-\alpha}}
+    \]
+    \textbf{Inverse CDF:}\wl
+    The Inverse CDF has a closed form and can conveniently be used to 
+    make draws from the frechet distribution.
+    \[
+      F^{-1}(x) = -log(x)^{-1/a} s + m,
+    \] 
+    \textbf{Loglikelihood:}
+    \[
+      l(\alpha,m,s|\vec{x}) = nlog(\alpha) - nlog(s) - 
+                              \sum_{i=1}^n{(1+\alpha)log(\frac{x_i-m}{s}) +
+                              \left(\frac{x_i-m}{s}\right)^{-\alpha}}
+    \]
+
+
+\subsection*{Estimators}
+  I used three estimators for my simulation study. They are
+  \begin{itemize}
+    \item The Maximum Likelihood Estimator
+    \item A Bayes Estimator under squared error loss
+    \item My Estimator
+  \end{itemize}
+
+
+
+
+\subsection*{Maximum Likelihood Estimator}
+  In order to evalutate the MLE, the Hessian and Gradient of the parameters
+  had to be evalutated. \wl
+    \textbf{Hessian:}
+    \[
+      \begin{pmatrix}
+        l_{aa} & l_{am} & l_{as}\\
+        l_{am} & l_{mm} & l_{sm}\\
+        l_{as} & l_{sm} & l_{ss}
+      \end{pmatrix}
+    \]
+    where $l$ is the log likelihood. And
+    \[
+      \begin{array}{lll}
+      l_{aa} & = & \frac{-n}{\alpha^2} - 
+               \sum_{i=1}^n{\left(log\frac{x_i-m}{s}\right)^2 
+               \left(\frac{x_i-m}{s}\right)^{-\alpha}} \\
+      l_{am} & = & \sum_{i=1}^n { \frac{ (\alpha log(\frac{x_i-m}{s}) -1)
+                         \left( \frac{x_i-m}{s} \right)^{-\alpha}+1}{x_i-m} }\\
+      l_{as} & = & \sum_{i=1}^n{
+                      \frac{\alpha log\left( \frac{x_i-m}{s}\right) + 
+                      \left( \frac{x_i-m}{s}\right)^\alpha -1}
+                      {s\left(\frac{x_i-m}{s}\right)^\alpha} }\\
+      l_{ms} & = & -\alpha^2 s^{\alpha-1} \sum_{i=1}^n{(x_i-m)^{-a-1}}\\ 
+      l_{mm} & = & \sum_{i=1}^n{
+                     (\alpha+1)\left( \left( \frac{x_i-m}{s}\right)^\alpha 
+                     \right) (x_i-m)^{-2} \left( \frac{x_i-m}{s} 
+                     \right)^{-\alpha} }\\ 
+      l_{ss} & = & \frac{n}{s^2} - \frac{1}{s^2} \sum_{i=1}^n{
+                     \frac{(\alpha+1) (x_i-m)^\alpha + (a^2-a)s^\alpha} 
+                     {(x_i-m)^{\alpha}} }\\ 
+      \end{array}
+    \]
+    \textbf{Gradient:}
+    \[
+      \nabla l =  \begin{pmatrix}
+                  \frac{n}{\alpha} + 
+                  \sum_{i=1}^n{log(\frac{x_i-m}{s})^2 
+                  \left(\frac{x_i-m}{s}\right)^{-\alpha}}\\
+                  
+                  \sum_{i=1}^n{\left[\alpha+1-\alpha
+                  (\frac{x_i-m}{s})^{-\alpha}\right] / (x_i-m) } \\
+
+                  -\frac{n}{s^2} + \frac{1}{s} \sum_{i=1}^n{
+                    \alpha + 1 - \alpha \left( \frac{x_i-m}{s}\right) ^ {-\alpha}
+                  }
+                  \end{pmatrix}
+    \]
+
+  \subsection*{My Estimator}
+  Since x $>$ m (the location parameter), I estimated m with min(x) 
+  (i.e. the smallest value in my dataset.) \\
+  \[
+    \begin{array}{lll}
+    m = min(x)\\
+    s = sd(x)\\
+    a = mean(x) + min(x)
+    \end{array}
+  \]
+
+\subsection*{Data}
+  I fitted data about earthquake magnidues near Fiji volcanoes, which were 
+  right-skewed and found that the frechet modeled the data well.\wl
+  The bayes estimates helped to model the distribution of the data. 
+  However, my own estimate did not fit the data well. The spread was not
+  wide enough. \wl
+  Also, unfortunately, the MLE's did not converge when I used my Newton 
+  Raphson algorithm, so I could not generate a plot for my MLE for 
+  this data set.
+
+\begin{center}
+<<fig=T,echo=false,width=10,height=10>>=
+  plot.quake()
+@
+\end{center}
+
+
+
+
+\subsection*{Misspecified Model}
+  I used a Gamma(3,1) as my misspecified model because
+  it was also right-skewed. I generated data using the rgamma 
+  function in R. Using a the Bayes Estimator, I obtained estimates 
+  for the frechet distribution. I drew the curve over data. 
+  The frechet appeared to fit the data well.
+
+\begin{center}
+<<fig=T,echo=false,width=10,height=10>>=
+  plot.mod.misspecify()
+@
+\end{center}
+
+
+
+
+\newpage
+\subsection*{Simulation Study}
+
+In my simulation study, I observed that my Bayes estimates is the least biased
+and has the smallest MSE. 
+
+<<label=tab1,echo=F,results=tex>>=
+  library(xtable)
+  x=xtable(Bias.Sim[[1]],caption="n=500,a=8,m=4,s=1",label="tab:one",digits=5)
+  print(x,include.rowname=TRUE,include.colname=TRUE,caption.pl="top",
+        sanitize.colnames.function=identity)
+@
+
+<<label=tab2,echo=F,results=tex>>=
+  library(xtable)
+  x=xtable(Bias.Sim[[2]],caption="n=500,a=15,m=7,s=4",label="tab:one",digits=5)
+  print(x,include.rowname=TRUE,include.colname=TRUE,caption.pl="top",
+        sanitize.colnames.function=identity)
+@
+ 
+<<label=tab3,echo=F,results=tex>>=
+  library(xtable)
+  x=xtable(Bias.Sim[[3]],caption="n=1000,a=8,m=4,s=1",label="tab:one",digits=5)
+  print(x,include.rowname=TRUE,include.colname=TRUE,caption.pl="top",
+        sanitize.colnames.function=identity)
+@
+
+<<label=tab4,echo=F,results=tex>>=
+  library(xtable)
+  x=xtable(Bias.Sim[[4]],caption="n=1000,a=15,m=7,s=4",label="tab:one",digits=5)
+  print(x,include.rowname=TRUE,include.colname=TRUE,caption.pl="top",
+        sanitize.colnames.function=identity)
+@
+\newpage
+
+\subsection*{Plots:}
+
+\begin{center}
+<<fig=T,echo=false,width=10,height=15>>=
+plot.bias.sim(1)
+@
+\end{center}
+
+\begin{center}
+<<fig=T,echo=false,width=10,height=15>>=
+plot.bias.sim(2)
+@
+\end{center}
+
+\begin{center}
+<<fig=T,echo=false,width=10,height=15>>=
+plot.mse.sim(1)
+@
+\end{center}
+
+\begin{center}
+<<fig=T,echo=false,width=10,height=15>>=
+plot.mse.sim(2)
+@
+\end{center}
+
+\end{document}
+
+% ispell report.tex

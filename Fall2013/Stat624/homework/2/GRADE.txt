@@ -1,0 +1,21 @@
+Homework 2
+
+1. LaTeX Welch's introduction. --Good. but note that the bars on your xbars aren't centered over the x's.
+   Compile w/o errors. --YES 
+   Called welch-1938.tex --YES
+
+2. Beamer presentation of Welch's introduction's principles. --"REALLY REALLY AWESOME"
+   Title page with BYU logo. --YES
+   t density image. --YES
+   named welch-1938-slides.tex  --YES
+   compiles without error or complaints --YES
+
+3. R script for 2.1-2.5 --Good work. 
+   called chap2.R --YES
+   Clearly labeled --YES
+
+*** Only includes: welch-1938.tex, welch-1938-slides.tex, byu logo, t distribution image, and chap2.R
+--YES
+
+Name: Arthur "Thunder"
+Grade: 100

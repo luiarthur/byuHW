@@ -1,0 +1,169 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{amssymb}
+\usepackage{Sweave}
+\usepackage{bm}
+\usepackage{mathtools}
+\def\wl{\par \vspace{\baselineskip}}
+
+\begin{document}
+\title{Stat535 HW11}
+\author{Arthur Lui}
+\maketitle
+
+\subsection*{Code and Homework (Sorry for the sloppyness...)}
+
+\begin{center}
+<<fig=T>>=
+rm(list=ls())
+
+# Determine whether there is a difference between the sales
+# price of in-state buyers and out-of-state buyers.
+
+apts <- read.table('http://grimshawville.byu.edu/azapts.txt',header=T,na.strings='.')
+
+miss <- is.na(apts$covpkg) 
+apts$covpkg[is.na(apts$covpkg)] <- 0
+pkg <- apts$covpkg > 0
+apts$log.covpkg <- apts$covpkg/apts$units
+apts$log.covpkg[pkg] <- log(apts$log.covpkg[pkg]) 
+
+model1 <- lm(log(price/units) ~ as.factor(buyer) + log(acres/units) + log(sqft/units) + 
+                           	    as.factor(condition) + age + log.covpkg +  
+                                salesdate + as.factor(region) + factor(pkg)+ miss, data=apts)
+
+#summary(model1)
+confint(model1)
+
+# 1a:
+# Yes, I am 95% confident that if all other variable-values are held constant,
+# the price that an out-of-state-buyer has to pay more that an in-state-buyer 
+# between $1.03 and $1.07 per unit.
+
+# 1b:
+# If all other variables are held constant, the sales price of a 
+# complex increases by $1.69 per unit when the average size of the apartments
+# increases by 1(sq-feet per unit).
+
+#1c:
+X <- matrix(c(.1,.4,.9,1.3,1.7),ncol=1)
+X.cov <- function(x){
+  coef(model1) %*% c(1,1,1,x,1,0,0,0,30,1,1,1,0,0,0,0,0,0,1,0)
+}
+X.nocov <- function(x){
+  nopkg.mod <- coef(model1) %*% c(1,1,1,x,1,0,0,0,30,0,1,1,0,0,0,0,0,0,0,0)
+}  
+Y.cov <- apply(X,1,X.cov)
+Y.nocov <- apply(X,1,X.nocov)
+
+plot(X,Y.cov,type='o',col='blue',lwd=3,xlab="sqft/unit",ylab="Log(price/unit)")
+points(X,Y.nocov,type='o',col='red',lwd=3)
+legend("topleft",legend=c("Covered Parking","No Covered Parking"),
+       lwd=3,col=c("blue","red"))
+@
+\end{center}
+
+\begin{center}
+<<fig=T>>=
+#1d:
+Chandler   <- function(x) coef(model1) %*% c(1,1,1,x,1,0,0,0,30,1,1,1,0,0,0,0,0,0,1,0)
+Mesa       <- function(x) coef(model1) %*% c(1,1,1,x,1,0,0,0,30,1,1,0,1,0,0,0,0,0,1,0)
+North      <- function(x) coef(model1) %*% c(1,1,1,x,1,0,0,0,30,1,1,0,0,1,0,0,0,0,1,0)
+NW         <- function(x) coef(model1) %*% c(1,1,1,x,1,0,0,0,30,1,1,0,0,0,1,0,0,0,1,0)
+Scottsdale <- function(x) coef(model1) %*% c(1,1,1,x,1,0,0,0,30,1,1,0,0,0,0,1,0,0,1,0)
+SW         <- function(x) coef(model1) %*% c(1,1,1,x,1,0,0,0,30,1,1,0,0,0,0,0,1,0,1,0)
+Tempe      <- function(x) coef(model1) %*% c(1,1,1,x,1,0,0,0,30,1,1,0,0,0,0,0,0,1,1,0)
+Central    <- function(x) coef(model1) %*% c(1,1,1,x,1,0,0,0,30,1,1,0,0,0,0,0,0,0,1,0)
+
+X <- matrix(1:5*1/2, ncol=1)
+Y.Chandler   <-apply(X,1,Chandler  )
+Y.Mesa       <-apply(X,1,Mesa      )
+Y.North      <-apply(X,1,North     )
+Y.NW         <-apply(X,1,NW        )
+Y.Scottsdale <-apply(X,1,Scottsdale)
+Y.SW         <-apply(X,1,SW        )
+Y.Tempe      <-apply(X,1,Tempe     )
+Y.Central    <-apply(X,1,Central   )
+
+plot(X,Y.Chandler  ,type='o',col=2,xlab="sqrt/unit",ylab="Log(Price/unit)")
+lines(X,Y.Mesa      ,type='o',col=3)
+lines(X,Y.North     ,type='o',col=4)
+lines(X,Y.NW        ,type='o',col=5)
+lines(X,Y.Scottsdale,type='o',col=6)
+lines(X,Y.SW        ,type='o',col=7)
+lines(X,Y.Tempe     ,type='o',col=8)
+lines(X,Y.Central   ,type='o',col=9)
+
+legend("topleft",legend=c("Chandler","Mesa","North","NW","Scottsdale",
+                           "SW","Tempe","Central"),col=c(2:9),lwd=3)
+@
+\end{center}
+
+\begin{center}
+<<fig=T>>=
+
+#1e:
+X <- matrix(1:5*1/2, ncol=1)
+Average   <- function(x) coef(model1) %*% c(1,1,1,x,0,0,0,0,30,1,1,1,0,0,0,0,0,0,1,0)
+Excellent <- function(x) coef(model1) %*% c(1,1,1,x,1,0,0,0,30,1,1,1,0,0,0,0,0,0,1,0)
+Fair      <- function(x) coef(model1) %*% c(1,1,1,x,0,1,0,0,30,1,1,1,0,0,0,0,0,0,1,0)
+Good      <- function(x) coef(model1) %*% c(1,1,1,x,0,0,1,0,30,1,1,1,0,0,0,0,0,0,1,0)
+Poor      <- function(x) coef(model1) %*% c(1,1,1,x,0,0,0,1,30,1,1,1,0,0,0,0,0,0,1,0)
+
+Y.Average   <- apply(X, 1, Average   )
+Y.Excellent <- apply(X, 1, Excellent ) 
+Y.Fair      <- apply(X, 1, Fair      )
+Y.Good      <- apply(X, 1, Good      )
+Y.Poor      <- apply(X, 1, Poor      )
+
+
+plot(X,Y.Average   ,type='o',col=2,xlab="sqft/unit",ylab="Log(Price/Unit)")
+lines(X,Y.Excellent ,type='o',col=3,xlab="sqft/unit",ylab="Log(Price/Unit)")
+lines(X,Y.Fair      ,type='o',col=4,xlab="sqft/unit",ylab="Log(Price/Unit)")
+lines(X,Y.Good      ,type='o',col=5,xlab="sqft/unit",ylab="Log(Price/Unit)")
+lines(X,Y.Poor      ,type='o',col=6,xlab="sqft/unit",ylab="Log(Price/Unit)")
+legend("topleft",legend=c("Average","Excellent","Fair","Good","Poor"),col=c(2:6),lwd=3)
+@
+\end{center}
+
+\begin{center}
+<<fig=T>>=
+#2
+def <- read.table('http://grimshawville.byu.edu/default.txt',header=T)
+
+mod2 <- glm(y ~ bk+nnsf+sattrad+inq6mon+trad12+pctdownx+cosign+recntdlq,
+                data=def,family="binomial")
+summary(mod2)
+confint(mod2)
+
+#2a:
+# When all other variables are held constant, I am 95% confident that
+# a bankruptcy will increase the log odds of delinqunicy by 
+# .34 to .62.
+
+#2b
+X <- matrix(c(0:82),ncol=1)
+fx <- function(x) coef(mod2) %*% c(1,0,0,0,0,0,0,0,x)
+Y <- apply (X,1,fx)
+plot(X,Y,type='l',xlab="Delinqunicy Score",ylab="Odds Of Defaulting")
+
+#2c
+#No.
+
+#2d
+red.mod2 <- glm(y ~ bk+nnsf+sattrad+inq6mon+trad12+recntdlq,data=def,family="binomial")
+anova(red.mod2,mod2)
+
+ful <- lm(y ~ bk+nnsf+sattrad+inq6mon+trad12+pctdownx+cosign+recntdlq,
+               data=def)
+red <- lm(y ~ bk+nnsf+sattrad+inq6mon+trad12+recntdlq,data=def)
+anova(red,ful)
+
+# The pvales is .75
+# This does not mean you should drop the variables from the model
+# because it does not make sense to treat someone with a cosigner
+# the same as someone who doesn't.
+@
+\end{center}
+
+\end{document}

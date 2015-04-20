@@ -1,0 +1,20 @@
+Homework 7
+Name: Arthur Lui
+Grade:99, nice work!
+
+1. Sine Model of VonMises
+   -(x,mu,nu,kappa1,kappa2,lambda,log=FALSE,use.normalizing.constant=TRUE)
+   -Log?
+   -normalizing constant?
+   -in dvonmises.R, with nothing else
+2. rejection-sampler.R
+   -(log.density.target,log.density.envelope,sample.envelope,alpha,sample.size)
+   -Completely generic
+3. rvonmises function
+   -(n,mu,nu,kappa1,kappa2,lambda)
+   -only the function
+4. Contour plots: show.vonmises --spits out blank plots (only visible in multiplot). error message when n=0 (-1pt)
+   -(n,mu,nu,kappa1,kappa2,lambda,show.contours=TRUE)
+   -n=0?
+   -show.contours=FALSE?
+Only contains dvonmises.R, rejection-sampler.R, rvonmises.R, show.vonmises.R

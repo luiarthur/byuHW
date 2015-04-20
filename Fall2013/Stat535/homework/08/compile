@@ -1,0 +1,8 @@
+#!/usr/bin/env Rscript
+
+file <- "hw_anova"
+rnwFile <- paste(file,'.rnw',sep='')
+Sweave(rnwFile)
+texFile <- paste(file,'.tex',sep='')
+command <- paste('pdflatex',texFile)
+system(command)

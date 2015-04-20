@@ -1,0 +1,7 @@
+.RData
+.*.swp
+*.aux
+*.log
+*.tex
+*.pdf
+simulation-*.pdf

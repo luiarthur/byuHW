@@ -1,0 +1,137 @@
+rm(list=ls())
+#TWO FACTOR ANOVA
+#DATA:
+###################### Factor B ###
+##############     0    25     50 #
+# Factor A   0     p    b1     b2 #
+#          100    a1  ab11   ab12 #
+#          150    a2  ab21   ab22 #
+###################################
+p    <- c(-.04,-.02,-.09,.05)
+a1   <- c(0,-.05,-.26,.1)
+a2   <- c(-.06,-.17,-.07,.15)
+b1   <- c(.06,-.18,0.0,-.04)
+b2   <- c(-.36,-.26,-.27)
+ab11 <- c(-.21,-.06,-.16,-.1)
+ab12 <- c(-.13,-.03,-.19,-.3)
+ab21 <- c(-.26,.05,-.11,-.09)
+
+a <- list(a1,a2)
+b <- list(b1,b2)
+c <- list(ab11,ab12,ab21)
+
+# Create Y
+y <- list(p,a1,a2,b1,b2,ab11,ab12,ab21)
+Y <- matrix(unlist(y))
+n <- nrow(Y)
+
+# Create X
+k <- length(y)
+X <- matrix(0,nrow(Y),k)
+X[,1] <- 1
+X[c(5:8,20:27),2] <- 1
+X[c(9:12,28:31),3] <- 1
+X[c(13:16,20:23,28:31),4] <- 1
+X[c(17:19,24:27),5] <- 1
+X[20:23,6] <- 1
+X[24:27,7] <- 1
+X[28:31,8] <- 1
+colnames(X) <- c('mu','a1','a2','b1','b2','ab11','ab12','ab21')
+ans1 <- X
+
+#2 
+theta <- solve(t(X)%*%X) %*% t(X) %*% Y
+mod <- lm(Y~X[,-1])
+ans2 <- cbind(theta,mod$coef)
+colnames(ans2) <- c("(X'X)^(-1) X'Y",'lm')
+# Each parameter estimate represents how much the mean VAS 
+# is changed by adding each drug with the corresponding dosages
+# when the application and dosages of all other drugs remain unchanged. 
+
+#3
+F.test <- function(Y,X.2,X.1){
+  X.full <- cbind(X.2,X.1)
+  b.full <- solve(t(X.full) %*% X.full) %*% t(X.full) %*% Y
+  b.2 <- as.matrix(b.full[1:ncol(X.2),1])
+
+  SS.b2.b1 <- 
+  t(b.2) %*% (t(X.2)%*%X.2 - t(X.2)%*%X.1 %*% solve(t(X.1)%*%X.1) %*%
+  t(X.1)%*%X.2) %*% b.2
+  
+  SSE <- t(Y-X.full%*%b.full) %*% (Y-X.full%*%b.full)
+
+  h <- nrow(b.2)
+  n <- nrow(X.full)
+  k <- ncol(X.full)
+
+  F.stat <- (SS.b2.b1/h) / (SSE/(n-k)) 
+  p.val <- pf(F.stat,h,n-k,lower.tail=F)
+  out <- matrix(c(F.stat,h,n-k,p.val),nrow=1)
+  colnames(out) <- c('F.stat','df1','df2','p-val')
+
+  #c(out,SSE) 
+  list(F.stat=out,SSE=SSE)
+}
+
+ans3  <- F.test(Y,X[,6:8],X[,1:5])
+ans4a <- F.test(Y,X[,4:5],X[,c(1:3,6:8)]) # same as  my.mod.red <- lm(Y~X[,-c(4:5)])
+                                          #          my.mod.ful <- lm(Y~X[,-1])
+                                          #          anvoa(my.mod.red,my.mod.ful)
+
+ans4b <- F.test(Y,X[,c(4:5,6:8)],X[,1:3])
+ans4c <- F.test(Y,X[,4:5],X[,1:3])
+
+ans1
+ans2
+ans3$F.stat  #same as intern anova and part1 ans5
+ans4a$F.stat #Drug B
+ans4b$F.stat #Drug B
+ans4c$F.stat #Drug B
+
+# The strength of test 1 is that when the test statistic indicates a significant
+# effect, we can be more certain that it is because drug B has a significant
+# effect on VAS. On the other hand, the weakness of the test is that
+# when we fail to reject the null hypothesis,
+# it may be because we have not accounted for the effect on VAS by drug B
+# from the interaction of drug A and Drug B.
+
+# The strength of test 2 is that when the test statistic indicates that there
+# is not a significant effect from drug B, we can be certain it is because neither
+# the interaction of drug A and drug B nor drug B by itself has a significant 
+# effect on VAS. The weakness is that when the test statistic indicates that 
+# drug B is significant, we are not certain if it is drug B alone that causes
+# a significant effect on VAS or if it is the interaction of drug A and drug B 
+# that causes a significant effect on VAS.
+
+# The strength of test 3 is that it only compares only the effect of 
+# drug A and drug B without the comparing the effect of the interaction of the 
+# two drugs. However, we are not able to use all the information we have obtained
+# from the experiment by doing this test. 
+
+#5
+source('intern.R')
+plot.stuff <- function(){
+  par(mfrow=c(2,1))
+  plot(theta,type='h',main='Reparameterized Model Graph',xaxt='n',ylab='')
+  abline(h=0)
+  axis(1,1:5,expression(mu[1],alpha[1],alpha[2],beta[1], beta[2]))
+  axis(1,6,expression(paste(alpha,beta[11])))
+  axis(1,7,expression(paste(alpha,beta[12])))
+  axis(1,8,expression(paste(alpha,beta[21])))
+  interaction.plot(data$drugA,data$drugB,data$diff.VAS,main='Cell Means Model Graph',
+                   xlab="Levels of Drug A",ylab="VAS Difference")
+}  
+plot.stuff()
+
+#6
+# The intern's parameter estimates were the same as mine.
+
+#7 
+# Yes, because in our full & reduced model analysis, our reduced model
+# contained only the interaction and the full model contained every other
+# parameter. In the ANOVA, the same full and reduced models are used. 
+# So we have the same F statistic and p-values.
+
+#8
+# The intern does not have the same test statistic for drug B (in my 4a). 
+

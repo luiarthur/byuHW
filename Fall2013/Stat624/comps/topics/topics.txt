@@ -1,0 +1,22 @@
+MLE: 
+  - Newton Raphson
+
+MCMC:
+  - MH
+  - Gibbs
+  - Importance Sampling
+  - Rejection Sampling
+
+Harmonic Mean: n / sum(1/x)
+
+Goodness of Fit
+
+Final / Midterm
+
+Box Muller Transformation: Drawing N(0,1)
+
+Permutation test
+
+Fisher's exact test
+
+

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rm -f *.aux *.log simulation-*.pdf *.tex

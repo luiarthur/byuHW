@@ -1,0 +1,4 @@
+#!/usr/bin/env Rscript
+
+Sweave("hw_10.rnw")
+system('pdflatex hw_10.tex')

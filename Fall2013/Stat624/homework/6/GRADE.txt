@@ -1,0 +1,21 @@
+Homework 6
+Name: Arthur Lui
+Grade: 95
+
+1. Permutation Test added to "welch1938.R" -- looks good
+   -uses z-test statistic
+2. brief summary about competing methods in "welch1938.txt" --yep
+3. Shell Script "file-info" --good
+   -Takes one or more files and displays:
+      -file name
+      -number of lines
+      -size in kb
+      -first 5 lines sorted alphabetically
+4. Random Normals R script "random-normals" --returns twice as many as asked (-1pts). Duplicates? (-4pts) That's why your plot is bimodal
+   -X, M, V via command line
+   -Box-Muller tranformation
+5. "plot-normals.R" script --good
+   -sources "random-normals" to create 1000 points
+   -produces figure"box-muller.pdf" with kde and ther. density in red
+
+Only contains welch1938.R, welch2938.txt, random-normals, plot-normals.R, file-info

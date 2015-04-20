@@ -1,0 +1,26 @@
+\documentclass{article}
+\begin{document}
+
+\section*{Arthur Lui}
+
+\subsection*{Q: Under what error terms is the estimator of the slope biased?}
+
+When the error terms are standard normal, the slope is biased. That is, the $1 - \alpha_2/2$ confidence interval for the bias does not contain 0.
+
+\subsection*{Q: Does the confidence interval estimator have the right coverage under the normally distributed error terms?}
+Yes, because the $1 - \alpha_2/2$  confidence interval contains $\alpha_1$. 
+
+
+\subsection*{Q: How about under the chi-squared distributed error terms?}
+No, because the $1 - \alpha_2/2$  confidence interval does not contain $\alpha_1$. 
+
+\subsection*{Q: How about the correlated error terms?}
+No, because the $1 - \alpha_2/2$  confidence interval does not contain $\alpha_1$. 
+
+\subsection*{Q: Under what situations is an incorrect coverage more noticable?}
+When nreps is large, an incorrect coverage is more noticable.
+
+\subsection*{Q: When does the problem go away?}
+When nreps tends to infinity, the problem goes away because Monte Carlo error goes tends to 0 as nreps tends to infinity.
+
+\end{document}

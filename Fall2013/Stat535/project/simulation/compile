@@ -1,0 +1,4 @@
+#!/usr/bin/env Rscript
+
+Sweave("simulation.rnw")
+system('pdflatex simulation.tex')

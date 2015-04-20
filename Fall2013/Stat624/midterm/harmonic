@@ -1,0 +1,6 @@
+#!/usr/bin/env Rscript
+
+x <- as.numeric(commandArgs(TRUE))   # Never use the variables T or F because they could (accidently) be redefined!
+
+cat(length(x)/sum(1/x),"\n")       # Make the output look pretty.
+

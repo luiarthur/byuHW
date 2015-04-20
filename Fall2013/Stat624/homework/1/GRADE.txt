@@ -1,0 +1,23 @@
+Arthur Lui
+
+Vimtutor
+  - "There are a some words", in lesson 2.1
+  - Didn't type o and O to open lines in Lesson 6.1
+  - "this is a first item." x2? in Lesson 6.4
+Welch's
+  -"Barlett" should be Bartlett
+  -"be THE be THE"
+  -"test criterion" (should be best criterion)
+  -"may mask difference[s]"
+  -"I wish to made"
+  -"The criterion v" should be "THE criterion v"
+About 
+  -Where are you from?
+Photo -Complete
+
+Comments:
+Be a little more cautious on precision with these:)
+
+Grade:94.7
+(-2) Supposed to rename file to "completed." You have an extra files.
+(-10/3)

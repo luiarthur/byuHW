@@ -1,0 +1,4 @@
+#!/bin/bash
+
+vulture frechetBeamer.tex pdflatex frechetBeamer.tex
+

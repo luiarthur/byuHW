@@ -1,0 +1,308 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{amssymb}
+\usepackage{Sweave}
+\usepackage{bm}
+\usepackage{mathtools}
+\def\wl{\par \vspace{\baselineskip}}
+
+\begin{document}
+\title{Stat535 Simulation Project}
+\author{Arthur Lui}
+\maketitle
+
+\subsection*{Code:}
+<<design,echo=T>>=
+# MODEL MISSPECIFICATION: Take 2
+# # True Model:
+# Y = b0+b1X1+b2(X1)^2 + eps
+#
+# Misspecified Model:
+# Y = b0 + b1X1 + eps
+
+
+simulate <- function(b,n=100,N=100000){
+  b0 <- b[1]; b1 <- b[2]; b2 <- b[3]
+
+  lm.F <- function(y){
+    cf <- matrix(c(lm(y ~ x)$coefficients,0),ncol=1)
+    rownames(cf) <-c('b0','b1','b2')
+    cf
+  }
+  lm.T <- function(y) {
+    cf <- matrix(lm(y ~ x + I(x^2))$coefficient,ncol=1)
+    rownames(cf) <- c('b0','b1','b2')
+    cf
+  }
+
+  # N = number of iterations for simulation
+  # n = number of data points
+  eps <- matrix(rnorm(n*N),n,N)
+  x <- rnorm(n,1,1)
+  Y <- b0 + b1*x + b2*x^2 + eps
+
+  mod.F <- apply(Y,2,lm.F) 
+  #mod.T <- apply(Y,2,lm.T) #lm(Y[,1]~x) #lm(Y[,1]~x+I(x^2))
+  #plot(x,Y[,1]); abline(mod.F)
+  #bh.T <- mod.T$coefficients
+  #xx <- seq(-2,4,length=1000)
+  #yy <- bh.T[1] + bh.T[2]*xx + bh.T[3]*xx^2
+  #lines(xx,yy)
+  my.lm <- function(y){
+    mod <- lm(y~x)
+    CI <- confint(mod)
+    b0.in <- ifelse((CI[1,1] < b0) & (b0 < CI[1,2]),T,F)
+    b1.in <- ifelse((CI[2,1] < b1) & (b1 < CI[2,2]),T,F)
+    b2.in <- ifelse(b2==0,T,F)
+    pval.b0 <- summary(mod)$coef[1,4]
+    pval.b1 <- summary(mod)$coef[2,4]
+    #matrix(c(b0.in,b1.in,b2.in),ncol=1)
+    matrix(c(b0.in,b1.in,b2.in,CI[1,1],CI[1,2],CI[2,1],CI[2,2],
+             pval.b0,pval.b1),ncol=1)
+  }
+
+  mod <- apply(Y,2,my.lm)
+  b0.in <- mean(mod[1,])
+  b1.in <- mean(mod[2,])
+  b2.in <- mean(mod[3,])
+  CI.b0 <- c(mean(mod[4,]),mean(mod[5,]))
+  CI.b1 <- c(mean(mod[6,]),mean(mod[7,]))
+  pval.b0 <- mod[8,]
+  pval.b1 <- mod[9,]
+  pow.b0 <- mean(pval.b0<.05)
+  pow.b1 <- mean(pval.b1<.05)
+  pow <- c(pow.b0,pow.b1,1)
+
+  in.CI <- matrix(c(b0.in,b1.in,b2.in),nrow=1)
+
+  bias.b0 <- mean(mod.F[1,]) - b0
+  bias.b1 <- mean(mod.F[2,]) - b1
+  bias.b2 <- mean(mod.F[3,]) - b2
+
+  mse.b0 <- var(mod.F[1,]) + bias.b0^2
+  mse.b1 <- var(mod.F[2,]) + bias.b1^2
+  mse.b2 <- var(mod.F[3,]) + bias.b2^2
+
+  bias <- cbind(bias.b0, bias.b1, bias.b2)
+  mse <- cbind(mse.b0, mse.b1, mse.b2)
+
+  true <- c(b0,b1,b2)
+  CI <- cbind(CI.b0,CI.b1,c(0,0))
+  results <- rbind(true,bias,mse,in.CI,CI,pow)
+  rownames(results) <- c('True Stats','Bias','MSE','Coverage',
+                         'CI.low','CI.high','pow')
+  colnames(results) <- c('b0.hat','b1.hat','b2.hat')
+  results
+}
+
+library(foreach)
+library(doMC)
+registerDoMC(5)
+useParallel <- TRUE
+
+#b0 <- seq(0,.5,length=100)#c(1,1,4)
+#b1 <- seq(0,.5,length=100)#c(1,1,4)
+#b2 <- seq(0,.5,length=100)#c(0,.05,1)
+
+#b0 <- seq(.1,.5,by=.1)
+#b1 <- seq(.1,.5,by=.1)
+#b2 <- seq(.1,.5,by=.1)
+
+b <- matrix(c(.1,.1,.1,
+              .2,.1,.1,
+              .3,.1,.1,
+              .4,.1,.1,
+              .5,.1,.1,
+              .1,.1,.1,
+              .1,.2,.1,
+              .1,.3,.1,
+              .1,.4,.1,
+              .1,.5,.1,
+              .1,.1,.1,
+              .1,.1,.2,
+              .1,.1,.3,
+              .1,.1,.4,
+              .1,.1,.5),15,3,byrow=T)
+
+results <- list()
+if (useParallel){
+  sim.time <- system.time(
+    results <- foreach(k=1:nrow(b)) %dopar% simulate(b[k,],N=100000)
+  )
+  print(sim.time)
+} else {
+  begin.time <- Sys.time()
+  results <- list() 
+  for (k in 1:nrow(b)){
+    results[[k]] <- simulate(b[k,])
+  }
+  print(Sys.time() - begin.time)
+}
+
+bias.b0 <- NULL
+bias.b1 <- NULL
+bias.b2 <- NULL
+MSE.b0 <- NULL
+MSE.b1 <- NULL
+MSE.b2 <- NULL
+cvg.b0 <- NULL
+cvg.b1 <- NULL
+cvg.b2 <- NULL
+pow.b0 <- NULL
+pow.b1 <- NULL
+pow.b2 <- NULL
+for(i in 1:length(results)){
+  bias.b0[i] <- results[[i]][2,1]
+  bias.b1[i] <- results[[i]][2,2]
+  bias.b2[i] <- results[[i]][2,3]
+  MSE.b0[i] <- results[[i]][3,1]
+  MSE.b1[i] <- results[[i]][3,2]
+  MSE.b2[i] <- results[[i]][3,3]
+  cvg.b0[i] <- results[[i]][4,1]
+  cvg.b1[i] <- results[[i]][4,2]
+  cvg.b2[i] <- results[[i]][4,3]
+
+  pow.b0[i] <- results[[i]][7,1]
+  pow.b1[i] <- results[[i]][7,2]
+  pow.b2[i] <- results[[i]][7,3]
+}
+
+make.plots <- function(){
+  par(mfrow=c(4,1))
+
+  plot(b[1:5,1],bias.b0[1:5],ty='o',pch=20,col='red',
+       main=expression(paste('BIAS Vs. ',beta)),
+       xlab=expression(paste(beta)),ylab="Bias",
+       ylim=c(min(bias.b0,bias.b1,bias.b2),max(bias.b0,bias.b1,bias.b2)))
+  lines(b[6:10,2],bias.b1[6:10],ty='o',pch=20,col='blue')
+  lines(b[11:15,3],bias.b2[11:15],ty='o',pch=20,col='green')
+  legend("topleft",col=c("red","blue","green"),
+         legend=c("beta0 changing, other betas constant",
+                  "beta1 changing, other betas constant",
+                  "beta2 changing, other betas constant"),lwd=3)
+
+  plot(b[1:5,1],MSE.b0[1:5],ty='o',pch=20,col='red',
+       main=expression(paste('MSE Vs. ',beta)),
+       xlab=expression(paste(beta)),ylab="MSE",
+       ylim=c(0,.4))
+  lines(b[6:10,2],MSE.b1[6:10],ty='o',pch=20,col='blue')
+  lines(b[11:15,3],MSE.b2[11:15],ty='o',pch=20,col='green')
+  legend("topleft",col=c("red","blue","green"),
+         legend=c("beta0 changing, other betas constant",
+                  "beta1 changing, other betas constant",
+                  "beta2 changing, other betas constant"),lwd=3)
+
+  plot(b[1:5,1],cvg.b0[1:5],ty='o',pch=20,col='red',
+       xlab=expression(paste(beta)),ylab="Coverage",
+       main=expression(paste('Coverage Vs. ',beta[3])),
+       ylim=c(0,1.4))
+  lines(b[6:10,2],cvg.b1[6:10],ty='o',pch=20,col='blue')
+  lines(b[11:15,3],cvg.b2[11:15],ty='o',pch=20,col='green')
+  legend("topleft",col=c("red","blue","green"),
+         legend=c("beta0 changing, other betas constant",
+                  "beta1 changing, other betas constant",
+                  "beta2 changing, other betas constant"),lwd=3)
+
+  plot(b[1:5,1],pow.b0[1:5],ty='o',pch=20,col='red',
+       main=expression(paste('Power Vs. ',beta)),
+       xlab=expression(paste(beta)),ylab="Power",
+       ylim=c(0,1.4))
+  lines(b[6:10,2],pow.b1[6:10],ty='o',pch=20,col='blue')
+  lines(b[11:15,3],pow.b2[11:15],ty='o',pch=20,col='green')
+  legend("topleft",col=c("red","blue","green"),
+         legend=c("beta0 changing, other betas constant",
+                  "beta1 changing, other betas constant",
+                  "beta2 changing, other betas constant"),lwd=3)
+
+}
+
+eg.plot <- function(){
+  X <- c(294,247,267,358,423,311,450,534,438,
+         697,688,630,709,627,615,999,1022,1015,
+         700,850,980,1025,1021,1200,1250,1500,1650)
+
+  Y<- c(30,32,37,44,47,49,56,62,68,
+        78,80,84,88,97,100,109,114,117,
+        106,128,130,160,97,180,112,210,135)
+
+  lY <- log(Y)
+  X2 <- X^2
+
+  mod1 <- lm(lY~X)
+  mod2 <- lm(lY~X+X2)
+
+  f <- function(x){
+    mod2$coef[1] + mod2$coef[2]*x + mod2$coef[3]*x^2
+  }
+
+  plot(X,lY,pch=20,main="log(Number of Supervisors) Vs. Number Supervised",
+       xlab="Number of Workers Supervised",ylab="logged Number of Supervisors",
+       cex=2)
+  abline(mod1,col='red',lwd=3)
+  curve(f(x), from=200,to=1600,col='blue',lwd=3,add=T)
+
+  #print(summary(mod1))
+  #print(summary(mod2))
+}
+@
+
+
+\newpage
+\subsection*{Motivating Example: Ommitting $X_j$}
+Consider the data set, ``Number of Supervised Workers and Supervisors'', 
+from Regression Analysis by Example (p.164). Ommitting the $X^2$ term in the model
+will lead to underfitting. (See the graph below.) While adding the $X^2$ term in
+the model can increase the $R^2$ by 0.1.
+\wl\noindent
+If the true model has is $y=\beta_0+\beta_1X+\beta_2X^2$, a major violation 
+occurs when $\beta_2$ is large, and the model: $y=\beta_0+\beta_1X$ is used; a minor violation occurs when $beta_2$ is really small and the reduced model is used.
+
+\begin{center}
+<<fig=T,echo=F,width=16,height=20>>=
+eg.plot()
+@
+\end{center}
+
+\newpage
+\subsection*{Graphs and Tables:}
+The graph and tables below summarize the results of the simulation study.
+\wl\noindent
+It appears that $\hat{\beta_0}$ is unbiased and $\hat{\beta_1}$ is biased 
+for different values of beta. The MSE's increase increases for $\hat{\beta_2}$ 
+as the model violations increase. The power curves for each of the estimates
+asmyptote to 1.
+\wl\wl\wl\wl
+
+\begin{center}
+<<fig=T,echo=F,width=16,height=20>>=
+make.plots()
+@
+\end{center}
+
+\newpage
+% sanitize.colnames.function = identity used with greek colnames
+<<label=tab1,echo=F,results=tex>>=
+  library(xtable)
+  colnames(results[[1]]) <- c("$\\beta_0$","$\\beta_1$","$\\beta_2$")
+  x=xtable(results[[1]],caption="No Violations",label="tab:one",digits=5)
+  print(x,include.rowname=TRUE,include.colname=TRUE,caption.pl="top",
+        sanitize.colnames.function=identity,size="\\large")
+@
+
+<<label=tab2,echo=F,results=tex>>=
+  library(xtable)
+  colnames(results[[2]]) <- c("$\\beta_0$","$\\beta_1$","$\\beta_2$")
+  x=xtable(results[[2]],caption='Minor Violations',digits=5)
+  print(x,include.rowname=TRUE,include.colname=TRUE,caption.pl='top',
+        sanitize.colnames.function=identity,size="\\large")
+@
+
+<<label=tab3,echo=F,results=tex>>=
+  library(xtable)
+  colnames(results[[5]]) <- c("$\\beta_0$","$\\beta_1$","$\\beta_2$")
+  x=xtable(results[[5]],caption='Major Violations',digits=5)
+  print(x,include.rowname=TRUE,include.colname=TRUE,caption.pl='top',
+        sanitize.colnames.function=identity,size="\\large")
+@
+
+\end{document}

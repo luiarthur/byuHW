@@ -1,0 +1,4 @@
+#!/bin/bash
+
+gcc -std=c99 -o frechet frechet.c -lgsl -lgslcblas -lm
+R CMD SHLIB frechet.c -lgsl -lgslcblas

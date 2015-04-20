@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#Most general: Need to feed filename
+#gcc -std=c99 -o "${@%.*}" "$@" -lgsl -lgslcblas -lm
+
+#This is what I'll use for now.
+#gcc -std=c99 -o rvonmises2 rvonmises2.c -lgsl -lgslcblas -lm
+
+#Need something like this for homework 8
+gcc -std=c99 -o rvonmises2 rvonmises2.c -lgsl -lgslcblas -lm
+R CMD SHLIB rvonmises2.c -lgsl -lgslcblas
+

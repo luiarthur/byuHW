@@ -1,0 +1,12 @@
+Homework 9
+Name: Arthur Lui
+Grade: 100
+
+1. simulation.R 
+ - starts running --good
+2. mse.pdf
+3. bias.pdf
+4. summary.txt
+
+
+Contains only:"simulation.R", "mse.pdf", "bias.pdf", and "summary.txt" 

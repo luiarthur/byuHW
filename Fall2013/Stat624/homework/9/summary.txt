@@ -1,0 +1,26 @@
+I will refer to the following abbreviations:
+
+(1) The Maximum Likelihood Estimator as MLE.
+
+(2) The Bayes Estimator under squared-error loss where the prior distribution 
+on beta is a normal distribution with mean 0.4 and standard deviation of 0.5 
+as BE1.
+
+(3) The Bayes Estimator under 0-1 loss where the prior distribution on beta is 
+uniform on -2 to 2 as BE2.
+
+
+Summary: 
+
+The biases for all three estimators seem to be close to 0, but mostly negative. 
+The biases across different values of beta ranges from -.04 to .01.
+The biases for the MLE and the BE2 start negative but move towards 0 as beta
+increases.
+
+The MSE's for all three estimators appear to behave similarly. 
+They decrease as the value of the true beta increases.
+
+As the MSE's are all decreasing and appear to converge towards one another,
+the MLE and BE2 appear to be the better estimates as they move towards 0 as the
+value of the true beta increases.
+

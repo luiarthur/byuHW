@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+\begin{document}
+
+\begin{center}
+THE SIGNIFICANCE OFTHE DIFFERENCE BETWEEN TWO MEANS WHEN THE POPULATION VARIANCES ARE UNEQUAL\\
+By B. L. Welch, Ph.D.
+\end{center}
+
+1. $\textit{Introduction}$. Suppose that we have samples of sizes $n_1$ and $n_2$ from
+populations $\pi_1$ and $\pi_2$ respectively. Let the populations be normal in
+form, $\pi_1$ having mean and standard deviation $\alpha_1$ and $\sigma_1$, and
+$\pi_2$ having mean and standard deviation $\alpha_2$ and $\sigma_2$. Let it be
+required to test whether $\alpha_1$ = $\alpha_2$.  Two cases may be
+distinguished: (i) $\sigma_1$ and $\sigma_2$ may be equal or (ii) they may be
+unequal. In the first case the most appropriate test for the equality of the
+$\alpha$'s is made by referring the criterion
+\begin{equation}
+u = \frac{\bar{x_1}-\bar{x_2}}{\sqrt{\frac{\Sigma_1+\Sigma_2}{(n_1+n_2-2)}\left(\frac{1}{n_1}+\frac{1}{n_2}\right)}}
+\end{equation}
+to the $t$ distribution with $f=(n_1+n_2-2)$\footnote{$\Sigma_1$ denotes the sum of squares of the observations in the first sample from their mean. $\Sigma_2$ similarly for the second sample.}. In the second case, if the ratio of the
+two $\sigma$'s is known, a similar criterion can be used: if, however, this ratio
+is unknown, no criterion quite so simple is available. A solution of the problem
+of testing the hypothesis in this instance has been proposed by R. A. Fisher,i\footnote{\textit{Ann. Eugen.} VI, Part IV (1936), p. 396.}
+using the concept of fiducial distributions. Fisher notes the equivalence of his
+test to that given previously by W. V. Behrens\footnote{\textit{Landw, Jb.} LXVIII (1929), p. 822.} in 1929. the validity of this
+test has, however, been questioned by M. S. Bartlett\footnote{M.S. Bartlett. \textit{Proc. Camb. Phil. Soc.} XXXII, Part 4 (1936), p.564}. An alternative\footnote{It should be noted that, if $n_1=n_2$, the criteria $u$ and $v$ are identical.} criterion
+which has been often employed is
+\begin{equation}
+v = \frac{\bar{x_1}-\bar{x_2}}{\sqrt{\frac{\Sigma_1}{n_1(n_1-1)}+\frac{\Sigma_2}{n_2(n_2-1)}}}.
+\end{equation}
+This may be referred to the normal probability table if the samples are large
+enough, but for small samples it does not yield an exact test and it is not
+clear how it may best be made to furnish approximations.
+
+It has been pointed out by Fisher that in many practical situations where $u$ is
+used, the fact that the $\sigma$'s must be equal for the criterion to be
+distributed as $t$ does not necessarily mean that an $\textit{assumption}$ of equality is
+involved. It may mean that equality of the $\sigma$'s is being regarded as part of
+the hypothesis under test. In such situations it may be argued that there is no
+point in testing whether $\alpha_1$ = $\alpha_2$ unless we have also $\sigma_1$
+= $\sigma_2$.  However, even if the question posed is one of testing whether two
+normal populations are identical, $u$ will not necessarily be the best
+criterion to use. $u$ will afford a valid\footnote{The term ``validity" applied to a test is also used with the same meaning, which should not be confused with the meaning which J. Neyman and E.S. Pearson have attached to it in recent papers on testing statistical hypotheses.} test, in the sense that it will control
+satisfactorily the chance of rejecting the hypothesis when it is actually true,
+but it is only one of many such. the choice of criterion must depend on what
+sort of departure from the hypothesis under the test we are most interested in
+detecting. $u$ is demonstrably the best criterion when we wish to detect
+differences in means without attendant differences in standard deviations. It is
+conceivable, however, that the test based on $u$ may sometimes operate in such a
+fashion that differences in the standard deviations $\sigma_1$ and $\sigma_2$
+may mask differences in the means $\alpha_1$ and $\alpha_2$, with the result
+that judgments of non-significance may be too frequently made. The
+investigations in this paper throw some light on this point, although explicitly
+they are concerned with cases where it is reasonable to test whether $\alpha_1$
+= $\alpha_2$, whatever the ratio of $\sigma_1$ to $\sigma_2$.
+
+In the first place I shall consider the problem---how far is the criterion $u$
+valid even when $\sigma_1 \neq \sigma_2$? (That the test is liable to be biased in
+this instance is generally realized, but the extent of the bias has not hitherto
+received any detailed discussion.) In the second place I shall consider the
+validity of testing the hypothesis by referring $v$ to the $t$ distribution with
+$f=(n_1+n_2-2)$. Finally, I wish to make some observations about the test of Fisher
+and Behrens, mentioned above.
+
+It is easily seen that $u$ in general is not distributed as $t$. For whereas the
+square of the standard error of $(\bar{x_1}-\bar{x_2})$ is
+$(\sigma_1^2/n1+\sigma_2^2/n2)$, the quantity under the root in (1) is an
+unbiased estimate of
+\[
+\frac{(n_1-1)\sigma_1^2+(n_2-1)\sigma_2^2}{n_1+n_2-2}\left(\frac{1}{n_1}+\frac{1}{n_2}\right).
+\]
+This is equal to $(\sigma_1^2/n_1+\sigma_2^2/n_2)$ only if $\sigma_1 = \sigma_2$
+or n1 = n2.  The criterion $v$ does not suffer from this objection, but its
+distribution still depends to a certain extent on $\sigma_1/\sigma_2$. The first
+problem will be to obtain the distributions of $u$ and $v$. The exact distributions
+will not be derived here, but only certain approximations adequate, I believe,
+for the purpose in hand.
+
+\end{document}
+

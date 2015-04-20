@@ -1,0 +1,31 @@
+Homework 3
+Name: Arthur Lui
+Grade: 96
+
+1. Chapter 3 R problems: 2,3,4,6,7 --3.3 test for other values? (-2pts). Oh snap! functions for me! thanks
+-called chap3.R --YES
+-clearly labeled --YES
+
+2. Iris Data
+-called iris.R
+-means of each variable
+-means by species
+-scatterplot of width vs. length, with different colors for species
+
+3. "Collect all Four" --Nice work!
+-called all-four.R
+-1) all equal probability
+   -mean number of boxes needed
+   -proportion that need 14 boxes or more?
+   -Monte Carlo error
+-2) different probabilities 
+   -mean number of boxes needed
+   -proportion that need 14 boxes or more?
+   -Monte Carlo error
+-Good coding practice:
+   -30 seconds ish
+   -clearly displays results
+   -EXTRA CREDIT: generalized for any number of items in the set --vector input! (+2pts)
+-Results in memo.tex  --not called memo.tex. but it does look like a sweet sweave file; I just can't get it to work. Show me sometime for 2 pts back (-4pts)
+
+

@@ -1,0 +1,7 @@
+.*.swp
+*.aux
+*.log
+*.tex
+report-*.pdf
+Rplots.pdf
+

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# file-info <filename> reutrns:
+#    1. >= 1 filenames
+#    2. Number of lines in file
+#    3. file size (kb)
+#    4. first 5 lines of the file (alphabetically sorted)
+
+pink="\e[95m"
+
+bold=`tput bold`
+nf=`tput sgr0` # normal font
+
+
+for file in "$@"
+do 
+  noOfLines=$(wc -l < "$file")
+
+  # cut off any field that's not the first (-1)
+  fileSize=$(du -h "$file" | cut -f -1)
+
+  echo 
+  echo -e "$pink${bold}$file:${nf}"
+  echo "  Lines: $noOfLines"
+  echo "  Size:  $fileSize"
+  echo "  First 5 lines of $file:"
+  echo
+  echo "  $(head -5 $file | sort)"
+  echo
+done

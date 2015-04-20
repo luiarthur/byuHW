@@ -1,0 +1,23 @@
+#!/usr/bin/env Rscript
+
+# Generate X random Normal(mean=M, sd=V) using Box-Muller
+# X M V are supplied in command line
+
+#myRnorm <- function(X,M,V){
+  
+  args <- as.numeric(commandArgs(trailingOnly = T))
+  if (length(args) == 0) {args <- Args}
+
+  X <- args[1]; M <- args[2]; V <- args[3]
+  U <- matrix(runif(ifelse(X %% 2 == 0, X, X+1)), nrow=X, ncol=2, byrow=T)
+
+  out <-
+  cbind(sqrt(-2 * log(U[,1])) * cos(2*pi*U[,2]),
+        sqrt(-2 * log(U[,1])) * sin(2*pi*U[,2])) * V + M
+
+  print(out)
+  #cat(out,"\n",sep="\n")
+
+#}
+
+#plot(myRnorm(10000,3,1),cex=.1)

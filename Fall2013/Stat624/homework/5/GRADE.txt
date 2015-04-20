@@ -1,0 +1,21 @@
+Homework 5
+Name: Arthur Lui
+Grade: 92.5
+
+1. Mann Whiteny Monte Carlo p-values --you changed the function call slightly... but the arguments work the same, so I guess that's okay.
+-called "mann-whitney.R"
+-function call is "mann.whitney <- function(sample1,sample2,alternative="greater")"
+-returns {test stat, montecarlo pvalue, lower and upper bounds of 95% }
+
+2. Monte Carlo Power calculations --Power calculations appear to be off: I think you used "rr" when you meant to use "rr[1]" (-3pts)
+-if alpha is .05, what is the rejection region? --reject for values greater than highest observed? (-1/2 pt)
+-If the true proportion of black balls is .6, what is the power of the test for the null hypotheiss that hte porportion of black balls is .5, vs. prop >.5
+-What is the power if the true porportion is .7 
+-all with Monte Carlo error
+
+3. Advanced Graphic --extra comma in sumPrec[,2] (-1pt). Didn't call function (-2pts)
+-Provo weather data. 
+-Kinda like NYT's plot
+-looks good
+
+Contains only "mann-whitney.R", "urn.R", and "nytimes.R" files (and any data files that your script needs to read!) --plot not called weather.pdf (-1pt)

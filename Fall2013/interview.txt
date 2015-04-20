@@ -1,0 +1,70 @@
+- The hardest thing you did in VBA/Excel
+    (~ Financial)
+  - present the problem
+  - how you solved the problem (30-60sec)
+    
+    OPTION I:
+    For my final project in my VBA class, I had the freedom to choose what I wanted to do.
+    I chose to write a program to simulate exam FM problems, as I was preparing to take FM. 
+
+    I made use of user forms with options tab, and tried to make it look like the real exam. 
+    I chose the problems from FM practice exams that I thought were most challenging for me. 
+    I had about 30 questions. And for each problem, I generated new numbers and computed the
+    answers in VBA. I would then have to answer my own questions.
+  
+  
+    OPTION II:
+    For the final exam. I was given a list of product ID's for different cereals and was asked
+    to find the cost, brand, size, and weight about the cereals. I had to retrieve that information
+    from a website and populate a spreadsheet with the information.
+    Since I had to lookup over 100 cereals, we had to use VBA to automate the data retrieving
+    process.
+    With the help of a package to obtain the HTML files of a website, I concatenated the data website
+    with the product ID and obtained the HTML files, then used regular expressions to find the data.
+    Then, I put the information into the correct cells.
+
+    
+    OPTION III:
+    Knapsack problem. Given a knapsack of a limited capacity. And items with different values and
+    weights. Pack the knapsack with the items to maximize the value of the items in the knapsack.
+    The problem is quite trivial if you can break items into pieces, because you just keep packing
+    your knapsack with items that have highest value/weight ratio, until you are about to exceed
+    the knapsack's capacity, then you pack on a portion of the next most valuable item. 
+    If, however, you can only take parts of an item, you have to implement a dynamic programming
+    algorithm. I prototyped the solution in VBA, then coded the solution in C++ (for speed).
+
+      - What I can do:
+          Optimization, Ribbons, Internet, regular expressions, user forms
+
+  
+
+- Tell me about a time you worked in a team (one example, short)
+  - balance between academic and non-academic (mission, companion, jazz, conflicts)
+
+    This semester, I am in a jazz combo, where I play the piano. I used to be a piano performance
+    major, but I had not played jazz until 2 years ago. So I felt like a newb.
+
+    Working in a team in this kind of setting was really hard for me at first, because it's hard  
+    I don't know very much of the jazz vocabulary, but I do feel that sometimes I have better ideas
+
+
+
+
+- Tell me about a time you were a leader (45-60 sec)
+
+- What do you do in your free time? (Piano)
+- Most valuable work experience?
+  Right now, I am a research Assistant for a professor in the Stats department. I am learning about MC 
+  sampling methods for DP mixture models. 
+
+
+- Favorite subject / class taken
+
+- Why Pacific Life? 
+
+- Tell me about a time you went above and beyond?
+
+- A weakness?
+
+- Do you prefer to work in a team or by yourself?
+

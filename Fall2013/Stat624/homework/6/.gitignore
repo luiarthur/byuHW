@@ -1,0 +1,5 @@
+*.html
+*.pdf
+*.Rout
+.RData
+temp.*
