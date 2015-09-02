@@ -1,7 +1,3 @@
-markdown: kramdown
----
-
 # Another Feasible Approach for the covariates
 
-When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
-$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+Let *X* be a column of 1's folloed by the weighted average of the 10 nearest locations' measurements. (*X* will be n by 2.)
